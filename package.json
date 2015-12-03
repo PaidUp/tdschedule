@@ -1,0 +1,23 @@
+{
+  "name": "tdschedule",
+  "version": "0.0.1",
+  "description": "microservices TDScedule",
+  "main": "app.js",
+  "scripts": {
+    "start": "node server/app.js",
+    "test": "mocha *.spec.js"
+  },
+  "keywords": [
+    "talos",
+    "digital",
+    "TDSChedule",
+    "schedule"
+  ],
+  "author": "@talosdigital",
+  "license": "ISC",
+  "dependencies": {
+    "express": "4.13.3",
+    "mongoose": "4.2.9",
+    "wagner-core": "^0.2.0"
+  }
+}
