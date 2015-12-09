@@ -223,14 +223,208 @@ exports.paymentPlanMetaDataDelete = function (param, res) {
     });
   });
 }
+// payment plan metadata
+
 // payment plan schedule
-
-
-// payment plan schedule information
-
-// schedule
+/* create
+  param =
+  {
+    paymentPlanId : 'String',
+    scheduleData:
+    {
+      name : 'String',
+    }
+  }
+*/
 exports.scheduleCreate = function(param, res){
-  return res(null, true)
+  login(function(err) {
+    if (err) {
+      return res(err);
+    }
+    magento.bighippoPaymentplanSchedule.create(param, function (err, resPaymentPLanMetadata) {
+      if(err) return res(err);
+      return res(null,camelize(resPaymentPLanMetadata));
+    });
+  });
 }
 
+/* update
+  param =
+  {
+    scheduleId: 'String',
+    scheduleData:
+    {
+      name : 'String'
+    }
+  }
+*/
+exports.scheduleUpdate = function(param, res){
+  login(function(err) {
+    if (err) {
+      return res(err);
+    }
+    magento.bighippoPaymentplanSchedule.update(param, function (err, resPaymentPLanMetadata) {
+      if(err) return res(err);
+      return res(null,camelize(resPaymentPLanMetadata));
+    });
+  });
+}
 
+/* list
+  param =
+  {
+    scheduleId : 'String'
+  }
+*/
+exports.scheduleList = function(param, res){
+  login(function(err) {
+    if (err) {
+      return res(err);
+    }
+    magento.bighippoPaymentplanSchedule.list(param, function (err, resPaymentPLanMetadata) {
+      if(err) return res(err);
+      return res(null,camelize(resPaymentPLanMetadata));
+    });
+  });
+}
+
+/* info
+  param =
+  {
+    scheduleId:'String'
+  }
+*/
+exports.scheduleInfo = function(param, res){
+  login(function(err) {
+    if (err) {
+      return res(err);
+    }
+    magento.bighippoPaymentplanSchedule.info(param, function (err, resPaymentPLanMetadata) {
+      if(err) return res(err);
+      return res(null,camelize(resPaymentPLanMetadata));
+    });
+  });
+}
+
+/* delete
+  {
+    paymentPlanId: 'String',
+    names : ['String']
+  }
+*/
+exports.scheduleDelete = function(param, res){
+  login(function(err) {
+    if (err) {
+      return res(err);
+    }
+    magento.bighippoPaymentplanSchedule.delete(param, function (err, resPaymentPLanMetadata) {
+      if(err) return res(err);
+      return res(null,camelize(resPaymentPLanMetadata));
+    });
+  });
+}
+// payment plan schedule
+
+// payment plan schedule information
+/* create
+  param =
+  {
+    scheduleId:'String',
+    informationData:
+    {
+      name : 'String',
+      value : 'String',
+    }
+  }
+*/
+exports.scheduleInformationCreate = function(param, res){
+  login(function(err) {
+    if (err) {
+      return res(err);
+    }
+    magento.bighippoPaymentplanScheduleInformation.create(param, function (err, resPaymentPLanMetadata) {
+      if(err) return res(err);
+      return res(null,camelize(resPaymentPLanMetadata));
+    });
+  });
+}
+
+/* update
+  param =
+  {
+    scheduleId:'String',
+    informationData:
+    [{
+      name : 'StringName',
+      value : 'Stringvalue',
+    },{
+      name : 'String2Name',
+      value : 'String2Value',
+    }]
+  }
+*/
+exports.scheduleInformationUpdate = function(param, res){
+  login(function(err) {
+    if (err) {
+      return res(err);
+    }
+    magento.bighippoPaymentplanScheduleInformation.update(param, function (err, resPaymentPLanMetadata) {
+      if(err) return res(err);
+      return res(null,camelize(resPaymentPLanMetadata));
+    });
+  });
+}
+
+/* list
+  param =
+  {
+    scheduleId : 'String'
+  }
+*/
+exports.scheduleInformationList = function(param, res){
+  login(function(err) {
+    if (err) {
+      return res(err);
+    }
+    magento.bighippoPaymentplanScheduleInformation.list(param, function (err, resPaymentPLanMetadata) {
+      if(err) return res(err);
+      return res(null,camelize(resPaymentPLanMetadata));
+    });
+  });
+}
+
+/* info
+  param =
+  {
+    informationId: 'String'
+  }
+*/
+exports.scheduleInformationInfo = function(param, res){
+  login(function(err) {
+    if (err) {
+      return res(err);
+    }
+    magento.bighippoPaymentplanScheduleInformation.info(param, function (err, resPaymentPLanMetadata) {
+      if(err) return res(err);
+      return res(null,camelize(resPaymentPLanMetadata));
+    });
+  });
+}
+
+/* delete
+  {
+    informationId: 'String'
+  }
+*/
+exports.scheduleInformationDelete = function(param, res){
+  login(function(err) {
+    if (err) {
+      return res(err);
+    }
+    magento.bighippoPaymentplanScheduleInformation.delete(param, function (err, resPaymentPLanMetadata) {
+      if(err) return res(err);
+      return res(null,camelize(resPaymentPLanMetadata));
+    });
+  });
+}
+// payment plan schedule information
