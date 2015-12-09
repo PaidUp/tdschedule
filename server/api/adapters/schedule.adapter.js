@@ -428,3 +428,220 @@ exports.scheduleInformationDelete = function(param, res){
   });
 }
 // payment plan schedule information
+
+// payment plan retry
+/* create
+  param =
+  {
+    paymentRetryData : {
+      name : 'String',
+      increment_id : '100000001'
+    }
+  }
+*/
+exports.paymentPlanRetryCreate = function(param, res){
+  login(function(err) {
+    if (err) {
+      return res(err);
+    }
+    magento.bighippoPaymentRetry.create(param, function (err, resPaymentPLanMetadata) {
+      if(err) return res(err);
+      return res(null,camelize(resPaymentPLanMetadata));
+    });
+  });
+}
+
+/* update
+  param =
+  {
+    paymentRetryId : 'String',
+    paymentRetryData : {
+      name : 'String',
+      increment_id : '100000261'
+    }
+  }
+*/
+exports.paymentPlanRetryUpdate = function(param, res){
+  login(function(err) {
+    if (err) {
+      return res(err);
+    }
+    magento.bighippoPaymentRetry.update(param, function (err, resPaymentPLanMetadata) {
+      if(err) return res(err);
+      return res(null,camelize(resPaymentPLanMetadata));
+    });
+  });
+}
+
+/* list
+  param =
+  {
+    paymentRetryId : "String"
+  }
+*/
+exports.paymentPlanRetryList = function(param, res){
+  login(function(err) {
+    if (err) {
+      return res(err);
+    }
+    magento.bighippoPaymentRetry.list(param, function (err, resPaymentPLanMetadata) {
+      if(err) return res(err);
+      return res(null,camelize(resPaymentPLanMetadata));
+    });
+  });
+}
+
+/* info
+  param =
+  {
+    paymentRetryId : 'String'
+  }
+*/
+exports.paymentPlanRetryInfo = function(param, res){
+  login(function(err) {
+    if (err) {
+      return res(err);
+    }
+    magento.bighippoPaymentRetry.info(param, function (err, resPaymentPLanMetadata) {
+      if(err) return res(err);
+      return res(null,camelize(resPaymentPLanMetadata));
+    });
+  });
+}
+// payment plan retry
+
+// payment plan retry information
+/* create
+  param =
+  {
+    paymentRetryId : 'String',
+    informationData : {
+      name : 'informationDataField',
+      value : 'informationDataValue'
+    }
+  }
+*/
+exports.paymentPlanRetryInformationCreate = function(param, res){
+  login(function(err) {
+    if (err) {
+      return res(err);
+    }
+    magento.bighippopaymentretryInformation.create(param, function (err, resPaymentPLanMetadata) {
+      if(err) return res(err);
+      return res(null,camelize(resPaymentPLanMetadata));
+    });
+  });
+}
+
+/* update
+  {
+    paymentRetryId : 'String',
+    informationData : [{
+      name : 'String',
+      value : 'String'
+    },{
+      name : 'StringTwo',
+      value : 'StringTwo'
+    }]
+  }
+*/
+exports.paymentPlanRetryInformationUpdate = function(param, res){
+  login(function(err) {
+    if (err) {
+      return res(err);
+    }
+    magento.bighippopaymentretryInformation.update(param, function (err, resPaymentPLanMetadata) {
+      if(err) return res(err);
+      return res(null,camelize(resPaymentPLanMetadata));
+    });
+  });
+}
+
+/* list
+  param =
+  {
+    paymentretryId : 'String'
+  }
+*/
+exports.paymentPlanRetryInformationList = function(param, res){
+  login(function(err) {
+    if (err) {
+      return res(err);
+    }
+    magento.bighippopaymentretryInformation.list(param, function (err, resPaymentPLanMetadata) {
+      if(err) return res(err);
+      return res(null,camelize(resPaymentPLanMetadata));
+    });
+  });
+}
+
+/* info
+  param =
+  {
+    informationId : 'String'
+  }
+*/
+exports.paymentPlanRetryInformationInfo = function(param, res){
+  login(function(err) {
+    if (err) {
+      return res(err);
+    }
+    magento.bighippopaymentretryInformation.info(param, function (err, resPaymentPLanMetadata) {
+      if(err) return res(err);
+      return res(null,camelize(resPaymentPLanMetadata));
+    });
+  });
+}
+
+/* delete
+  param =
+  {
+    informationId : 'String'
+  }
+*/
+exports.paymentPlanRetryInformationDelete = function(param, res){
+  login(function(err) {
+    if (err) {
+      return res(err);
+    }
+    magento.bighippopaymentretryInformation.delete(param, function (err, resPaymentPLanMetadata) {
+      if(err) return res(err);
+      return res(null,camelize(resPaymentPLanMetadata));
+    });
+  });
+}
+// payment plan retry information
+
+// coupon (Move to TDCOmmerce)
+/* list
+*/
+exports.couponList = function(res){
+  login(function(err) {
+    if (err) {
+      return res(err);
+    }
+    magento.bighippoCoupon.list(function (err, resPaymentPLanMetadata) {
+      if(err) return res(err);
+      return res(null,camelize(resPaymentPLanMetadata));
+    });
+  });
+}
+
+/* info
+  param =
+  {
+    salesRuleId:'String'
+  }
+*/
+exports.couponInfo = function(param, res){
+  login(function(err) {
+    if (err) {
+      return res(err);
+    }
+    magento.bighippoCoupon.info(param, function (err, resPaymentPLanMetadata) {
+      if(err) return res(err);
+      return res(null,camelize(resPaymentPLanMetadata));
+    });
+  });
+}
+// coupon (Move to TDCOmmerce)

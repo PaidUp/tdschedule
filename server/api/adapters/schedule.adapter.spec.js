@@ -10,6 +10,7 @@ const commerceAdapterSchedule = require(config.commerce.adapter);
 let result = {}
 let resultmeta = {}
 let resultschedule = {}
+let resultretry = {}
 
 describe("schedule adapter payment plan", function() {
   this.timeout(5000)
@@ -345,5 +346,168 @@ describe("schedule adapter payment plan schedule information", function() {
         done();
       });
   });
+
+})
+
+describe("schedule adapter payment retry", function() {
+  this.timeout(5000)
+
+  it('create payment plan retry', function (done) {
+    this.timeout(25000);
+    commerceAdapterSchedule.paymentPlanRetryCreate({
+        paymentRetryData : {
+          name : 'name retry',
+          increment_id : '100000261'
+        }
+      }, function(err,data){
+      if(err) return done(err);
+      assert.isNull(err)
+      assert.isString(data)
+      assert.isNotNull(data);
+      resultretry.retryId=data;
+      done();
+    })
+  })
+
+  it('update payment plan retry', function (done) {
+    var param = {
+      paymentRetryId : resultretry.retryId,
+      paymentRetryData : {
+        name : 'name retry upd',
+        increment_id : '100000261'
+      }
+    }
+    commerceAdapterSchedule.paymentPlanRetryUpdate(param, function(err,data){
+      if(err) return done(err);
+      assert.isNull(err)
+      assert.isTrue(data)
+      done();
+    });
+  });
+
+  it('list payment plan retry', function (done){
+    var param = {paymentRetryId : resultretry.retryId};
+    commerceAdapterSchedule.paymentPlanRetryList(param, function(err,data){
+      if(err) return done(err);
+      assert.isNull(err)
+      assert.isArray(data)
+      done();
+    });
+  });
+
+  it('info payment plan retry', function (done) {
+    this.timeout(25000);
+    var param = {
+      paymentRetryId : resultretry.retryId
+    };
+    commerceAdapterSchedule.paymentPlanRetryInfo(param, function(err,data){
+      if(err) return done(err);
+      assert.isNull(err)
+      assert.isNotNull(data);
+      assert.isObject(data)
+      assert.equal('name retry upd', data.name);
+      assert.equal('100000261', data.incrementId);
+      done();
+    })
+  })
+
+})
+
+describe("schedule adapter payment retry information", function() {
+  this.timeout(5000)
+
+  it('create payment plan retry', function (done) {
+    this.timeout(25000);
+    commerceAdapterSchedule.paymentPlanRetryCreate({
+        paymentRetryData : {
+          name : 'name retry',
+          increment_id : '100000261'
+        }
+      }, function(err,data){
+      if(err) return done(err);
+      assert.isNull(err)
+      assert.isString(data)
+      assert.isNotNull(data);
+      resultretry.retryId=data;
+      done();
+    })
+  })
+
+  it('create payment plan retry information', function (done) {
+    this.timeout(25000);
+    commerceAdapterSchedule.paymentPlanRetryInformationCreate({
+        paymentRetryId : resultretry.retryId,
+        informationData : {
+          name : 'informationDataField',
+          value : 'informationDataValue'
+        }
+      }, function(err,data){
+      if(err) return done(err);
+      assert.isNull(err)
+      assert.isString(data)
+      assert.isNotNull(data);
+      resultretry.retryinformationId=data;
+      done();
+    })
+  })
+
+  it('update payment plan retry information', function (done) {
+    var param = {
+        paymentRetryId : resultretry.retryId,
+        informationData : [{
+          name : 'informationDataField',
+          value : 'informationDataValueUpd'
+        },{
+          name : 'informationDataFieldNew',
+          value : 'informationDataValueNew'
+        }]
+      }
+    commerceAdapterSchedule.paymentPlanRetryInformationUpdate(param, function(err,data){
+      if(err) return done(err);
+      assert.isNull(err)
+      assert.isTrue(data)
+      done();
+    });
+  });
+
+  it('list payment plan retry information', function (done){
+    var param = {paymentretryId : resultretry.retryId};
+    commerceAdapterSchedule.paymentPlanRetryInformationList(param, function(err,data){
+      if(err) return done(err);
+      assert.isNull(err)
+      assert.isArray(data)
+      done();
+    });
+  });
+
+  it('info payment plan retry information', function (done) {
+    this.timeout(25000);
+    var param = {
+      informationId : resultretry.retryinformationId
+    };
+    commerceAdapterSchedule.paymentPlanRetryInformationInfo(param, function(err,data){
+      if(err) return done(err);
+      assert.isNull(err)
+      assert.isNotNull(data);
+      assert.isObject(data)
+      assert.equal('informationDataField', data.name);
+      assert.equal('informationDataValueUpd', data.value);
+      done();
+    })
+  })
+
+  it('delete payment plan retry information', function (done) {
+    this.timeout(25000);
+    var param = {
+      informationId : resultretry.retryinformationId
+    };
+    commerceAdapterSchedule.paymentPlanRetryInformationDelete(param, function(err,data){
+      if(err) return done(err);
+      assert.isNull(err)
+      assert.isNotNull(data)
+      assert.isTrue(data)
+      done();
+    })
+  })
 
 })
