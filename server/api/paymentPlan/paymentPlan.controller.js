@@ -10,9 +10,30 @@ var validationError = function(res, err) {
   return res.status(422).json(err);
 };
 
-exports.create = function(req, res) {
-  paymentplanService.create(req.body, function(err, data) {
-    if(err) return validationError(res, err);
-    return res.status(200).json({paymentplan : data});
-  });
-};
+
+
+module.exports = function (wagner) {
+
+	function create(req, res) {
+		wagner.invoke(function(test){
+			//paymentplanService.create(req.body, function(err, data) {
+		    //if(err) return validationError(res, err);
+		    return res.status(200).json({paymentplan : test.create(req.params.create)});
+		  //})
+		}, {connection: 'connection'})
+	}
+
+	function get(req, res) {
+		wagner.invoke(function(test){
+			//paymentplanService.create(req.body, function(err, data) {
+		    //if(err) return validationError(res, err);
+		    return res.status(200).json({paymentplan : test.get(req.params.get)});
+		  //})
+		}, {connection: 'connection'})
+	}
+
+	return {
+		create: create,
+		get: get
+	}
+}

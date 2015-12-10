@@ -7,591 +7,507 @@ var camelize = require('camelize');
 // const snakeize = require('snakeize');
 // const logger = require('../../config/logger.js');
 
-var login = exports.login = function(cb) {
-  magento.core.info(function(err, data) {
-    if(err) {
-      magento.login(function(err, sessId) {
-        if(err) return cb(err);
-        return cb(null, sessId);
+module.exports = function (wagner) {
+  function login () {
+    wagner.task('magento', function(callback){
+      if(magento.sessId){
+        return callback(null,magento)
+      }else{
+        magento.login(function(err, sessId) {
+          magento.sessId = sessId
+          if(err) return callback(err);
+          return callback(null,magento);
+        });
+      }
+    })
+  }
+
+  // payment plan
+  /* create
+    param = 
+    {
+      paymentPlanData:
+      {
+        name:'String',
+        destination:'String'
+      }
+    }
+  */
+  function paymentPlanCreate(param, res){
+    wagner.invokeAsync(function(error, magento) {
+      magento.bighippoPaymentplan.create({
+        paymentPlanData: param
+      }, function (err, resPaymentPLan) {
+        if(err) return res(err);
+        return res(null,camelize(resPaymentPLan));
       });
-    }
-    else {
-      return cb(null, true);
-    }
-  });
-}
+    });
+  }
 
-// payment plan
-/* create
+  /* update
   param = 
-  {
-    paymentPlanData:
     {
-      name:'String',
-      destination:'String'
+      paymentPlanId:'String',
+      playmentPlanData: 
+      {
+        name:'String',
+        destination:'String'
+      }
     }
-  }
-*/
-exports.paymentPlanCreate = function(param, res){
-  login(function(err) {
-    if (err) {
-      return res(err);
-    }
-    magento.bighippoPaymentplan.create({
-      paymentPlanData: param
-    }, function (err, resPaymentPLan) {
-      if(err) return res(err);
-      return res(null,camelize(resPaymentPLan));
+  */
+  function paymentPlanUpdate(param, res){
+    wagner.invokeAsync(function(error, magento) {
+      magento.bighippoPaymentplan.update(param, function (err, resPaymentPLan) {
+        if(err) return res(err);
+        return res(null,camelize(resPaymentPLan));
+      });
     });
-  });
-}
+  }
 
-/* update
-  param = 
-  {
-    paymentPlanId:'String',
-    playmentPlanData: 
+  /* info
+    param =
     {
-      name:'String',
-      destination:'String'
+      paymentPlanId:'String'
     }
+  */
+  function paymentPlanInfo(param, res){
+    wagner.invokeAsync(function(error, magento) {
+      magento.bighippoPaymentplan.info(param, function (err, resPaymentPLan) {
+        if(err) return res(err);
+        return res(null,camelize(resPaymentPLan));
+      });
+    });
   }
-*/
-exports.paymentPlanUpdate = function(param, res){
-  login(function(err) {
-    if (err) {
-      return res(err);
-    }
-    // param = {paymentPlanId:resulst.paymentplanId, playmentPlanData: {name:'testName3', destination:'destinationTest3'}};
-    magento.bighippoPaymentplan.update(param, function (err, resPaymentPLan) {
-      if(err) return res(err);
-      return res(null,camelize(resPaymentPLan));
-    });
-  });
-}
 
-/* info
-  param =
-  {
-    paymentPlanId:'String'
+  /* list
+    param = {}
+  */
+  function paymentPlanList(param, res){
+    wagner.invokeAsync(function(error, magento) {
+      magento.bighippoPaymentplan.list(param, function (err, resPaymentPLan) {
+        if(err) return res(err);
+        return res(null,camelize(resPaymentPLan));
+      });
+    });
   }
-*/
-exports.paymentPlanInfo = function(param, res){
-  login(function(err) {
-    if (err) {
-      return res(err);
-    }
-    magento.bighippoPaymentplan.info(param, function (err, resPaymentPLan) {
-      if(err) return res(err);
-      return res(null,camelize(resPaymentPLan));
-    });
-  });
-}
 
-/* list
-  param = {}
-*/
-exports.paymentPlanList = function(param, res){
-  login(function(err) {
-    if (err) {
-      return res(err);
-    }
-    magento.bighippoPaymentplan.list(param, function (err, resPaymentPLan) {
-      if(err) return res(err);
-      return res(null,camelize(resPaymentPLan));
-    });
-  });
-}
-
-/* delete
-  param =
-  {
-    paymentPlanId:'String'
-  }
-*/
-exports.paymentPlanDelete = function(param, res){
-  login(function(err) {
-    if (err) {
-      return res(err);
-    }
-    magento.bighippoPaymentplan.delete(param, function (err, resPaymentPLan) {
-      if(err) return res(err);
-      return res(null,camelize(resPaymentPLan));
-    });
-  });
-}
-
-// payment plan metadata
-/* create
-  param =
-  {
-    paymentPlanId : 'String',
-    metadataData:
+  /* delete
+    param =
     {
-      name : 'String',
-      value : 'String',
+      paymentPlanId:'String'
     }
-  }
-*/
-exports.paymentPlanMetaDataCreate = function (param, res) {
-  login(function(err) {
-    if (err) {
-      return res(err);
-    }
-    magento.bighippoPaymentplanMetadata.create(param, function (err, resPaymentPLanMetadata) {
-      if(err) return res(err);
-      return res(null,camelize(resPaymentPLanMetadata));
+  */
+  function paymentPlanDelete(param, res){
+    wagner.invokeAsync(function(error, magento) {
+      magento.bighippoPaymentplan.delete(param, function (err, resPaymentPLan) {
+        if(err) return res(err);
+        return res(null,camelize(resPaymentPLan));
+      });
     });
-  });
-}
+  }
 
-/* update
-  param =
-  {
-    paymentPlanId:'String',
-    metadataData:
-    [
+  // payment plan metadata
+  /* create
+    param =
+    {
+      paymentPlanId : 'String',
+      metadataData:
       {
         name : 'String',
-        value : 'String'
+        value : 'String',
       }
-    ]
-  }
-*/
-exports.paymentPlanMetaDataUpdate = function (param, res) {
-  login(function(err) {
-    if (err) {
-      return res(err);
     }
-    magento.bighippoPaymentplanMetadata.update(param, function (err, resPaymentPLanMetadata) {
-      if(err) return res(err);
-      return res(null,camelize(resPaymentPLanMetadata));
+  */
+  function paymentPlanMetaDataCreate(param, res) {
+    wagner.invokeAsync(function(error, magento) {
+      magento.bighippoPaymentplanMetadata.create(param, function (err, resPaymentPLanMetadata) {
+        if(err) return res(err);
+        return res(null,camelize(resPaymentPLanMetadata));
+      });
     });
-  });
-}
-
-/* list
-  param =
-  {
-    paymentPlanId: 'String'
   }
-*/
-exports.paymentPlanMetaDataList = function (param, res) {
-  login(function(err) {
-    if (err) {
-      return res(err);
-    }
-    magento.bighippoPaymentplanMetadata.list(param, function (err, resPaymentPLanMetadata) {
-      if(err) return res(err);
-      return res(null,camelize(resPaymentPLanMetadata));
-    });
-  });
-}
 
-/* info
-  param = 
-  {
-    metadataId:'String'
-  }
-*/
-exports.paymentPlanMetaDataInfo = function (param, res) {
-  login(function(err) {
-    if (err) {
-      return res(err);
-    }
-    magento.bighippoPaymentplanMetadata.info(param, function (err, resPaymentPLanMetadata) {
-      if(err) return res(err);
-      return res(null,camelize(resPaymentPLanMetadata));
-    });
-  });
-}
-
-/* delete
-  param = 
-  {
-    metadataId:'String'
-  }
-*/
-exports.paymentPlanMetaDataDelete = function (param, res) {
-  login(function(err) {
-    if (err) {
-      return res(err);
-    }
-    magento.bighippoPaymentplanMetadata.delete(param, function (err, resPaymentPLanMetadata) {
-      if(err) return res(err);
-      return res(null,camelize(resPaymentPLanMetadata));
-    });
-  });
-}
-// payment plan metadata
-
-// payment plan schedule
-/* create
-  param =
-  {
-    paymentPlanId : 'String',
-    scheduleData:
+  /* update
+    param =
     {
-      name : 'String',
+      paymentPlanId:'String',
+      metadataData:
+      [
+        {
+          name : 'String',
+          value : 'String'
+        }
+      ]
     }
-  }
-*/
-exports.scheduleCreate = function(param, res){
-  login(function(err) {
-    if (err) {
-      return res(err);
-    }
-    magento.bighippoPaymentplanSchedule.create(param, function (err, resPaymentPLanMetadata) {
-      if(err) return res(err);
-      return res(null,camelize(resPaymentPLanMetadata));
+  */
+  function paymentPlanMetaDataUpdate(param, res) {
+    wagner.invokeAsync(function(error, magento) {
+      magento.bighippoPaymentplanMetadata.update(param, function (err, resPaymentPLanMetadata) {
+        if(err) return res(err);
+        return res(null,camelize(resPaymentPLanMetadata));
+      });
     });
-  });
-}
+  }
 
-/* update
-  param =
-  {
-    scheduleId: 'String',
-    scheduleData:
+  /* list
+    param =
     {
-      name : 'String'
+      paymentPlanId: 'String'
     }
-  }
-*/
-exports.scheduleUpdate = function(param, res){
-  login(function(err) {
-    if (err) {
-      return res(err);
-    }
-    magento.bighippoPaymentplanSchedule.update(param, function (err, resPaymentPLanMetadata) {
-      if(err) return res(err);
-      return res(null,camelize(resPaymentPLanMetadata));
+  */
+  function paymentPlanMetaDataList(param, res) {
+    wagner.invokeAsync(function(error, magento) {
+      magento.bighippoPaymentplanMetadata.list(param, function (err, resPaymentPLanMetadata) {
+        if(err) return res(err);
+        return res(null,camelize(resPaymentPLanMetadata));
+      });
     });
-  });
-}
-
-/* list
-  param =
-  {
-    scheduleId : 'String'
   }
-*/
-exports.scheduleList = function(param, res){
-  login(function(err) {
-    if (err) {
-      return res(err);
-    }
-    magento.bighippoPaymentplanSchedule.list(param, function (err, resPaymentPLanMetadata) {
-      if(err) return res(err);
-      return res(null,camelize(resPaymentPLanMetadata));
-    });
-  });
-}
 
-/* info
-  param =
-  {
-    scheduleId:'String'
-  }
-*/
-exports.scheduleInfo = function(param, res){
-  login(function(err) {
-    if (err) {
-      return res(err);
-    }
-    magento.bighippoPaymentplanSchedule.info(param, function (err, resPaymentPLanMetadata) {
-      if(err) return res(err);
-      return res(null,camelize(resPaymentPLanMetadata));
-    });
-  });
-}
-
-/* delete
-  {
-    paymentPlanId: 'String',
-    names : ['String']
-  }
-*/
-exports.scheduleDelete = function(param, res){
-  login(function(err) {
-    if (err) {
-      return res(err);
-    }
-    magento.bighippoPaymentplanSchedule.delete(param, function (err, resPaymentPLanMetadata) {
-      if(err) return res(err);
-      return res(null,camelize(resPaymentPLanMetadata));
-    });
-  });
-}
-// payment plan schedule
-
-// payment plan schedule information
-/* create
-  param =
-  {
-    scheduleId:'String',
-    informationData:
+  /* info
+    param = 
     {
-      name : 'String',
-      value : 'String',
+      metadataId:'String'
     }
-  }
-*/
-exports.scheduleInformationCreate = function(param, res){
-  login(function(err) {
-    if (err) {
-      return res(err);
-    }
-    magento.bighippoPaymentplanScheduleInformation.create(param, function (err, resPaymentPLanMetadata) {
-      if(err) return res(err);
-      return res(null,camelize(resPaymentPLanMetadata));
+  */
+  function paymentPlanMetaDataInfo(param, res) {
+    wagner.invokeAsync(function(error, magento) {
+      magento.bighippoPaymentplanMetadata.info(param, function (err, resPaymentPLanMetadata) {
+        if(err) return res(err);
+        return res(null,camelize(resPaymentPLanMetadata));
+      });
     });
-  });
-}
+  }
 
-/* update
-  param =
-  {
-    scheduleId:'String',
-    informationData:
-    [{
-      name : 'StringName',
-      value : 'Stringvalue',
-    },{
-      name : 'String2Name',
-      value : 'String2Value',
-    }]
-  }
-*/
-exports.scheduleInformationUpdate = function(param, res){
-  login(function(err) {
-    if (err) {
-      return res(err);
+  /* delete
+    param = 
+    {
+      metadataId:'String'
     }
-    magento.bighippoPaymentplanScheduleInformation.update(param, function (err, resPaymentPLanMetadata) {
-      if(err) return res(err);
-      return res(null,camelize(resPaymentPLanMetadata));
+  */
+  function paymentPlanMetaDataDelete(param, res) {
+    wagner.invokeAsync(function(error, magento) {
+      magento.bighippoPaymentplanMetadata.delete(param, function (err, resPaymentPLanMetadata) {
+        if(err) return res(err);
+        return res(null,camelize(resPaymentPLanMetadata));
+      });
     });
-  });
-}
+  }
+  // payment plan metadata
 
-/* list
-  param =
-  {
-    scheduleId : 'String'
-  }
-*/
-exports.scheduleInformationList = function(param, res){
-  login(function(err) {
-    if (err) {
-      return res(err);
+  // payment plan schedule
+  /* create
+    param =
+    {
+      paymentPlanId : 'String',
+      scheduleData:
+      {
+        name : 'String',
+      }
     }
-    magento.bighippoPaymentplanScheduleInformation.list(param, function (err, resPaymentPLanMetadata) {
-      if(err) return res(err);
-      return res(null,camelize(resPaymentPLanMetadata));
+  */
+  function scheduleCreate(param, res){
+    wagner.invokeAsync(function(error, magento) {
+      magento.bighippoPaymentplanSchedule.create(param, function (err, resPaymentPLanMetadata) {
+        if(err) return res(err);
+        return res(null,camelize(resPaymentPLanMetadata));
+      });
     });
-  });
-}
+  }
 
-/* info
-  param =
-  {
-    informationId: 'String'
-  }
-*/
-exports.scheduleInformationInfo = function(param, res){
-  login(function(err) {
-    if (err) {
-      return res(err);
+  /* update
+    param =
+    {
+      scheduleId: 'String',
+      scheduleData:
+      {
+        name : 'String'
+      }
     }
-    magento.bighippoPaymentplanScheduleInformation.info(param, function (err, resPaymentPLanMetadata) {
-      if(err) return res(err);
-      return res(null,camelize(resPaymentPLanMetadata));
+  */
+  function scheduleUpdate(param, res){
+    wagner.invokeAsync(function(error, magento) {
+      magento.bighippoPaymentplanSchedule.update(param, function (err, resPaymentPLanMetadata) {
+        if(err) return res(err);
+        return res(null,camelize(resPaymentPLanMetadata));
+      });
     });
-  });
-}
+  }
 
-/* delete
-  {
-    informationId: 'String'
-  }
-*/
-exports.scheduleInformationDelete = function(param, res){
-  login(function(err) {
-    if (err) {
-      return res(err);
+  /* list
+    param =
+    {
+      scheduleId : 'String'
     }
-    magento.bighippoPaymentplanScheduleInformation.delete(param, function (err, resPaymentPLanMetadata) {
-      if(err) return res(err);
-      return res(null,camelize(resPaymentPLanMetadata));
+  */
+  function scheduleList(param, res){
+    wagner.invokeAsync(function(error, magento) {
+      magento.bighippoPaymentplanSchedule.list(param, function (err, resPaymentPLanMetadata) {
+        if(err) return res(err);
+        return res(null,camelize(resPaymentPLanMetadata));
+      });
     });
-  });
-}
-// payment plan schedule information
+  }
 
-// payment plan retry
-/* create
-  param =
-  {
-    paymentRetryData : {
-      name : 'String',
-      increment_id : '100000001'
+  /* info
+    param =
+    {
+      scheduleId:'String'
     }
-  }
-*/
-exports.paymentPlanRetryCreate = function(param, res){
-  login(function(err) {
-    if (err) {
-      return res(err);
-    }
-    magento.bighippoPaymentRetry.create(param, function (err, resPaymentPLanMetadata) {
-      if(err) return res(err);
-      return res(null,camelize(resPaymentPLanMetadata));
+  */
+  function scheduleInfo(param, res){
+    wagner.invokeAsync(function(error, magento) {
+      magento.bighippoPaymentplanSchedule.info(param, function (err, resPaymentPLanMetadata) {
+        if(err) return res(err);
+        return res(null,camelize(resPaymentPLanMetadata));
+      });
     });
-  });
-}
+  }
 
-/* update
-  param =
-  {
-    paymentRetryId : 'String',
-    paymentRetryData : {
-      name : 'String',
-      increment_id : '100000261'
+  /* delete
+    {
+      paymentPlanId: 'String',
+      names : ['String']
     }
-  }
-*/
-exports.paymentPlanRetryUpdate = function(param, res){
-  login(function(err) {
-    if (err) {
-      return res(err);
-    }
-    magento.bighippoPaymentRetry.update(param, function (err, resPaymentPLanMetadata) {
-      if(err) return res(err);
-      return res(null,camelize(resPaymentPLanMetadata));
+  */
+  function scheduleDelete(param, res){
+    wagner.invokeAsync(function(error, magento) {
+      magento.bighippoPaymentplanSchedule.delete(param, function (err, resPaymentPLanMetadata) {
+        if(err) return res(err);
+        return res(null,camelize(resPaymentPLanMetadata));
+      });
     });
-  });
-}
+  }
+  // payment plan schedule
 
-/* list
-  param =
-  {
-    paymentRetryId : "String"
-  }
-*/
-exports.paymentPlanRetryList = function(param, res){
-  login(function(err) {
-    if (err) {
-      return res(err);
+  // payment plan schedule information
+  /* create
+    param =
+    {
+      scheduleId:'String',
+      informationData:
+      {
+        name : 'String',
+        value : 'String',
+      }
     }
-    magento.bighippoPaymentRetry.list(param, function (err, resPaymentPLanMetadata) {
-      if(err) return res(err);
-      return res(null,camelize(resPaymentPLanMetadata));
+  */
+  function scheduleInformationCreate(param, res){
+    wagner.invokeAsync(function(error, magento) {
+      magento.bighippoPaymentplanScheduleInformation.create(param, function (err, resPaymentPLanMetadata) {
+        if(err) return res(err);
+        return res(null,camelize(resPaymentPLanMetadata));
+      });
     });
-  });
-}
+  }
 
-/* info
-  param =
-  {
-    paymentRetryId : 'String'
-  }
-*/
-exports.paymentPlanRetryInfo = function(param, res){
-  login(function(err) {
-    if (err) {
-      return res(err);
+  /* update
+    param =
+    {
+      scheduleId:'String',
+      informationData:
+      [{
+        name : 'StringName',
+        value : 'Stringvalue',
+      },{
+        name : 'String2Name',
+        value : 'String2Value',
+      }]
     }
-    magento.bighippoPaymentRetry.info(param, function (err, resPaymentPLanMetadata) {
-      if(err) return res(err);
-      return res(null,camelize(resPaymentPLanMetadata));
+  */
+  function scheduleInformationUpdate(param, res){
+    wagner.invokeAsync(function(error, magento) {
+      magento.bighippoPaymentplanScheduleInformation.update(param, function (err, resPaymentPLanMetadata) {
+        if(err) return res(err);
+        return res(null,camelize(resPaymentPLanMetadata));
+      });
     });
-  });
-}
-// payment plan retry
+  }
 
-// payment plan retry information
-/* create
-  param =
-  {
-    paymentRetryId : 'String',
-    informationData : {
-      name : 'informationDataField',
-      value : 'informationDataValue'
+  /* list
+    param =
+    {
+      scheduleId : 'String'
     }
-  }
-*/
-exports.paymentPlanRetryInformationCreate = function(param, res){
-  login(function(err) {
-    if (err) {
-      return res(err);
-    }
-    magento.bighippopaymentretryInformation.create(param, function (err, resPaymentPLanMetadata) {
-      if(err) return res(err);
-      return res(null,camelize(resPaymentPLanMetadata));
+  */
+  function scheduleInformationList(param, res){
+    wagner.invokeAsync(function(error, magento) {
+      magento.bighippoPaymentplanScheduleInformation.list(param, function (err, resPaymentPLanMetadata) {
+        if(err) return res(err);
+        return res(null,camelize(resPaymentPLanMetadata));
+      });
     });
-  });
-}
+  }
 
-/* update
-  {
-    paymentRetryId : 'String',
-    informationData : [{
-      name : 'String',
-      value : 'String'
-    },{
-      name : 'StringTwo',
-      value : 'StringTwo'
-    }]
-  }
-*/
-exports.paymentPlanRetryInformationUpdate = function(param, res){
-  login(function(err) {
-    if (err) {
-      return res(err);
+  /* info
+    param =
+    {
+      informationId: 'String'
     }
-    magento.bighippopaymentretryInformation.update(param, function (err, resPaymentPLanMetadata) {
-      if(err) return res(err);
-      return res(null,camelize(resPaymentPLanMetadata));
+  */
+  function scheduleInformationInfo(param, res){
+    wagner.invokeAsync(function(error, magento) {
+      magento.bighippoPaymentplanScheduleInformation.info(param, function (err, resPaymentPLanMetadata) {
+        if(err) return res(err);
+        return res(null,camelize(resPaymentPLanMetadata));
+      });
     });
-  });
-}
+  }
 
-/* list
-  param =
-  {
-    paymentretryId : 'String'
-  }
-*/
-exports.paymentPlanRetryInformationList = function(param, res){
-  login(function(err) {
-    if (err) {
-      return res(err);
+  /* delete
+    {
+      informationId: 'String'
     }
-    magento.bighippopaymentretryInformation.list(param, function (err, resPaymentPLanMetadata) {
-      if(err) return res(err);
-      return res(null,camelize(resPaymentPLanMetadata));
+  */
+  function scheduleInformationDelete(param, res){
+    wagner.invokeAsync(function(error, magento) {
+      magento.bighippoPaymentplanScheduleInformation.delete(param, function (err, resPaymentPLanMetadata) {
+        if(err) return res(err);
+        return res(null,camelize(resPaymentPLanMetadata));
+      });
     });
-  });
-}
+  }
+  // payment plan schedule information
 
-/* info
-  param =
-  {
-    informationId : 'String'
-  }
-*/
-exports.paymentPlanRetryInformationInfo = function(param, res){
-  login(function(err) {
-    if (err) {
-      return res(err);
+  // payment plan retry
+  /* create
+    param =
+    {
+      paymentRetryData : {
+        name : 'String',
+        increment_id : '100000001'
+      }
     }
-    magento.bighippopaymentretryInformation.info(param, function (err, resPaymentPLanMetadata) {
-      if(err) return res(err);
-      return res(null,camelize(resPaymentPLanMetadata));
+  */
+  function paymentPlanRetryCreate(param, res){
+    wagner.invokeAsync(function(error, magento) {
+      magento.bighippoPaymentRetry.create(param, function (err, resPaymentPLanMetadata) {
+        if(err) return res(err);
+        return res(null,camelize(resPaymentPLanMetadata));
+      });
     });
-  });
-}
+  }
+
+  /* update
+    param =
+    {
+      paymentRetryId : 'String',
+      paymentRetryData : {
+        name : 'String',
+        increment_id : '100000261'
+      }
+    }
+  */
+  function paymentPlanRetryUpdate(param, res){
+    wagner.invokeAsync(function(error, magento) {
+      magento.bighippoPaymentRetry.update(param, function (err, resPaymentPLanMetadata) {
+        if(err) return res(err);
+        return res(null,camelize(resPaymentPLanMetadata));
+      });
+    });
+  }
+
+  /* list
+    param =
+    {
+      paymentRetryId : "String"
+    }
+  */
+  function paymentPlanRetryList(param, res){
+    wagner.invokeAsync(function(error, magento) {
+      magento.bighippoPaymentRetry.list(param, function (err, resPaymentPLanMetadata) {
+        if(err) return res(err);
+        return res(null,camelize(resPaymentPLanMetadata));
+      });
+    });
+  }
+
+  /* info
+    param =
+    {
+      paymentRetryId : 'String'
+    }
+  */
+  function paymentPlanRetryInfo(param, res){
+    wagner.invokeAsync(function(error, magento) {
+      magento.bighippoPaymentRetry.info(param, function (err, resPaymentPLanMetadata) {
+        if(err) return res(err);
+        return res(null,camelize(resPaymentPLanMetadata));
+      });
+    });
+  }
+  // payment plan retry
+
+  // payment plan retry information
+  /* create
+    param =
+    {
+      paymentRetryId : 'String',
+      informationData : {
+        name : 'informationDataField',
+        value : 'informationDataValue'
+      }
+    }
+  */
+  function paymentPlanRetryInformationCreate(param, res){
+    wagner.invokeAsync(function(error, magento) {
+      magento.bighippopaymentretryInformation.create(param, function (err, resPaymentPLanMetadata) {
+        if(err) return res(err);
+        return res(null,camelize(resPaymentPLanMetadata));
+      });
+    });
+  }
+
+  /* update
+    {
+      paymentRetryId : 'String',
+      informationData : [{
+        name : 'String',
+        value : 'String'
+      },{
+        name : 'StringTwo',
+        value : 'StringTwo'
+      }]
+    }
+  */
+  function paymentPlanRetryInformationUpdate(param, res){
+    wagner.invokeAsync(function(error, magento) {
+      magento.bighippopaymentretryInformation.update(param, function (err, resPaymentPLanMetadata) {
+        if(err) return res(err);
+        return res(null,camelize(resPaymentPLanMetadata));
+      });
+    });
+  } 
+
+  /* list
+    param =
+    {
+      paymentretryId : 'String'
+    }
+  */
+  function paymentPlanRetryInformationList(param, res){
+    wagner.invokeAsync(function(error, magento) {
+      magento.bighippopaymentretryInformation.list(param, function (err, resPaymentPLanMetadata) {
+        if(err) return res(err);
+        return res(null,camelize(resPaymentPLanMetadata));
+      });
+    });
+  }
+
+  /* info
+    param =
+    {
+      informationId : 'String'
+    }
+  */
+  function paymentPlanRetryInformationInfo(param, res){
+    wagner.invokeAsync(function(error, magento) {
+      magento.bighippopaymentretryInformation.info(param, function (err, resPaymentPLanMetadata) {
+        if(err) return res(err);
+        return res(null,camelize(resPaymentPLanMetadata));
+      });
+    });
+  }
 
 /* delete
   param =
@@ -599,11 +515,8 @@ exports.paymentPlanRetryInformationInfo = function(param, res){
     informationId : 'String'
   }
 */
-exports.paymentPlanRetryInformationDelete = function(param, res){
-  login(function(err) {
-    if (err) {
-      return res(err);
-    }
+function paymentPlanRetryInformationDelete(param, res){
+  wagner.invokeAsync(function(error, magento) {
     magento.bighippopaymentretryInformation.delete(param, function (err, resPaymentPLanMetadata) {
       if(err) return res(err);
       return res(null,camelize(resPaymentPLanMetadata));
@@ -611,3 +524,37 @@ exports.paymentPlanRetryInformationDelete = function(param, res){
   });
 }
 // payment plan retry information
+
+return {
+    login: login,
+    paymentPlanCreate: paymentPlanCreate,
+    paymentPlanUpdate: paymentPlanUpdate,
+    paymentPlanInfo: paymentPlanInfo,
+    paymentPlanList: paymentPlanList,
+    paymentPlanDelete: paymentPlanDelete,
+    paymentPlanMetaDataCreate: paymentPlanMetaDataCreate,
+    paymentPlanMetaDataUpdate: paymentPlanMetaDataUpdate,
+    paymentPlanMetaDataList: paymentPlanMetaDataList,
+    paymentPlanMetaDataInfo: paymentPlanMetaDataInfo,
+    paymentPlanMetaDataDelete: paymentPlanMetaDataDelete,
+    scheduleCreate: scheduleCreate,
+    scheduleUpdate: scheduleUpdate,
+    scheduleList: scheduleList,
+    scheduleInfo: scheduleInfo,
+    scheduleDelete: scheduleDelete,
+    scheduleInformationCreate: scheduleInformationCreate,
+    scheduleInformationUpdate: scheduleInformationUpdate,
+    scheduleInformationList: scheduleInformationList,
+    scheduleInformationInfo: scheduleInformationInfo,
+    scheduleInformationDelete: scheduleInformationDelete,
+    paymentPlanRetryCreate: paymentPlanRetryCreate,
+    paymentPlanRetryUpdate: paymentPlanRetryUpdate,
+    paymentPlanRetryList: paymentPlanRetryList,
+    paymentPlanRetryInfo: paymentPlanRetryInfo,
+    paymentPlanRetryInformationCreate: paymentPlanRetryInformationCreate,
+    paymentPlanRetryInformationUpdate: paymentPlanRetryInformationUpdate,
+    paymentPlanRetryInformationList: paymentPlanRetryInformationList,
+    paymentPlanRetryInformationInfo: paymentPlanRetryInformationInfo,
+    paymentPlanRetryInformationDelete: paymentPlanRetryInformationDelete
+  }
+}

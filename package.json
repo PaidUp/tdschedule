@@ -20,7 +20,7 @@
     "express": "4.13.3",
     "magento": "https://github.com/talosdigital/magentoapi/tarball/master",
     "mongoose": "4.2.9",
-    "wagner-core": "0.2.0"
+    "wagner-core": "^0.2.0"
   },
   "devDependencies": {
     "chai": "^3.4.1",
