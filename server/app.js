@@ -3,7 +3,7 @@
 var express = require('express')
 var wagner = require('wagner-core')
 
-require('./api/adapters/schedule.adapter')(wagner).login()
+require('./api/adapters/schedule.adapter')().login()
 require('./api/paymentPlan/paymentPlan.service')(wagner)
 
 var app = express()

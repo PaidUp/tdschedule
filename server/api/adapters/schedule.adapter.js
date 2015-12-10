@@ -6,8 +6,9 @@ var magento = new MagentoAPI(config.commerce.magento);
 var camelize = require('camelize');
 // const snakeize = require('snakeize');
 // const logger = require('../../config/logger.js');
+var wagner = require('wagner-core')
 
-module.exports = function (wagner) {
+module.exports = function () {
   function login () {
     wagner.task('magento', function(callback){
       if(magento.sessId){

@@ -7,14 +7,20 @@ const should = require('should');
 const assert = require('chai').assert;
 const config = require('../../config/environment/index');
 let wagner = require('wagner-core')
-const commerceAdapterSchedule = require(config.commerce.adapter)(wagner);
+const commerceAdapterSchedule = require(config.commerce.adapter)();
 let result = {}
 let resultmeta = {}
 let resultschedule = {}
 let resultretry = {}
 
 describe("schedule adapter payment plan", function() {
-  this.timeout(5000)
+  this.timeout(6000)
+  before('login', function (done){
+    setTimeout(function(){
+      require(config.commerce.adapter)(wagner).login()  
+      done()
+    }, 5000)
+  })
 
   it('create payment plan', function (done) {
     this.timeout(25000);
