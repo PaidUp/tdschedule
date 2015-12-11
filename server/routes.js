@@ -3,7 +3,7 @@
 module.exports = function(app, wagner) {
 
   // Insert routes below
-  app.use('/api/v1', require('./api')(wagner))
+  app.use('/api/v2', require('./api')(wagner))
 
   app.route('/*')
     .get(function(req, res) {

@@ -3,6 +3,7 @@
 // var config = require('../../config/environment');
 // var User = require('./user.model');
 var paymentplanService = require('./paymentPlan.service');
+
 // var mongoose = require('mongoose');
 // var authService = require('../auth/auth.service');
 
@@ -13,27 +14,39 @@ var validationError = function(res, err) {
 
 
 module.exports = function (wagner) {
-
+	var scheduleAdapter = require('../adapters/schedule.adapter')(wagner);
 	function create(req, res) {
-		wagner.invoke(function(test){
-			//paymentplanService.create(req.body, function(err, data) {
-		    //if(err) return validationError(res, err);
-		    return res.status(200).json({paymentplan : test.create(req.params.create)});
-		  //})
-		}, {connection: 'connection'})
+		scheduleAdapter.paymentPlanList({}, function(err, data){
+			//if(err) return validationError(res, err);
+			return res.status(200).json(data);
+		})
 	}
 
-	function get(req, res) {
-		wagner.invoke(function(test){
-			//paymentplanService.create(req.body, function(err, data) {
-		    //if(err) return validationError(res, err);
-		    return res.status(200).json({paymentplan : test.get(req.params.get)});
-		  //})
-		}, {connection: 'connection'})
+	function update(req, res) {
+		return res.status(200).json({paymentplan : 'update'});
+	}
+
+	function info(req, res) {
+		return res.status(200).json({paymentplan : 'info'});
+	}
+
+	function list(req, res) {
+		return res.status(200).json({paymentplan : 'list'});
+	}
+
+	function info(req, res) {
+		return res.status(200).json({paymentplan : 'info'});
+	}
+
+	function deleteOne(req, res) {
+		return res.status(200).json({paymentplan : 'delete'});
 	}
 
 	return {
 		create: create,
-		get: get
+		update: update,
+		info: info,
+		list: list,
+		deleteOne: deleteOne
 	}
 }

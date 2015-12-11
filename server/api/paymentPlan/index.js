@@ -1,13 +1,15 @@
 'use strict'
 
 var express = require('express')
-
-
 var router = express.Router()
 module.exports = function (wagner) {
 	var controller = require('./paymentPlan.controller')(wagner);
-	router.get('/get/:get', controller.get)
-	router.get('/create/:create/', controller.create)
+	router.post('/Create', controller.create)
+	router.put('/update', controller.update)
+	router.get('/info/:paymentplanid', controller.info)
+	router.post('/list', controller.list)
+	router.delete('/delete', controller.deleteOne)
+	
 	// router.use('/metadata', require('./metadata/index'))
 	// router.use('/retry', require('./retry/index'))
 	// router.use('/schedule', require('./schedule/index'))
