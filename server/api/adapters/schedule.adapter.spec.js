@@ -1,13 +1,11 @@
 'use strict'
 
-'use strict';
-
-const app = require('../../app');
-const should = require('should');
-const assert = require('chai').assert;
-const config = require('../../config/environment/index');
+const app = require('../../app')
+const should = require('should')
+const assert = require('chai').assert
+const config = require('../../config/environment/index')
 let wagner = require('wagner-core')
-const commerceAdapterSchedule = require(config.commerce.adapter)(wagner);
+const commerceAdapterSchedule = require(config.commerce.adapter)(wagner)
 let result = {}
 let resultmeta = {}
 let resultschedule = {}
@@ -44,9 +42,9 @@ describe("schedule adapter payment plan", function() {
 	    assert.isTrue(data)
 	    done();
 	  });
-  });
+  })
 
-  it('info payment plans', function(done){
+  it('info payment plans', function (done){
     var param = {paymentPlanId:result.paymentplanId};
     commerceAdapterSchedule.paymentPlanInfo(param, function(err,data){
     	if(err) return done(err);
@@ -55,7 +53,7 @@ describe("schedule adapter payment plan", function() {
       assert.equal('testName3', data.name);
       done();
     });
-  });
+  })
 
   it('list payment plan', function (done) {
     this.timeout(25000);
@@ -68,7 +66,7 @@ describe("schedule adapter payment plan", function() {
     })
   })
 
-  it('delete payment plans', function(done){
+  it('delete payment plans', function (done){
       this.timeout(25000);
       var param = {paymentPlanId:result.paymentplanId};
       commerceAdapterSchedule.paymentPlanDelete(param, function(err,data){
@@ -76,7 +74,42 @@ describe("schedule adapter payment plan", function() {
         assert.isTrue(data)
         done();
       });
-  });
+  })
+
+  it('createFull payment plan', function (done) {
+    var param = {paymentplan : {
+    name:'testNameFull', destination:'destinationTestFull',
+    'metadatas' : [
+      {name : 'metaName1' , value : 'metaValue1'} , {name : 'metaName2' , value : 'metaValue2'}],
+    'schedules' : {
+      schedule_data : {name :'schedule full test',
+        informations : [
+          {name : 'scheduleName1' , value : 'scheduleValue1'},
+          {name : 'scheduleName2' , value : 'scheduleValue2'}
+        ]
+      },
+    }}}
+    this.timeout(25000);
+    commerceAdapterSchedule.paymentPlanCreateFull(param, function(err,data){
+      if(err) return done(err);
+      assert.isNull(err)
+      assert.isString(data)
+      assert.isNotNull(data);
+      result.paymentplanFullId=data;
+      done();
+    })
+  })
+
+  it('infoFull payment plans', function(done){
+    var param = {paymentPlanId:result.paymentplanFullId};
+    commerceAdapterSchedule.paymentPlanInfo(param, function(err,data){
+      if(err) return done(err);
+      assert.isNull(err)
+      assert.isObject(data)
+      assert.equal('testNameFull', data.name);
+      done();
+    });
+  })
 
 })
 

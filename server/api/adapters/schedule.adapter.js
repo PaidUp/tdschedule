@@ -89,12 +89,10 @@ module.exports = function (wagner) {
     param = {}
   */
   function paymentPlanList(param, res){
-    // wagner.invokeAsync(function(error, magento) {
       magento.bighippoPaymentplan.list(param, function (err, resPaymentPLan) {
         if(err) return res(err);
         return res(null,camelize(resPaymentPLan));
       });
-    // });
   }
 
   /* delete
@@ -106,6 +104,58 @@ module.exports = function (wagner) {
   function paymentPlanDelete(param, res){
     // wagner.invokeAsync(function(error, magento) {
       magento.bighippoPaymentplan.delete(param, function (err, resPaymentPLan) {
+        if(err) return res(err);
+        return res(null,camelize(resPaymentPLan));
+      });
+    // });
+  }
+
+  /* createFull
+  param = 
+  {
+    paymentplan :
+      {
+        name: 'String',
+        destination: 'String',
+        'metadatas' : 
+        [
+          {name : 'String' ,
+          value : 'String'} ,
+          {name : 'String' ,
+          value : 'String'}
+        ],
+        'schedules' :
+        {
+          schedule_data :
+          {
+            name :'String',
+            informations : [
+              {name : 'String' , value : 'String'},
+              {name : 'String' , value : 'String'}
+            ]
+          },
+        }
+      }
+    }
+  */
+  function paymentPlanCreateFull(param, res){
+    magento.bighippoPaymentplan.createFull(
+      param
+    , function (err, resPaymentPLan) {
+      if(err) return res(err);
+      return res(null,camelize(resPaymentPLan))
+    })
+  }
+
+  /* infoFull
+    param =
+    {
+      paymentPlanId: 'String'
+    }
+  */
+  function paymentPlanInfoFull(param, res){
+    // wagner.invokeAsync(function(error, magento) {
+      magento.bighippoPaymentplan.info(param, function (err, resPaymentPLan) {
         if(err) return res(err);
         return res(null,camelize(resPaymentPLan));
       });
@@ -561,6 +611,8 @@ return {
     paymentPlanRetryInformationUpdate: paymentPlanRetryInformationUpdate,
     paymentPlanRetryInformationList: paymentPlanRetryInformationList,
     paymentPlanRetryInformationInfo: paymentPlanRetryInformationInfo,
-    paymentPlanRetryInformationDelete: paymentPlanRetryInformationDelete
+    paymentPlanRetryInformationDelete: paymentPlanRetryInformationDelete,
+    paymentPlanCreateFull: paymentPlanCreateFull,
+    paymentPlanInfoFull: paymentPlanInfoFull
   }
 }

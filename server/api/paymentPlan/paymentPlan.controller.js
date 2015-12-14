@@ -2,7 +2,7 @@
 
 // var config = require('../../config/environment');
 // var User = require('./user.model');
-var paymentplanService = require('./paymentPlan.service');
+
 
 // var mongoose = require('mongoose');
 // var authService = require('../auth/auth.service');
@@ -11,35 +11,58 @@ var validationError = function(res, err) {
   return res.status(422).json(err);
 };
 
-
-
 module.exports = function (wagner) {
-	var scheduleAdapter = require('../adapters/schedule.adapter')(wagner);
+	var paymentplanService = require('./paymentPlan.service')(wagner);
 	function create(req, res) {
-		scheduleAdapter.paymentPlanList({}, function(err, data){
-			//if(err) return validationError(res, err);
-			return res.status(200).json(data);
+		paymentplanService.create(req.body, function(err, id){
+			if(err) return validationError(res, err);
+			return res.status(200).json({paymentPlanId:id});
 		})
 	}
 
 	function update(req, res) {
-		return res.status(200).json({paymentplan : 'update'});
+		paymentplanService.update(req.body, function(err, data){
+			if(err) return validationError(res, err);
+			return res.status(200).json({updated:data});
+		})
 	}
 
 	function info(req, res) {
-		return res.status(200).json({paymentplan : 'info'});
+		var filter = {paymentPlanId: req.params.paymentplanid}
+		paymentplanService.info(filter, function(err, data){
+			if(err) return validationError(res, err);
+			return res.status(200).json(data);
+		})
 	}
 
 	function list(req, res) {
-		return res.status(200).json({paymentplan : 'list'});
-	}
-
-	function info(req, res) {
-		return res.status(200).json({paymentplan : 'info'});
+		paymentplanService.list(req.body, function(err, data){
+			if(err) return validationError(res, err);
+			return res.status(200).json(data);
+		})
 	}
 
 	function deleteOne(req, res) {
-		return res.status(200).json({paymentplan : 'delete'});
+		var filter = {paymentPlanId: req.params.paymentplanid}
+		paymentplanService.deleteOne(filter, function(err, data){
+			if(err) return validationError(res, err);
+			return res.status(200).json({deleted:data});
+		})
+	}
+
+	function createFull(req, res) {
+		paymentplanService.createFull(req.body, function(err, id){
+			if(err) return validationError(res, err);
+			return res.status(200).json({paymentPlanId:id});
+		})
+	}
+
+	function infoFull(req, res) {
+		var filter = {paymentPlanId: req.params.paymentplanid}
+		paymentplanService.infoFull(filter, function(err, data){
+			if(err) return validationError(res, err);
+			return res.status(200).json(data);
+		})
 	}
 
 	return {
@@ -47,6 +70,8 @@ module.exports = function (wagner) {
 		update: update,
 		info: info,
 		list: list,
-		deleteOne: deleteOne
+		deleteOne: deleteOne,
+		createFull: createFull,
+		infoFull: infoFull
 	}
 }
