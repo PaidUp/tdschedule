@@ -11,7 +11,7 @@ var app = express()
 require('./config/express')(app);
 require('./routes')(app, wagner)
 
-app.listen(3000)
-console.log('Listening on port 3000!')
+app.listen(9006)
+console.log('Listening on port 9006!')
 
 exports = module.exports = app;

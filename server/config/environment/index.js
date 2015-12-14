@@ -19,7 +19,7 @@ var all = {
   root: path.normalize(__dirname + '/../../..'),
 
   // Server port
-  port: process.env.PORT || 9002,
+  port: process.env.PORT || 9006,
 
   // Secret for session, you will want to change this and make it an environment variable
   secrets: {
