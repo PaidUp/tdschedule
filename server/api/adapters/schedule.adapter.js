@@ -139,9 +139,9 @@ module.exports = function (wagner) {
     }
   */
   function paymentPlanCreateFull(param, res){
-    magento.bighippoPaymentplan.createFull(
-      param
-    , function (err, resPaymentPLan) {
+    magento.bighippoPaymentplan.createFull({
+      paymentplan: param
+    }, function (err, resPaymentPLan) {
       if(err) return res(err);
       return res(null,camelize(resPaymentPLan))
     })
@@ -155,7 +155,7 @@ module.exports = function (wagner) {
   */
   function paymentPlanInfoFull(param, res){
     // wagner.invokeAsync(function(error, magento) {
-      magento.bighippoPaymentplan.info(param, function (err, resPaymentPLan) {
+      magento.bighippoPaymentplan.infoFull(param, function (err, resPaymentPLan) {
         if(err) return res(err);
         return res(null,camelize(resPaymentPLan));
       });

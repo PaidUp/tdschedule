@@ -96,7 +96,7 @@ describe("schedule controller payment plan", function() {
   })
 
   it('createFull payment plan controller', function (done) {
-  	var data = {paymentplan : {
+  	var data = {
     name:'testNameFull', destination:'destinationTestFull',
     'metadatas' : [
       {name : 'metaName1' , value : 'metaValue1'} , {name : 'metaName2' , value : 'metaValue2'}],
@@ -107,7 +107,7 @@ describe("schedule controller payment plan", function() {
           {name : 'scheduleName2' , value : 'scheduleValue2'}
         ]
       },
-    }}}
+    }}
     this.timeout(25000);
     request(app)
     .post('/api/v2/paymentplan/create/full')

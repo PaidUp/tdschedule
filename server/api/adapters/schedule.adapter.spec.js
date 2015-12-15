@@ -34,7 +34,7 @@ describe("schedule adapter payment plan", function() {
 
   it('update payment plan', function (done) {
   	var param = {paymentPlanId:result.paymentplanId,
-        playmentPlanData: {name:'testName3',
+        paymentPlanData: {name:'testName3',
         destination:'destinationTest3'}};
 	  commerceAdapterSchedule.paymentPlanUpdate(param, function(err,data){
 	  	if(err) return done(err);
@@ -77,7 +77,7 @@ describe("schedule adapter payment plan", function() {
   })
 
   it('createFull payment plan', function (done) {
-    var param = {paymentplan : {
+    var param = {
     name:'testNameFull', destination:'destinationTestFull',
     'metadatas' : [
       {name : 'metaName1' , value : 'metaValue1'} , {name : 'metaName2' , value : 'metaValue2'}],
@@ -88,7 +88,7 @@ describe("schedule adapter payment plan", function() {
           {name : 'scheduleName2' , value : 'scheduleValue2'}
         ]
       },
-    }}}
+    }}
     this.timeout(25000);
     commerceAdapterSchedule.paymentPlanCreateFull(param, function(err,data){
       if(err) return done(err);
