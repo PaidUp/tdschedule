@@ -1,7 +1,7 @@
 'use strict';
 
 var path = require('path');
-// var _ = require('lodash');
+var _ = require('lodash');
 
 function requiredProcessEnv(name) {
   if(!process.env[name]) {
@@ -26,6 +26,10 @@ var all = {
     session: 'tdschedule-secret'
   },
 
+  TDTokens:{
+    me:'tdschedule-secret'
+  },
+
   commerce: {
     adapter: path.normalize(__dirname + '/../../..') + '/server/api/adapters/schedule.adapter',
     magento: {
@@ -40,6 +44,6 @@ var all = {
 // Export the config object based on the NODE_ENV
 // ==============================================
 module.exports = all
-// module.exports = _.merge(
-//  all,
-//  require('./' + process.env.NODE_ENV + '.js') || {});
+module.exports = _.merge(
+  all,
+  require('./' + process.env.NODE_ENV + '.js') || {});

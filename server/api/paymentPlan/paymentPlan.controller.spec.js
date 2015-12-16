@@ -7,7 +7,7 @@ const config = require('../../config/environment/index')
 var request = require('supertest');
 let wagner = require('wagner-core')
 let result = {}
-var tokenTDSchedule = 'TDScheduleToken-CHANGE-ME!';
+var tokenTDSchedule = 'tdschedule-secret';
 
 describe("schedule controller payment plan", function() {
 	this.timeout(6000)
@@ -23,7 +23,7 @@ describe("schedule controller payment plan", function() {
     request(app)
     .post('/api/v2/paymentplan/create')
     .send({name:'testName', destination:'destinationTest'})
-    // .set('Authorization', tokenTDUser)
+    .set('Authorization', tokenTDSchedule)
     .expect(200)
     .end(function(err, res) {
     	result.paymentPlanId = res.body.paymentPlanId
@@ -39,9 +39,9 @@ describe("schedule controller payment plan", function() {
     request(app)
     .put('/api/v2/paymentplan/update')
     .send({paymentPlanId:result.paymentPlanId,
-        playmentPlanData: {name:'testNameUpd',
+        paymentPlanData: {name:'testNameUpd',
         destination:'destinationTestUpd'}})
-    // .set('Authorization', tokenTDUser)
+    .set('Authorization', tokenTDSchedule)
     .expect(200)
     .end(function(err, res) {
       assert.isNull(err)
@@ -56,7 +56,7 @@ describe("schedule controller payment plan", function() {
   	this.timeout(25000);
     request(app)
     .get('/api/v2/paymentplan/info/'+result.paymentPlanId)
-    // .set('Authorization', tokenTDUser)
+    .set('Authorization', tokenTDSchedule)
     .expect(200)
     .end(function(err, res) {
       assert.isNull(err)
@@ -71,7 +71,7 @@ describe("schedule controller payment plan", function() {
     request(app)
     .post('/api/v2/paymentplan/list')
     .send({filter:'filter'})
-    // .set('Authorization', tokenTDUser)
+    .set('Authorization', tokenTDSchedule)
     .expect(200)
     .end(function(err, res) {
       assert.isNull(err)
@@ -85,7 +85,7 @@ describe("schedule controller payment plan", function() {
     this.timeout(25000);
     request(app)
     .delete('/api/v2/paymentplan/delete/' + result.paymentPlanId)
-    // .set('Authorization', tokenTDUser)
+    .set('Authorization', tokenTDSchedule)
     .expect(200)
     .end(function(err, res) {
       assert.isNull(err)
@@ -112,7 +112,7 @@ describe("schedule controller payment plan", function() {
     request(app)
     .post('/api/v2/paymentplan/create/full')
     .send(data)
-    // .set('Authorization', tokenTDUser)
+    .set('Authorization', tokenTDSchedule)
     .expect(200)
     .end(function(err, res) {
     	result.paymentPlanFullId = res.body.paymentPlanId
@@ -127,7 +127,7 @@ describe("schedule controller payment plan", function() {
   	this.timeout(25000);
     request(app)
     .get('/api/v2/paymentplan/info/full/'+result.paymentPlanFullId)
-    // .set('Authorization', tokenTDUser)
+    .set('Authorization', tokenTDSchedule)
     .expect(200)
     .end(function(err, res) {
       assert.isNull(err)
