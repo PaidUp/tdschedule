@@ -86,10 +86,11 @@ module.exports = function (wagner) {
   }
 
   /* list
-    param = {}
+    param = {name : '', entity_id : '', destination : '' }
   */
   function paymentPlanList(param, res){
-      magento.bighippoPaymentplan.list(param, function (err, resPaymentPLan) {
+    let filter = {filters : param}
+      magento.bighippoPaymentplan.list(filter, function (err, resPaymentPLan) {
         if(err) return res(err);
         return res(null,camelize(resPaymentPLan));
       });
