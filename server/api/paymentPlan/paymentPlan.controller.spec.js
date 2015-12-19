@@ -70,7 +70,7 @@ describe("schedule controller payment plan", function() {
     this.timeout(25000);
     request(app)
     .post('/api/v2/paymentplan/list')
-    .send({filter:'filter'})
+    .send({})
     .set('Authorization', tokenTDSchedule)
     .expect(200)
     .end(function(err, res) {
