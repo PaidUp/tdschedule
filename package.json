@@ -9,8 +9,8 @@
     "clean:build": "rm -rf build",
     "create:dist": "mkdir dist",
     "create:build": "mkdir build",
-    "test": "NODE_ENV=test mocha server/**/*.spec.js",
-    "jenkins": "npm run clean:build && npm run create:build && mocha server/**/*.spec.js --reporter xunit > build/test-result.xml",
+    "test": "NODE_ENV=test mocha server/**/*.spec.js --reporter xunit > build/test-result.xml",
+    "jenkins": "npm run clean:build && npm run create:build && npm test",
     "build:server": "cp -R server/ dist/server",
     "build:client": "cp -R client/ dist/public",
     "build": "npm run clean:dist && npm run create:dist && npm run build:server && npm run build:client"
