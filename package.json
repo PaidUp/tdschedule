@@ -30,7 +30,6 @@
     "compression": "^1.6.0",
     "cookie-parser": "^1.4.0",
     "express": "4.13.3",
-    "grunt": "^0.4.5",
     "lodash": "^3.10.1",
     "magento": "https://github.com/talosdigital/magentoapi/tarball/master",
     "method-override": "^2.3.5",
