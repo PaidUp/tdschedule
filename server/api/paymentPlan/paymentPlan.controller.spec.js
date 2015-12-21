@@ -66,7 +66,7 @@ describe("schedule controller payment plan", function() {
     })
   })
 
-  it('list payment plan controller', function (done) {
+  it.skip('list payment plan controller', function (done) {
     this.timeout(25000);
     request(app)
     .post('/api/v2/paymentplan/list')
