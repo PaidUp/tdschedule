@@ -13,7 +13,7 @@
     "jenkins": "npm run clean:build && npm run create:build && mocha server/**/*.spec.js --reporter xunit > build/test-result.xml",
     "build:server": "cp -R server/ dist/server",
     "build:client": "cp -R client/ dist/public",
-    "build": "npm run clean && npm run create:dist && npm run build:server && npm run build:client"
+    "build": "npm run clean:dist && npm run create:dist && npm run build:server && npm run build:client"
   },
   "keywords": [
     "talos",
