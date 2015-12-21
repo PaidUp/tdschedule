@@ -6,8 +6,10 @@
   "scripts": {
     "start": "node server/app.js",
     "test": "NODE_ENV=test mocha server/**/*.spec.js",
-    "start:prod": "NODE_ENV=production node server/app.js",
-    "jenkins": "mocha server/**/*.spec.js --reporter xunit > build/test-result.xml"
+    "jenkins": "mocha server/**/*.spec.js --reporter xunit > build/test-result.xml",
+    "build:server": "server/**/* > dist/server",
+    "build:client": "client/**/* > dist/public",
+    "build": "npm run build:server && npm run build:client"
   },
   "keywords": [
     "talos",
