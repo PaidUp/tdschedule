@@ -4,5 +4,8 @@
 var express = require('express')
 
 var router = express.Router()
-router.use('/paymentplan', require('./paymentPlan/index'))
-module.exports = router
+
+module.exports = function (wagner) {
+	router.use('/paymentplan', require('./paymentPlan/index')(wagner))
+	return router 
+}
