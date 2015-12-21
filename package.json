@@ -5,11 +5,13 @@
   "main": "server/app.js",
   "scripts": {
     "start": "node server/app.js",
+    "clean": "rm -rf dist",
+    "create:dist": "mkdir dist",
     "test": "NODE_ENV=test mocha server/**/*.spec.js",
     "jenkins": "mocha server/**/*.spec.js --reporter xunit > build/test-result.xml",
-    "build:server": "server/**/* > dist/server",
-    "build:client": "client/**/* > dist/public",
-    "build": "npm run build:server && npm run build:client"
+    "build:server": "cp -R server/ dist/server",
+    "build:client": "cp -R client/ dist/public",
+    "build": "npm run clean && npm run create:dist && npm run build:server && npm run build:client"
   },
   "keywords": [
     "talos",
