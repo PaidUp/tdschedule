@@ -1,27 +1,33 @@
 'use strict'
 
-const app = require('../../app')
-const should = require('should')
-const assert = require('chai').assert
-const config = require('../../config/environment/index')
-let wagner = require('wagner-core')
-const commerceAdapterSchedule = require(config.commerce.adapter)(wagner)
-let result = {}
-let resultmeta = {}
-let resultschedule = {}
-let resultretry = {}
+var app = require('../../app')
+var should = require('should')
+var assert = require('chai').assert
+var config = require('../../config/environment/index')
+var wagner = require('wagner-core')
+var commerceAdapterSchedule = require(config.commerce.adapter)(wagner)
+var result = {}
+var resultmeta = {}
+var resultschedule = {}
+var resultretry = {}
+
+
+
+
 
 describe("schedule adapter payment plan", function() {
-  this.timeout(6000)
+  this.timeout(30000)
+
   before('login', function (done){
     setTimeout(function(){
-      require(config.commerce.adapter)(wagner).login()  
+      require(config.commerce.adapter)(wagner).login()
       done()
     }, 5000)
   })
 
+
   it('create payment plan', function (done) {
-    this.timeout(25000);
+    this.timeout(30000)
     commerceAdapterSchedule.paymentPlanCreate({name:'testName', destination:'destinationTest'}, function(err,data){
       if(err) return done(err);
       assert.isNull(err)
@@ -33,6 +39,7 @@ describe("schedule adapter payment plan", function() {
   })
 
   it('update payment plan', function (done) {
+    this.timeout(30000)
   	var param = {paymentPlanId:result.paymentplanId,
         paymentPlanData: {name:'testName3',
         destination:'destinationTest3'}};
@@ -45,6 +52,7 @@ describe("schedule adapter payment plan", function() {
   })
 
   it('info payment plans', function (done){
+    this.timeout(30000)
     var param = {paymentPlanId:result.paymentplanId};
     commerceAdapterSchedule.paymentPlanInfo(param, function(err,data){
     	if(err) return done(err);
@@ -56,7 +64,7 @@ describe("schedule adapter payment plan", function() {
   })
 
   it('list payment plan', function (done) {
-    this.timeout(25000);
+    this.timeout(30000)
     commerceAdapterSchedule.paymentPlanList({}, function(err,data){
       if(err) return done(err);
       assert.isNull(err)
@@ -67,7 +75,7 @@ describe("schedule adapter payment plan", function() {
   })
 
   it('delete payment plans', function (done){
-      this.timeout(25000);
+    this.timeout(30000)
       var param = {paymentPlanId:result.paymentplanId};
       commerceAdapterSchedule.paymentPlanDelete(param, function(err,data){
         assert.isNull(err)
@@ -77,6 +85,7 @@ describe("schedule adapter payment plan", function() {
   })
 
   it('createFull payment plan', function (done) {
+    this.timeout(30000)
     var param = {
     name:'testNameFull', destination:'destinationTestFull',
     'metadatas' : [
@@ -89,7 +98,6 @@ describe("schedule adapter payment plan", function() {
         ]
       },
     }}
-    this.timeout(25000);
     commerceAdapterSchedule.paymentPlanCreateFull(param, function(err,data){
       if(err) return done(err);
       assert.isNull(err)
@@ -101,6 +109,7 @@ describe("schedule adapter payment plan", function() {
   })
 
   it('infoFull payment plans', function(done){
+    this.timeout(30000)
     var param = {paymentPlanId:result.paymentplanFullId};
     commerceAdapterSchedule.paymentPlanInfo(param, function(err,data){
       if(err) return done(err);
@@ -114,10 +123,9 @@ describe("schedule adapter payment plan", function() {
 })
 
 describe("schedule adapter payment plan metadata", function() {
-  this.timeout(5000)
-
+  this.timeout(30000)
   it('create payment plan', function (done) {
-    this.timeout(25000);
+    this.timeout(30000)
     commerceAdapterSchedule.paymentPlanCreate({name:'testNamemeta', destination:'destinationTestmeta'}, function(err,data){
       if(err) return done(err);
       assert.isNull(err)
@@ -129,7 +137,7 @@ describe("schedule adapter payment plan metadata", function() {
   })
 
   it('create payment plan metadata', function (done) {
-    this.timeout(25000);
+    this.timeout(30000)
     commerceAdapterSchedule.paymentPlanMetaDataCreate({paymentPlanId : result.paymentplanId,
     metadataData:
     {
@@ -146,6 +154,7 @@ describe("schedule adapter payment plan metadata", function() {
   })
 
   it('update payment plan metadata', function (done) {
+    this.timeout(30000)
     var param = {
     paymentPlanId:result.paymentplanId,
     metadataData:
@@ -166,6 +175,7 @@ describe("schedule adapter payment plan metadata", function() {
 
   // TODO Resource is not set
   it.skip('info payment plan metadata TODO', function(done){
+    this.timeout(30000)
     var param = {metadataId:resultmeta.paymentplanId};
     commerceAdapterSchedule.paymentPlanMetaDataInfo(param, function(err,data){
       if(err) return done(err);
@@ -177,7 +187,7 @@ describe("schedule adapter payment plan metadata", function() {
   });
 
   it('list payment plan metadata', function (done) {
-    this.timeout(25000);
+    this.timeout(30000)
     var param = {paymentPlanId : resultmeta.paymentplanId};
     commerceAdapterSchedule.paymentPlanMetaDataList(param, function(err,data){
       if(err) return done(err);
@@ -190,7 +200,7 @@ describe("schedule adapter payment plan metadata", function() {
 
   // TODO Resource is not set
   it.skip('delete payment plan metadata TODO', function(done){
-      this.timeout(25000);
+    this.timeout(30000)
       var param = {metadataId:resultmeta.paymentplanId};
       commerceAdapterSchedule.paymentPlanMetaDataDelete(param, function(err,data){
         assert.isNull(err)
@@ -202,10 +212,8 @@ describe("schedule adapter payment plan metadata", function() {
 })
 
 describe("schedule adapter payment plan schedule", function() {
-  this.timeout(5000)
-
+  this.timeout(30000)
   it('create payment plan', function (done) {
-    this.timeout(25000);
     commerceAdapterSchedule.paymentPlanCreate({name:'testNameschedule', destination:'destinationTestschedule'}, function(err,data){
       if(err) return done(err);
       assert.isNull(err)
@@ -217,7 +225,7 @@ describe("schedule adapter payment plan schedule", function() {
   })
 
   it('create payment plan schedule', function (done) {
-    this.timeout(25000);
+    this.timeout(30000)
     commerceAdapterSchedule.scheduleCreate({paymentPlanId : result.paymentplanId,
     scheduleData:
     {
@@ -233,6 +241,7 @@ describe("schedule adapter payment plan schedule", function() {
   })
 
   it('update payment plan schedule', function (done) {
+    this.timeout(30000)
     var param = {
     scheduleId:resultschedule.scheduleId,
       scheduleData : {
@@ -248,6 +257,7 @@ describe("schedule adapter payment plan schedule", function() {
   });
 
   it('info payment plan schedule', function(done){
+    this.timeout(30000)
     var param = {scheduleId:resultschedule.scheduleId};
     commerceAdapterSchedule.scheduleInfo(param, function(err,data){
       if(err) return done(err);
@@ -259,7 +269,7 @@ describe("schedule adapter payment plan schedule", function() {
   });
 
   it('list payment plan schedule', function (done) {
-    this.timeout(25000);
+    this.timeout(30000)
     var param = {scheduleId : resultschedule.scheduleId};
     commerceAdapterSchedule.scheduleList(param, function(err,data){
       if(err) return done(err);
@@ -272,7 +282,7 @@ describe("schedule adapter payment plan schedule", function() {
 
   // TODO Resource is not set
   it.skip('delete payment plan schedule TODO', function(done){
-      this.timeout(25000);
+    this.timeout(30000)
       var param = {paymentPlanId:result.paymentplanId};
       commerceAdapterSchedule.scheduleDelete(param, function(err,data){
         assert.isNull(err)
@@ -284,10 +294,8 @@ describe("schedule adapter payment plan schedule", function() {
 })
 
 describe("schedule adapter payment plan schedule information", function() {
-  this.timeout(5000)
-
+  this.timeout(30000)
   it('create payment plan', function (done) {
-    this.timeout(25000);
     commerceAdapterSchedule.paymentPlanCreate({name:'testNameschedule', destination:'destinationTestschedule'}, function(err,data){
       if(err) return done(err);
       assert.isNull(err)
@@ -299,7 +307,7 @@ describe("schedule adapter payment plan schedule information", function() {
   })
 
   it('create payment plan schedule', function (done) {
-    this.timeout(25000);
+    this.timeout(30000)
     commerceAdapterSchedule.scheduleCreate({paymentPlanId : result.paymentplanId,
     scheduleData:
     {
@@ -315,7 +323,7 @@ describe("schedule adapter payment plan schedule information", function() {
   })
 
   it('create payment plan schedule information', function (done) {
-    this.timeout(25000);
+    this.timeout(30000)
     commerceAdapterSchedule.scheduleInformationCreate({
     scheduleId:resultschedule.scheduleInformationId,
     informationData:
@@ -334,6 +342,7 @@ describe("schedule adapter payment plan schedule information", function() {
   })
 
   it('update payment plan schedule information', function (done) {
+    this.timeout(30000)
     var param = {
       scheduleId:resultschedule.scheduleInformationId,
       informationData:
@@ -354,6 +363,7 @@ describe("schedule adapter payment plan schedule information", function() {
   });
 
   it('list payment plan schedule information', function (done){
+    this.timeout(30000)
     var param = {scheduleId:resultschedule.scheduleId};
     commerceAdapterSchedule.scheduleInformationList(param, function(err,data){
       if(err) return done(err);
@@ -364,7 +374,7 @@ describe("schedule adapter payment plan schedule information", function() {
   });
 
   it('info payment plan schedule information', function (done) {
-    this.timeout(25000);
+    this.timeout(30000)
     var param = {informationId:resultschedule.scheduleInformationIddata};
     commerceAdapterSchedule.scheduleInformationInfo(param, function(err,data){
       if(err) return done(err);
@@ -378,7 +388,7 @@ describe("schedule adapter payment plan schedule information", function() {
   })
 
   it('delete payment plan schedule information', function (done){
-      this.timeout(25000);
+    this.timeout(30000)
       var param = {informationId:resultschedule.scheduleInformationId}
       commerceAdapterSchedule.scheduleInformationDelete(param, function(err,data){
         assert.isNull(err)
@@ -390,10 +400,8 @@ describe("schedule adapter payment plan schedule information", function() {
 })
 
 describe("schedule adapter payment retry", function() {
-  this.timeout(5000)
-
+  this.timeout(30000)
   it('create payment plan retry', function (done) {
-    this.timeout(25000);
     commerceAdapterSchedule.paymentPlanRetryCreate({
         paymentRetryData : {
           name : 'name retry',
@@ -410,6 +418,7 @@ describe("schedule adapter payment retry", function() {
   })
 
   it('update payment plan retry', function (done) {
+    this.timeout(30000)
     var param = {
       paymentRetryId : resultretry.retryId,
       paymentRetryData : {
@@ -426,6 +435,7 @@ describe("schedule adapter payment retry", function() {
   });
 
   it('list payment plan retry', function (done){
+    this.timeout(30000)
     var param = {paymentRetryId : resultretry.retryId};
     commerceAdapterSchedule.paymentPlanRetryList(param, function(err,data){
       if(err) return done(err);
@@ -436,7 +446,7 @@ describe("schedule adapter payment retry", function() {
   });
 
   it('info payment plan retry', function (done) {
-    this.timeout(25000);
+    this.timeout(30000)
     var param = {
       paymentRetryId : resultretry.retryId
     };
@@ -454,10 +464,9 @@ describe("schedule adapter payment retry", function() {
 })
 
 describe("schedule adapter payment retry information", function() {
-  this.timeout(5000)
-
+  this.timeout(30000)
   it('create payment plan retry', function (done) {
-    this.timeout(25000);
+    this.timeout(30000)
     commerceAdapterSchedule.paymentPlanRetryCreate({
         paymentRetryData : {
           name : 'name retry',
@@ -474,7 +483,7 @@ describe("schedule adapter payment retry information", function() {
   })
 
   it('create payment plan retry information', function (done) {
-    this.timeout(25000);
+    this.timeout(30000)
     commerceAdapterSchedule.paymentPlanRetryInformationCreate({
         paymentRetryId : resultretry.retryId,
         informationData : {
@@ -492,6 +501,7 @@ describe("schedule adapter payment retry information", function() {
   })
 
   it('update payment plan retry information', function (done) {
+    this.timeout(30000)
     var param = {
         paymentRetryId : resultretry.retryId,
         informationData : [{
@@ -511,6 +521,7 @@ describe("schedule adapter payment retry information", function() {
   });
 
   it('list payment plan retry information', function (done){
+    this.timeout(30000)
     var param = {paymentretryId : resultretry.retryId};
     commerceAdapterSchedule.paymentPlanRetryInformationList(param, function(err,data){
       if(err) return done(err);
@@ -521,7 +532,7 @@ describe("schedule adapter payment retry information", function() {
   });
 
   it('info payment plan retry information', function (done) {
-    this.timeout(25000);
+    this.timeout(30000)
     var param = {
       informationId : resultretry.retryinformationId
     };
@@ -537,7 +548,7 @@ describe("schedule adapter payment retry information", function() {
   })
 
   it('delete payment plan retry information', function (done) {
-    this.timeout(25000);
+    this.timeout(30000)
     var param = {
       informationId : resultretry.retryinformationId
     };
