@@ -32,6 +32,6 @@
   "devDependencies": {
     "chai": "^3.4.1",
     "should": "^7.1.1",
-    "supertest": "^1.1.0",
+    "supertest": "^1.1.0"
   }
 }
