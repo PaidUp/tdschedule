@@ -1,7 +1,7 @@
 'use strict';
 
 var path = require('path');
-// var _ = require('lodash');
+var _ = require('lodash');
 
 function requiredProcessEnv(name) {
   if(!process.env[name]) {
@@ -19,11 +19,15 @@ var all = {
   root: path.normalize(__dirname + '/../../..'),
 
   // Server port
-  port: process.env.PORT || 9002,
+  port: process.env.PORT || 9006,
 
   // Secret for session, you will want to change this and make it an environment variable
   secrets: {
     session: 'tdschedule-secret'
+  },
+
+  TDTokens:{
+    me:'tdschedule-secret'
   },
 
   commerce: {
@@ -40,6 +44,6 @@ var all = {
 // Export the config object based on the NODE_ENV
 // ==============================================
 module.exports = all
-// module.exports = _.merge(
-//  all,
-//  require('./' + process.env.NODE_ENV + '.js') || {});
+module.exports = _.merge(
+  all,
+  require('./' + process.env.NODE_ENV + '.js') || {});
