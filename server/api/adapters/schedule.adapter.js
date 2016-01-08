@@ -11,15 +11,15 @@ var camelize = require('camelize');
 module.exports = function (wagner) {
   //HERE
   wagner.task('magento', function(callback){
-    if(magento.sessId){
-      return callback(null,magento)
-    }else{
+    //if(magento.sessId){
+      //return callback(null,magento)
+    //}else{
       magento.login(function(err, sessId) {
-        magento.sessId = sessId
+        //magento.sessId = sessId
         if(err) return callback(err);
         return callback(null,magento);
       });
-    }
+    //}
   })
 
   function login() {
@@ -40,14 +40,14 @@ module.exports = function (wagner) {
     }
   */
   function paymentPlanCreate(param, res){
-    // wagner.invokeAsync(function(error, magento) {
+    wagner.invokeAsync(function(error, magento) {
       magento.bighippoPaymentplan.create({
         paymentPlanData: param
       }, function (err, resPaymentPLan) {
         if(err) return res(err);
         return res(null,camelize(resPaymentPLan));
       });
-    // });
+    });
   }
 
   /* update
@@ -62,12 +62,12 @@ module.exports = function (wagner) {
     }
   */
   function paymentPlanUpdate(param, res){
-    // wagner.invokeAsync(function(error, magento) {
+    wagner.invokeAsync(function(error, magento) {
       magento.bighippoPaymentplan.update(param, function (err, resPaymentPLan) {
         if(err) return res(err);
         return res(null,camelize(resPaymentPLan));
       });
-    // });
+    });
   }
 
   /* info
@@ -77,12 +77,12 @@ module.exports = function (wagner) {
     }
   */
   function paymentPlanInfo(param, res){
-    // wagner.invokeAsync(function(error, magento) {
+    wagner.invokeAsync(function(error, magento) {
       magento.bighippoPaymentplan.info(param, function (err, resPaymentPLan) {
         if(err) return res(err);
         return res(null,camelize(resPaymentPLan));
       });
-    // });
+    });
   }
 
   /* list
@@ -103,12 +103,12 @@ module.exports = function (wagner) {
     }
   */
   function paymentPlanDelete(param, res){
-    // wagner.invokeAsync(function(error, magento) {
+    wagner.invokeAsync(function(error, magento) {
       magento.bighippoPaymentplan.delete(param, function (err, resPaymentPLan) {
         if(err) return res(err);
         return res(null,camelize(resPaymentPLan));
       });
-    // });
+    });
   }
 
   /* createFull
@@ -155,12 +155,12 @@ module.exports = function (wagner) {
     }
   */
   function paymentPlanInfoFull(param, res){
-    // wagner.invokeAsync(function(error, magento) {
+    wagner.invokeAsync(function(error, magento) {
       magento.bighippoPaymentplan.infoFull(param, function (err, resPaymentPLan) {
         if(err) return res(err);
         return res(null,camelize(resPaymentPLan));
       });
-    // });
+    });
   }
 
   // payment plan metadata
@@ -176,12 +176,12 @@ module.exports = function (wagner) {
     }
   */
   function paymentPlanMetaDataCreate(param, res) {
-    // wagner.invokeAsync(function(error, magento) {
+    wagner.invokeAsync(function(error, magento) {
       magento.bighippoPaymentplanMetadata.create(param, function (err, resPaymentPLanMetadata) {
         if(err) return res(err);
         return res(null,camelize(resPaymentPLanMetadata));
       });
-    // });
+    });
   }
 
   /* update
@@ -198,12 +198,12 @@ module.exports = function (wagner) {
     }
   */
   function paymentPlanMetaDataUpdate(param, res) {
-    // wagner.invokeAsync(function(error, magento) {
+    wagner.invokeAsync(function(error, magento) {
       magento.bighippoPaymentplanMetadata.update(param, function (err, resPaymentPLanMetadata) {
         if(err) return res(err);
         return res(null,camelize(resPaymentPLanMetadata));
       });
-    // });
+    });
   }
 
   /* list
@@ -213,12 +213,12 @@ module.exports = function (wagner) {
     }
   */
   function paymentPlanMetaDataList(param, res) {
-    // wagner.invokeAsync(function(error, magento) {
+    wagner.invokeAsync(function(error, magento) {
       magento.bighippoPaymentplanMetadata.list(param, function (err, resPaymentPLanMetadata) {
         if(err) return res(err);
         return res(null,camelize(resPaymentPLanMetadata));
       });
-    // });
+    });
   }
 
   /* info
@@ -228,12 +228,12 @@ module.exports = function (wagner) {
     }
   */
   function paymentPlanMetaDataInfo(param, res) {
-    // wagner.invokeAsync(function(error, magento) {
+    wagner.invokeAsync(function(error, magento) {
       magento.bighippoPaymentplanMetadata.info(param, function (err, resPaymentPLanMetadata) {
         if(err) return res(err);
         return res(null,camelize(resPaymentPLanMetadata));
       });
-    // });
+    });
   }
 
   /* delete
@@ -243,12 +243,12 @@ module.exports = function (wagner) {
     }
   */
   function paymentPlanMetaDataDelete(param, res) {
-    // wagner.invokeAsync(function(error, magento) {
+    wagner.invokeAsync(function(error, magento) {
       magento.bighippoPaymentplanMetadata.delete(param, function (err, resPaymentPLanMetadata) {
         if(err) return res(err);
         return res(null,camelize(resPaymentPLanMetadata));
       });
-    // });
+    });
   }
   // payment plan metadata
 
@@ -264,12 +264,12 @@ module.exports = function (wagner) {
     }
   */
   function scheduleCreate(param, res){
-    // wagner.invokeAsync(function(error, magento) {
+    wagner.invokeAsync(function(error, magento) {
       magento.bighippoPaymentplanSchedule.create(param, function (err, resPaymentPLanMetadata) {
         if(err) return res(err);
         return res(null,camelize(resPaymentPLanMetadata));
       });
-    // });
+    });
   }
 
   /* update
@@ -283,12 +283,12 @@ module.exports = function (wagner) {
     }
   */
   function scheduleUpdate(param, res){
-    // wagner.invokeAsync(function(error, magento) {
+    wagner.invokeAsync(function(error, magento) {
       magento.bighippoPaymentplanSchedule.update(param, function (err, resPaymentPLanMetadata) {
         if(err) return res(err);
         return res(null,camelize(resPaymentPLanMetadata));
       });
-    // });
+    });
   }
 
   /* list
@@ -298,12 +298,12 @@ module.exports = function (wagner) {
     }
   */
   function scheduleList(param, res){
-    // wagner.invokeAsync(function(error, magento) {
+    wagner.invokeAsync(function(error, magento) {
       magento.bighippoPaymentplanSchedule.list(param, function (err, resPaymentPLanMetadata) {
         if(err) return res(err);
         return res(null,camelize(resPaymentPLanMetadata));
       });
-    // });
+    });
   }
 
   /* info
@@ -313,12 +313,12 @@ module.exports = function (wagner) {
     }
   */
   function scheduleInfo(param, res){
-    // wagner.invokeAsync(function(error, magento) {
+    wagner.invokeAsync(function(error, magento) {
       magento.bighippoPaymentplanSchedule.info(param, function (err, resPaymentPLanMetadata) {
         if(err) return res(err);
         return res(null,camelize(resPaymentPLanMetadata));
       });
-    // });
+    });
   }
 
   /* delete
@@ -328,12 +328,12 @@ module.exports = function (wagner) {
     }
   */
   function scheduleDelete(param, res){
-    // wagner.invokeAsync(function(error, magento) {
+    wagner.invokeAsync(function(error, magento) {
       magento.bighippoPaymentplanSchedule.delete(param, function (err, resPaymentPLanMetadata) {
         if(err) return res(err);
         return res(null,camelize(resPaymentPLanMetadata));
       });
-    // });
+    });
   }
   // payment plan schedule
 
@@ -350,12 +350,12 @@ module.exports = function (wagner) {
     }
   */
   function scheduleInformationCreate(param, res){
-    // wagner.invokeAsync(function(error, magento) {
+    wagner.invokeAsync(function(error, magento) {
       magento.bighippoPaymentplanScheduleInformation.create(param, function (err, resPaymentPLanMetadata) {
         if(err) return res(err);
         return res(null,camelize(resPaymentPLanMetadata));
       });
-    // });
+    });
   }
 
   /* update
@@ -373,12 +373,12 @@ module.exports = function (wagner) {
     }
   */
   function scheduleInformationUpdate(param, res){
-    // wagner.invokeAsync(function(error, magento) {
+    wagner.invokeAsync(function(error, magento) {
       magento.bighippoPaymentplanScheduleInformation.update(param, function (err, resPaymentPLanMetadata) {
         if(err) return res(err);
         return res(null,camelize(resPaymentPLanMetadata));
       });
-    // });
+    });
   }
 
   /* list
@@ -388,12 +388,12 @@ module.exports = function (wagner) {
     }
   */
   function scheduleInformationList(param, res){
-    // wagner.invokeAsync(function(error, magento) {
+    wagner.invokeAsync(function(error, magento) {
       magento.bighippoPaymentplanScheduleInformation.list(param, function (err, resPaymentPLanMetadata) {
         if(err) return res(err);
         return res(null,camelize(resPaymentPLanMetadata));
       });
-    // });
+    });
   }
 
   /* info
@@ -403,12 +403,12 @@ module.exports = function (wagner) {
     }
   */
   function scheduleInformationInfo(param, res){
-    // wagner.invokeAsync(function(error, magento) {
+    wagner.invokeAsync(function(error, magento) {
       magento.bighippoPaymentplanScheduleInformation.info(param, function (err, resPaymentPLanMetadata) {
         if(err) return res(err);
         return res(null,camelize(resPaymentPLanMetadata));
       });
-    // });
+    });
   }
 
   /* delete
@@ -417,12 +417,12 @@ module.exports = function (wagner) {
     }
   */
   function scheduleInformationDelete(param, res){
-    // wagner.invokeAsync(function(error, magento) {
+    wagner.invokeAsync(function(error, magento) {
       magento.bighippoPaymentplanScheduleInformation.delete(param, function (err, resPaymentPLanMetadata) {
         if(err) return res(err);
         return res(null,camelize(resPaymentPLanMetadata));
       });
-    // });
+    });
   }
   // payment plan schedule information
 
@@ -437,12 +437,12 @@ module.exports = function (wagner) {
     }
   */
   function paymentPlanRetryCreate(param, res){
-    // wagner.invokeAsync(function(error, magento) {
+    wagner.invokeAsync(function(error, magento) {
       magento.bighippoPaymentRetry.create(param, function (err, resPaymentPLanMetadata) {
         if(err) return res(err);
         return res(null,camelize(resPaymentPLanMetadata));
       });
-    // });
+    });
   }
 
   /* update
@@ -456,12 +456,12 @@ module.exports = function (wagner) {
     }
   */
   function paymentPlanRetryUpdate(param, res){
-    // wagner.invokeAsync(function(error, magento) {
+    wagner.invokeAsync(function(error, magento) {
       magento.bighippoPaymentRetry.update(param, function (err, resPaymentPLanMetadata) {
         if(err) return res(err);
         return res(null,camelize(resPaymentPLanMetadata));
       });
-    // });
+    });
   }
 
   /* list
@@ -471,12 +471,12 @@ module.exports = function (wagner) {
     }
   */
   function paymentPlanRetryList(param, res){
-    // wagner.invokeAsync(function(error, magento) {
+    wagner.invokeAsync(function(error, magento) {
       magento.bighippoPaymentRetry.list(param, function (err, resPaymentPLanMetadata) {
         if(err) return res(err);
         return res(null,camelize(resPaymentPLanMetadata));
       });
-    // });
+    });
   }
 
   /* info
@@ -486,12 +486,12 @@ module.exports = function (wagner) {
     }
   */
   function paymentPlanRetryInfo(param, res){
-    // wagner.invokeAsync(function(error, magento) {
+    wagner.invokeAsync(function(error, magento) {
       magento.bighippoPaymentRetry.info(param, function (err, resPaymentPLanMetadata) {
         if(err) return res(err);
         return res(null,camelize(resPaymentPLanMetadata));
       });
-    // });
+    });
   }
   // payment plan retry
 
@@ -507,12 +507,12 @@ module.exports = function (wagner) {
     }
   */
   function paymentPlanRetryInformationCreate(param, res){
-    // wagner.invokeAsync(function(error, magento) {
+    wagner.invokeAsync(function(error, magento) {
       magento.bighippopaymentretryInformation.create(param, function (err, resPaymentPLanMetadata) {
         if(err) return res(err);
         return res(null,camelize(resPaymentPLanMetadata));
       });
-    // });
+    });
   }
 
   /* update
@@ -528,12 +528,12 @@ module.exports = function (wagner) {
     }
   */
   function paymentPlanRetryInformationUpdate(param, res){
-    // wagner.invokeAsync(function(error, magento) {
+    wagner.invokeAsync(function(error, magento) {
       magento.bighippopaymentretryInformation.update(param, function (err, resPaymentPLanMetadata) {
         if(err) return res(err);
         return res(null,camelize(resPaymentPLanMetadata));
       });
-    // });
+    });
   } 
 
   /* list
@@ -543,12 +543,12 @@ module.exports = function (wagner) {
     }
   */
   function paymentPlanRetryInformationList(param, res){
-    // wagner.invokeAsync(function(error, magento) {
+    wagner.invokeAsync(function(error, magento) {
       magento.bighippopaymentretryInformation.list(param, function (err, resPaymentPLanMetadata) {
         if(err) return res(err);
         return res(null,camelize(resPaymentPLanMetadata));
       });
-    // });
+    });
   }
 
   /* info
@@ -558,12 +558,12 @@ module.exports = function (wagner) {
     }
   */
   function paymentPlanRetryInformationInfo(param, res){
-    // wagner.invokeAsync(function(error, magento) {
+    wagner.invokeAsync(function(error, magento) {
       magento.bighippopaymentretryInformation.info(param, function (err, resPaymentPLanMetadata) {
         if(err) return res(err);
         return res(null,camelize(resPaymentPLanMetadata));
       });
-    // });
+    });
   }
 
 /* delete
@@ -573,12 +573,12 @@ module.exports = function (wagner) {
   }
 */
 function paymentPlanRetryInformationDelete(param, res){
-  // wagner.invokeAsync(function(error, magento) {
+  wagner.invokeAsync(function(error, magento) {
     magento.bighippopaymentretryInformation.delete(param, function (err, resPaymentPLanMetadata) {
       if(err) return res(err);
       return res(null,camelize(resPaymentPLanMetadata));
     });
-  // });
+  });
 }
 // payment plan retry information
 
