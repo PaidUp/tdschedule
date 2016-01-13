@@ -17,6 +17,6 @@ module.exports = function (wagner) {
 	
 	// router.use('/metadata', require('./metadata/index'))
 	// router.use('/retry', require('./retry/index'))
-	// router.use('/schedule', require('./schedule/index'))
+	router.use('/schedule', require('./schedule/index'))
 	return router 
 }
