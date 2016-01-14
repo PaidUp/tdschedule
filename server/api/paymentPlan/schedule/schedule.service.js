@@ -6,8 +6,8 @@
 module.exports = function(wagner) {
     var scheduleAdapter = require('../../adapters/schedule.adapter')(wagner);
 
-    function update(params, cb){
-        scheduleAdapter.scheduleUpdate(params , function(err, data){
+    function updateInformation(params, cb){
+        scheduleAdapter.scheduleInformationUpdate(params , function(err, data){
             if(err){
                 return cb(err);
             }
@@ -16,7 +16,7 @@ module.exports = function(wagner) {
     };
 
     return {
-        update : update
+        updateInformation : updateInformation
     }
 
 }

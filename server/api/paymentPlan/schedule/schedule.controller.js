@@ -3,20 +3,41 @@
  */
 'use strict'
 
+var validationError = function(res, err) {
+    console.log(err)
+    return res.status(422).json(err);
+};
+
 module.exports = function(wagner){
 
     var scheduleService = require('./schedule.service')(wagner);
 
-    function update(params , cb) {
-        scheduleService.update(params , function(err , data){
-            if(err){
-                return cb(err)
+
+
+    function updateInformation(req , res) {
+
+        if(!req.body.informationData){
+            validationError(res , {message : 'scheduleData is required'})
+        }
+
+        if(!req.body.scheduleId){
+            validationError(res , {message : 'scheduleId is required'})
+        }
+
+
+        scheduleService.updateInformation(req.body , function(err , data){
+
+            console.log('err' , err);
+            console.log('data' , data);
+
+            if(err) {
+                return validationError(res, err);
             }
-            cb(null , data);
+            return res.status(200).json(data);
         })
     }
 
     return {
-        update : update
+        updateInformation : updateInformation
     }
 }

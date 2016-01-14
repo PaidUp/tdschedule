@@ -7,7 +7,7 @@ module.exports = function (wagner) {
     let authCoreService = require('TDCore').authCoreService
     let controller = require('./schedule.controller')(wagner)
 
-    router.put('/update', authCoreService.isAuthenticatedServer(config.TDTokens.me), controller.update)
+    router.put('/update/information', authCoreService.isAuthenticatedServer(config.TDTokens.me), controller.updateInformation)
 
     return router
 }
