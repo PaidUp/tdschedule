@@ -34,6 +34,7 @@ var all = {
     adapter: path.normalize(__dirname + '/../../..') + '/server/api/adapters/schedule.adapter',
     magento: {
       host: 'virtual',
+      port: 8888,
       path: '/api/xmlrpc/',
       login: 'magento',
       pass: 'test4echo'
