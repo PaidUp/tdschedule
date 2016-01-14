@@ -1,9 +1,9 @@
 'use strict'
 
-const app = require('../../app')
+const app = require('../../../app')
 const should = require('should')
 const assert = require('chai').assert
-const config = require('../../config/environment/index')
+const config = require('../../../config/environment/index')
 var request = require('supertest');
 let wagner = require('wagner-core')
 let result = {}
@@ -16,83 +16,6 @@ describe("schedule controller", function() {
       require(config.commerce.adapter)(wagner).login()  
       done()
     }, 5000)
-  })
-
-  it('create payment plan controller', function (done) {
-    this.timeout(25000);
-    request(app)
-    .post('/api/v2/paymentplan/create')
-    .send({name:'testName', destination:'destinationTest'})
-    .set('Authorization', tokenTDSchedule)
-    .expect(200)
-    .end(function(err, res) {
-    	result.paymentPlanId = res.body.paymentPlanId
-      assert.isNull(err)
-      assert.isNotNull(res.body)
-      assert.isObject(res.body)
-      done()
-    })
-  })
-
-  it('update payment plan controller', function (done) {
-  	this.timeout(25000);
-    request(app)
-    .put('/api/v2/paymentplan/update')
-    .send({paymentPlanId:result.paymentPlanId,
-        paymentPlanData: {name:'testNameUpd',
-        destination:'destinationTestUpd'}})
-    .set('Authorization', tokenTDSchedule)
-    .expect(200)
-    .end(function(err, res) {
-      assert.isNull(err)
-      assert.isNotNull(res.body)
-      assert.isObject(res.body)
-      assert.isTrue(res.body.updated)
-      done()
-    })
-  })
-
-  it('info payment plans controller', function(done){
-  	this.timeout(25000);
-    request(app)
-    .get('/api/v2/paymentplan/info/'+result.paymentPlanId)
-    .set('Authorization', tokenTDSchedule)
-    .expect(200)
-    .end(function(err, res) {
-      assert.isNull(err)
-      assert.isObject(res.body)
-      assert.equal('testNameUpd', res.body.name);
-      done()
-    })
-  })
-
-  it.skip('list payment plan controller', function (done) {
-    this.timeout(25000);
-    request(app)
-    .post('/api/v2/paymentplan/list')
-    .send({})
-    .set('Authorization', tokenTDSchedule)
-    .expect(200)
-    .end(function(err, res) {
-      assert.isNull(err)
-      assert.isNotNull(res.body)
-      assert.isArray(res.body)
-      done()
-    });
-  })
-
-  it('delete payment plans controller', function(done){
-    this.timeout(25000);
-    request(app)
-    .delete('/api/v2/paymentplan/delete/' + result.paymentPlanId)
-    .set('Authorization', tokenTDSchedule)
-    .expect(200)
-    .end(function(err, res) {
-      assert.isNull(err)
-      assert.isNotNull(res.body)
-      assert.isTrue(res.body.deleted)
-      done()
-    });
   })
 
   it('createFull payment plan controller', function (done) {
@@ -133,6 +56,7 @@ describe("schedule controller", function() {
       assert.isNull(err)
       assert.isObject(res.body)
       assert.equal('testNameFull', res.body.name);
+          result.paymentPlanFull = res.body
       done()
     })
   })
