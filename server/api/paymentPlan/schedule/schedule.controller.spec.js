@@ -95,7 +95,6 @@ describe("schedule controller", function() {
                 assert.isObject(res.body)
                 assert.equal('testNameFull', res.body.name);
                 result.paymentPlanFull = res.body
-                console.log(JSON.stringify(result.paymentPlanFull))
                 done()
               })
         })

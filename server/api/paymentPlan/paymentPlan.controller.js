@@ -6,14 +6,17 @@
 
 // var mongoose = require('mongoose');
 // var authService = require('../auth/auth.service');
+const logger = require('../../config/logger');
 
 var validationError = function(res, err) {
-  return res.status(422).json(err);
+	logger.error('error', err);
+  	return res.status(422).json(err);
 };
 
 module.exports = function (wagner) {
 	var paymentplanService = require('./paymentPlan.service')(wagner);
 	function create(req, res) {
+		logger.info('create controller req.body', req.body);
 		paymentplanService.create(req.body, function(err, id){
 			if(err) return validationError(res, err);
 			return res.status(200).json({paymentPlanId:id});
@@ -21,6 +24,7 @@ module.exports = function (wagner) {
 	}
 
 	function update(req, res) {
+		logger.info('update controller req.body', req.body);
 		paymentplanService.update(req.body, function(err, data){
 			if(err) return validationError(res, err);
 			return res.status(200).json({updated:data});
@@ -28,7 +32,9 @@ module.exports = function (wagner) {
 	}
 
 	function info(req, res) {
+		logger.info('create controller req.params', req.params);
 		var filter = {paymentPlanId: req.params.paymentplanid}
+		logger.info('info controller filter', filter);
 		paymentplanService.info(filter, function(err, data){
 			if(err) return validationError(res, err);
 			return res.status(200).json(data);
@@ -36,6 +42,7 @@ module.exports = function (wagner) {
 	}
 
 	function list(req, res) {
+		logger.info('list controller req.body', req.body);
 		paymentplanService.list(req.body, function(err, data){
 			if(err) return validationError(res, err);
 			return res.status(200).json(data);
@@ -43,7 +50,9 @@ module.exports = function (wagner) {
 	}
 
 	function deleteOne(req, res) {
+		logger.info('deleteOne controller req.params', req.params);
 		var filter = {paymentPlanId: req.params.paymentplanid}
+		logger.info('deleteOne controller filter', req.params);
 		paymentplanService.deleteOne(filter, function(err, data){
 			if(err) return validationError(res, err);
 			return res.status(200).json({deleted:data});
@@ -51,6 +60,7 @@ module.exports = function (wagner) {
 	}
 
 	function createFull(req, res) {
+		logger.info('createFull controller req.body', req.body);
 		paymentplanService.createFull(req.body, function(err, id){
 			if(err) return validationError(res, err);
 			return res.status(200).json({paymentPlanId:id});
@@ -58,7 +68,9 @@ module.exports = function (wagner) {
 	}
 
 	function infoFull(req, res) {
+		logger.info('infoFull controller req.params', req.params);
 		var filter = {paymentPlanId: req.params.paymentplanid}
+		logger.info('infoFull controller filter', filter);
 		paymentplanService.infoFull(filter, function(err, data){
 			if(err) return validationError(res, err);
 			return res.status(200).json(data);

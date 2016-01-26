@@ -4,7 +4,6 @@
 'use strict'
 
 var validationError = function(res, err) {
-    console.log(err)
     return res.status(422).json(err);
 };
 
@@ -26,10 +25,6 @@ module.exports = function(wagner){
 
 
         scheduleService.updateInformation(req.body , function(err , data){
-
-            console.log('err' , err);
-            console.log('data' , data);
-
             if(err) {
                 return validationError(res, err);
             }
