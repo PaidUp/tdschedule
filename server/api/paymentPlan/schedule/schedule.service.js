@@ -15,8 +15,35 @@ module.exports = function(wagner) {
         })
     };
 
+    function createInformation(params, cb){
+        scheduleAdapter.scheduleCreate(params.paymentPlanId, function(err , scheduleId){
+            if(err){
+                return cb(err)
+            }
+            scheduleAdapter.scheduleInformationUpdate(params , function(err1, data){
+                if(err1){
+                    return cb(err1);
+                }
+                cb(null , data);
+            })
+
+        });
+
+    };
+
+    function deleteInformation(paymentPlanId, cb){
+        scheduleAdapter.scheduleDelete({paymentPlanId : paymentPlanId} , function(err, data){
+            if(err){
+                return cb(err);
+            }
+            cb(null , data);
+        })
+    };
+
     return {
-        updateInformation : updateInformation
+        updateInformation : updateInformation,
+        createInformation : createInformation,
+        deleteInformation : deleteInformation
     }
 
 }
