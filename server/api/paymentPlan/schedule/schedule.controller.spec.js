@@ -77,7 +77,7 @@ describe("schedule controller", function() {
     }
 
     request(app)
-        .put('/api/v2/paymentplan/schedule/update/information')
+        .put('/api/v2/paymentplan/schedule/information/update')
         .set('Authorization', tokenTDSchedule)
         .send(param)
         .expect(200)
