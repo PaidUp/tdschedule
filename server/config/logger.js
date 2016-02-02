@@ -7,7 +7,7 @@ require('winston-loggly');
 var logger = new (winston.Logger)({
     transports: [
       new (winston.transports.Console)({ 
-        level: config.logger.level.error,
+        level: config.logger.level.info,
         handleExceptions: true,
         json: true,
         colorize: true

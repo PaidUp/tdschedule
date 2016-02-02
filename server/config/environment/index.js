@@ -40,7 +40,7 @@ var all = {
       inputToken:'e2834f96-0326-43f1-8fd9-04dd669a11ef',
       subdomain: "cstest",
       tags: ["TDschedule"],
-      level: 'info'
+      level: 'error'
     }
   },
 
