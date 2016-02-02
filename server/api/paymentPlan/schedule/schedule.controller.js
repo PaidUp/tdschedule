@@ -4,7 +4,6 @@
 'use strict'
 
 var validationError = function(res, err) {
-    console.log(err)
     return res.status(422).json(err);
 };
 
@@ -21,7 +20,6 @@ module.exports = function(wagner){
         if(!req.body.scheduleId){
             validationError(res , {message : 'scheduleId is required'})
         }
-
         scheduleService.updateInformation(req.body , function(err , data){
             if(err) {
                 return validationError(res, err);
@@ -50,7 +48,6 @@ module.exports = function(wagner){
         if(!req.params.paymentPlanId){
             validationError(res , {message : 'paymentPlanId is required'})
         }
-
         scheduleService.deleteInformation(req.params.paymentPlanId , function(err , data){
             if(err) {
                 return validationError(res, err);
