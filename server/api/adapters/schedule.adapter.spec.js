@@ -382,7 +382,7 @@ describe("schedule adapter payment plan schedule information", function() {
     })
   })
 
-  it('delete payment plan schedule information', function (done){
+  it.skip('delete payment plan schedule information', function (done){
     this.timeout(30000)
       var param = {informationId:resultschedule.scheduleInformationId}
       commerceAdapterSchedule.scheduleInformationDelete(param, function(err,data){
