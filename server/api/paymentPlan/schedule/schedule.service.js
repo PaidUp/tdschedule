@@ -17,7 +17,6 @@ module.exports = function(wagner) {
     };
 
     function createInformation(params, cb){
-        console.log('*****' , params);
         let paramNewSchedule = {paymentPlanId : params.paymentPlanId,
             scheduleData:
             {
@@ -29,12 +28,7 @@ module.exports = function(wagner) {
                 return cb(err)
             }
 
-            console.log('err' , err);
-            console.log('scheduleId' , scheduleId);
-
             let id = new ObjectId();
-            console.log('ObjectId' , id.toString());
-
 
             params.informationData.push({name : 'id' , value : id.toString()});
 
