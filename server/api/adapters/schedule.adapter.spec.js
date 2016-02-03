@@ -11,10 +11,6 @@ var resultmeta = {}
 var resultschedule = {}
 var resultretry = {}
 
-
-
-
-
 describe("schedule adapter payment plan", function() {
   this.timeout(30000)
 
@@ -24,7 +20,6 @@ describe("schedule adapter payment plan", function() {
       done()
     }, 5000)
   })
-
 
   it('create payment plan', function (done) {
     this.timeout(30000)

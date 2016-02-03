@@ -4,6 +4,7 @@
 'use strict'
 
 module.exports = function(wagner) {
+    var ObjectId = require('mongoose').Types.ObjectId;
     var scheduleAdapter = require('../../adapters/schedule.adapter')(wagner);
 
     function updateInformation(params, cb){
@@ -16,11 +17,27 @@ module.exports = function(wagner) {
     };
 
     function createInformation(params, cb){
-        scheduleAdapter.scheduleCreate(params.paymentPlanId, function(err , scheduleId){
+        let paramNewSchedule = {paymentPlanId : params.paymentPlanId,
+            scheduleData:
+            {
+                name : 'Add After',
+            }}
+
+        scheduleAdapter.scheduleCreate(paramNewSchedule, function(err , scheduleId){
             if(err){
                 return cb(err)
             }
-            scheduleAdapter.scheduleInformationUpdate(params , function(err1, data){
+
+            let id = new ObjectId();
+
+            params.informationData.push({name : 'id' , value : id.toString()});
+
+            let paramNewInformation = {
+                scheduleId:scheduleId,
+                informationData: params.informationData
+            }
+
+            scheduleAdapter.scheduleInformationUpdate(paramNewInformation , function(err1, data){
                 if(err1){
                     return cb(err1);
                 }
