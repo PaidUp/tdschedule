@@ -30,17 +30,17 @@ module.exports = function(wagner){
 
     function createInformation(req , res) {
         if(!req.body.informationData){
-            validationError(res , {message : 'informationData is required'})
+            return validationError(res , {message : 'informationData is required'})
         }
         if(!req.body.paymentPlanId){
-            validationError(res , {message : 'paymentPlanId is required'})
+            return validationError(res , {message : 'paymentPlanId is required'})
         }
 
         scheduleService.createInformation(req.body , function(err , data){
             if(err) {
                 return validationError(res, err);
             }
-            return res.status(200).json(data);
+            res.status(200).json(data);
         })
     }
 
