@@ -100,7 +100,7 @@ describe("schedule controller", function() {
         })
   })
 
-  it('create schedule', function(done){
+  it.skip('create schedule', function(done){
     this.timeout(25000);
 
     let param = {
@@ -134,7 +134,7 @@ describe("schedule controller", function() {
                 assert.isObject(res.body)
                 assert.equal('testNameFull', res.body.name);
                 result.paymentPlanFull = res.body
-                console.log(JSON.stringify(result.paymentPlanFull))
+                //console.log(JSON.stringify(result.paymentPlanFull))
                 done()
               })
         })
