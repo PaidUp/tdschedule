@@ -77,7 +77,7 @@ describe("schedule controller", function() {
     }
 
     request(app)
-        .put('/api/v2/paymentplan/schedule/update/information')
+        .put('/api/v2/paymentplan/schedule/information/update')
         .set('Authorization', tokenTDSchedule)
         .send(param)
         .expect(200)
@@ -95,7 +95,46 @@ describe("schedule controller", function() {
                 assert.isObject(res.body)
                 assert.equal('testNameFull', res.body.name);
                 result.paymentPlanFull = res.body
-                console.log(JSON.stringify(result.paymentPlanFull))
+                done()
+              })
+        })
+  })
+
+  it.skip('create schedule', function(done){
+    this.timeout(25000);
+
+    let param = {
+      paymentPlanId:result.paymentPlanFullId,
+      informationData:
+          [{
+            name : 'StringName',
+            value : 'StringvalueUpdate',
+          },{
+            name : 'String2Name',
+            value : 'String2Value',
+          }]
+    }
+
+    request(app)
+        .put('/api/v2/paymentplan/schedule/information/update')
+        .set('Authorization', tokenTDSchedule)
+        .send(param)
+        .expect(200)
+        .end(function(err, res) {
+          assert.isNull(err)
+          assert.isTrue(res.body)
+          result.paymentPlanFull = res.body
+
+          request(app)
+              .get('/api/v2/paymentplan/info/full/'+result.paymentPlanFullId)
+              .set('Authorization', tokenTDSchedule)
+              .expect(200)
+              .end(function(err, res) {
+                assert.isNull(err)
+                assert.isObject(res.body)
+                assert.equal('testNameFull', res.body.name);
+                result.paymentPlanFull = res.body
+                //console.log(JSON.stringify(result.paymentPlanFull))
                 done()
               })
         })
