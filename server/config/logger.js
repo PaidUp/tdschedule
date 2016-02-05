@@ -4,6 +4,8 @@ var config = require('./environment');
 var winston  = require('winston');
 require('winston-loggly');
 
+let env = process.env.NODE_ENV;
+
 var logger = new (winston.Logger)({
     transports: [
       new (winston.transports.Console)({ 
@@ -33,6 +35,14 @@ var logger = new (winston.Logger)({
   });
 
 winston.emitErrs = true;
+
+if(env === 'test'){
+  logger
+    .remove(winston.transports.File)
+    .remove(winston.transports.Console)
+    .remove(winston.transports.Loggly);
+}
+
 
 module.exports = logger;
 module.exports.stream = {
