@@ -31,7 +31,8 @@ var logger = new (winston.Logger)({
         subdomain: config.logger.loggly.subdomain,
         tags: config.logger.loggly.tags
       })
-    ]
+    ],
+    exitOnError: false
   });
 
 winston.emitErrs = true;
