@@ -98,10 +98,12 @@ module.exports = function (wagner) {
   */
   function paymentPlanList(param, res){
     let filter = {filters : param}
+    wagner.invokeAsync(function(error, magento) {
       magento.bighippoPaymentplan.list(filter, function (err, resPaymentPLan) {
         if(err) return validationError(err, res);
         return res(null,camelize(resPaymentPLan));
       });
+    });
   }
 
   /* delete
@@ -148,12 +150,14 @@ module.exports = function (wagner) {
     }
   */
   function paymentPlanCreateFull(param, res){
-    magento.bighippoPaymentplan.createFull({
-      paymentplan: param
-    }, function (err, resPaymentPLan) {
-      if(err) return validationError(err, res);
-      return res(null,camelize(resPaymentPLan))
-    })
+    wagner.invokeAsync(function(error, magento) {
+      magento.bighippoPaymentplan.createFull({
+        paymentplan: param
+      }, function (err, resPaymentPLan) {
+        if(err) return validationError(err, res);
+        return res(null,camelize(resPaymentPLan))
+      });
+    });
   }
 
   /* infoFull
