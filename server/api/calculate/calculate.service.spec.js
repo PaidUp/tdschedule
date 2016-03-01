@@ -40,7 +40,7 @@ describe('test calculate service' , function(){
         });
     });
 
-    it('calculate' , function(done){
+    it('calculateProcessingPaidUp' , function(done){
         calculateService.calculateProcessingPaidUp({
             originalPrice : 100,
             stripePercent : 2.9,

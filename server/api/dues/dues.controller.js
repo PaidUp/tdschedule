@@ -21,12 +21,17 @@ module.exports = function (wagner) {
 
 		console.log('req.body' , req.body);
 
+		if(!req.body.paymentPlanSelected){
+			return validationError(res, {message : "paymentPlanSelected is required"});
+		}
+
 		if(!req.body.processingFees){
 			return validationError(res, {message : "processingFees is required"});
 		}
 
 		duesService.generateDues(req.body, function(err, dues){
-			if(err) return validationError(res, err);
+			if(err) return validationError(res, {message : err});
+			logger.debug('duesController.generateDues return: '+JSON.stringify(dues))
 			return res.status(200).json(dues);
 		})
 	}
