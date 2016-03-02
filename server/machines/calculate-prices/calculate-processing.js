@@ -47,7 +47,6 @@ module.exports = {
     success: {
       example:  {
         owedPrice: 343.44,
-        payout: 231.77,
         discount : 12
       }
     }
@@ -68,13 +67,11 @@ module.exports = {
     var pu = inputs.paidUpFee / 100;
     
     var ow = ((op - op * pu) + sf) / (1 - sp - sp * pu) + (op * pu);
-    var pa = ow - (ow * sp + sf) - (op * pu);
 
     // Return an object containing myLength and the secretCode
     return exits.success({
-      owedPrice: Math.round(ow * 100) / 100,
-      payout: Math.round(pa * 100) / 100,
-      discount: Math.round(div * 100) / 100
+        owedPrice: Math.round(ow * 100) / 100,
+        discount: Math.round(div * 100) / 100
     });
 
   }

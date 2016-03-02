@@ -1,10 +1,10 @@
 module.exports = {
 
-  friendlyName: 'calculate',
+  friendlyName: 'calculate-paidup',
 
-  description: 'Calculate final price when user does not assume any fee.',
+  description: 'Calculate final price when the user assume only paidup fee.',
 
-  extendedDescription: 'Calculate final price when user does not assume any fee.',
+  extendedDescription: 'Calculate final price when the user assume only paidup fee.',
 
   inputs: {
 
@@ -62,17 +62,16 @@ module.exports = {
     var di = inputs.discount / 100;
     var op = inputs.originalPrice * (1 - di);
     var div = inputs.originalPrice - op;
-
     var sp = inputs.stripePercent / 100;
     var sf = inputs.stripeFlat;
     var pu = inputs.paidUpFee / 100;
     
-    var ow = ((op + sf) / (1 - sp - (sp * pu))) + (op * pu);
+    var ow = (op * (1 + pu));
 
     // Return an object containing myLength and the secretCode
     return exits.success({
       owedPrice: Math.round(ow * 100) / 100,
-      discount: Math.round(div * 100) / 100
+        discount: Math.round(div * 100) / 100
     });
 
   }

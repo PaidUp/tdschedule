@@ -6,5 +6,6 @@
 module.exports = {
     calculate : require('./calculate'),
     calculateProcessing : require('./calculate-processing'),
-    calculateProcessingPaidUp : require('./calculate-processing-paidup')
+    calculateProcessingPaidUp : require('./calculate-processing-paidup'),
+    calculatePaidUp : require('./calculate-paidup')
 }

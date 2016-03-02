@@ -14,7 +14,12 @@ module.exports = function(wagner) {
 
         //option 1
         if(!params.paysFees.processing && params.paysFees.collections){
-            return cb("Option doesn't implemented" );
+            builResult('calculatePaidUp' , params, function(err, data){
+                if(err){
+                    return cb(err);
+                }
+                return cb(null, data);
+            })
         }
 
         //option 2
@@ -23,7 +28,6 @@ module.exports = function(wagner) {
                 if(err){
                     return cb(err);
                 }
-                console.log('DAta' , data);
                 return cb(null, data);
             })
         }

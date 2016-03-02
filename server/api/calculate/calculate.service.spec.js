@@ -9,9 +9,38 @@ const assert = require('chai').assert
 var wagner = require('wagner-core');
 var calculateService = require('./calculate.service')(wagner);
 
+/**
+ * User Pays
+ * +===========+==============+===========+
+ * |  Option   |  Processing  |  PaidUp   |
+ * |===========|==============|===========|
+ * |  Option 1 |     NO       |    YES    |
+ * |-----------|--------------|-----------|
+ * |  Option 2 |     NO       |     NO    |
+ * |-----------|--------------|-----------|
+ * |  Option 3 |     YES      |     YES   |
+ * |-----------|--------------|-----------|
+ * |  Option 4 |     YES      |     NO    |
+ * +--------------------------------------+
+ *
+ */
+
 describe('test calculate service' , function(){
 
-    it('calculate' , function(done){
+    it('calculate paidup -- option 1' , function(done){
+        calculateService.calculatePaidUp({
+            originalPrice : 100,
+            stripePercent : 2.9,
+            stripeFlat : 0.30,
+            paidUpFee : 5,
+            discount : 0
+        } , function(err, data){
+            assert.equal(105 , data.owedPrice);
+            done();
+        });
+    });
+
+    it('calculate -- option 2' , function(done){
         calculateService.calculate({
             originalPrice : 100,
             stripePercent : 2.9,
@@ -20,27 +49,11 @@ describe('test calculate service' , function(){
             discount : 0
         } , function(err, data){
             assert.equal(100 , data.owedPrice);
-            assert.equal(91.8 , data.payout);
             done();
         });
     });
 
-    it('calculateProcessing' , function(done){
-        calculateService.calculateProcessing({
-            originalPrice : 100,
-            stripePercent : 2.9,
-            stripeFlat : 0.30,
-            paidUpFee : 5,
-            discount : 0
-        } , function(err, data){
-            //console.log(data)
-            //assert.equal(100 , data.owedPrice);
-            //assert.equal(91.8 , data.payout);
-            done();
-        });
-    });
-
-    it('calculateProcessingPaidUp' , function(done){
+    it('calculateProcessingPaidUp -- option 3' , function(done){
         calculateService.calculateProcessingPaidUp({
             originalPrice : 100,
             stripePercent : 2.9,
@@ -48,8 +61,20 @@ describe('test calculate service' , function(){
             paidUpFee : 5,
             discount : 0
         } , function(err, data){
-            assert.equal(103.45 , data.owedPrice);
-            assert.equal(95.15 , data.payout);
+            assert.equal(108.45 , data.owedPrice);
+            done();
+        });
+    });
+
+    it('calculateProcessing option 4' , function(done){
+        calculateService.calculateProcessing({
+            originalPrice : 100,
+            stripePercent : 2.9,
+            stripeFlat : 0.30,
+            paidUpFee : 5,
+            discount : 0
+        } , function(err, data){
+            assert.equal(103.29 , data.owedPrice);
             done();
         });
     });
