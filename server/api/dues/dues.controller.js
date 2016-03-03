@@ -31,7 +31,7 @@ module.exports = function (wagner) {
 
 		duesService.generateDues(req.body, function(err, dues){
 			if(err) return validationError(res, {message : err});
-			logger.debug('duesController.generateDues return: '+JSON.stringify(dues))
+			logger.info('duesController.generateDues return: '+JSON.stringify(dues))
 			return res.status(200).json(dues);
 		})
 	}
