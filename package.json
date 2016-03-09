@@ -38,7 +38,7 @@
     "wagner-core": "^0.2.0",
     "winston": "^2.1.1",
     "winston-loggly": "^1.3.1",
-    "machinepack-product-price-calculations" : "git+ssh://github.com/PaidUp/PU-MP-product-price-calculations.git#v0.1.2"
+    "machinepack-calculations" : "git+ssh://github.com/PaidUp/machinepack-calculations.git#v0.2.1"
   },
   "devDependencies": {
     "chai": "^3.4.1",

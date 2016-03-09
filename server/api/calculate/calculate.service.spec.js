@@ -28,12 +28,14 @@ var calculateService = require('./calculate.service')(wagner);
 describe('test calculate service' , function(){
 
     it('calculate paidup -- option 1' , function(done){
-        calculateService.calculatePaidUp({
+        calculateService.getPrice({
             originalPrice : 100,
             stripePercent : 2.9,
             stripeFlat : 0.30,
             paidUpFee : 5,
-            discount : 0
+            discount : 0,
+            payProcessing : false,
+            payCollecting : true
         } , function(err, data){
             assert.equal(105 , data.owedPrice);
             done();
@@ -41,12 +43,14 @@ describe('test calculate service' , function(){
     });
 
     it('calculate -- option 2' , function(done){
-        calculateService.calculate({
+        calculateService.getPrice({
             originalPrice : 100,
             stripePercent : 2.9,
             stripeFlat : 0.30,
             paidUpFee : 5,
-            discount : 0
+            discount : 0,
+            payProcessing : false,
+            payCollecting : false
         } , function(err, data){
             assert.equal(100 , data.owedPrice);
             done();
@@ -54,12 +58,14 @@ describe('test calculate service' , function(){
     });
 
     it('calculateProcessingPaidUp -- option 3' , function(done){
-        calculateService.calculateProcessingPaidUp({
+        calculateService.getPrice({
             originalPrice : 100,
             stripePercent : 2.9,
             stripeFlat : 0.30,
             paidUpFee : 5,
-            discount : 0
+            discount : 0,
+            payProcessing : true,
+            payCollecting : true
         } , function(err, data){
             assert.equal(108.45 , data.owedPrice);
             done();
@@ -67,12 +73,14 @@ describe('test calculate service' , function(){
     });
 
     it('calculateProcessing option 4' , function(done){
-        calculateService.calculateProcessing({
+        calculateService.getPrice({
             originalPrice : 100,
             stripePercent : 2.9,
             stripeFlat : 0.30,
             paidUpFee : 5,
-            discount : 0
+            discount : 0,
+            payProcessing : true,
+            payCollecting : false
         } , function(err, data){
             assert.equal(103.29 , data.owedPrice);
             done();
