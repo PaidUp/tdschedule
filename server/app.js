@@ -17,7 +17,6 @@ var pmx = require('pmx').init({
 
 var express = require('express')
 var wagner = require('wagner-core')
-var bodyParser = require('body-parser');
 var config = require('./config/environment');
 
 require('./api/adapters/schedule.adapter')(wagner).login()

@@ -37,7 +37,11 @@ describe('test calculate service' , function(){
             payProcessing : false,
             payCollecting : true
         } , function(err, data){
-            assert.equal(105 , data.owedPrice);
+            assert.deepEqual({ originalPrice: 100,
+                    totalFee: 8.34,
+                    owedPrice: 105,
+                    discount: 0 }
+                , data);
             done();
         });
     });
@@ -52,7 +56,11 @@ describe('test calculate service' , function(){
             payProcessing : false,
             payCollecting : false
         } , function(err, data){
-            assert.equal(100 , data.owedPrice);
+            assert.deepEqual({ originalPrice: 100,
+                    totalFee: 8.2,
+                    owedPrice: 100,
+                    discount: 0 }
+                , data);
             done();
         });
     });
@@ -67,7 +75,11 @@ describe('test calculate service' , function(){
             payProcessing : true,
             payCollecting : true
         } , function(err, data){
-            assert.equal(108.45 , data.owedPrice);
+            assert.deepEqual({ originalPrice: 100,
+                    totalFee: 8.45,
+                    owedPrice: 108.45,
+                    discount: 0 }
+                , data);
             done();
         });
     });
@@ -82,7 +94,11 @@ describe('test calculate service' , function(){
             payProcessing : true,
             payCollecting : false
         } , function(err, data){
-            assert.equal(103.29 , data.owedPrice);
+            assert.deepEqual({ originalPrice: 100,
+                    totalFee: 8.3,
+                    owedPrice: 103.29,
+                    discount: 0 }
+                , data);
             done();
         });
     });

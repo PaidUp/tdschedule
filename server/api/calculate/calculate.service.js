@@ -32,6 +32,7 @@ module.exports = function(wagner) {
 				}
 				data.description = price.description;
 				data.dateCharge = price.dateCharge;
+				data.originalPrice = price.originalPrice;
 				resp.push(data)
 				if(idx === arr.length -1){
 					cb(null , resp);
