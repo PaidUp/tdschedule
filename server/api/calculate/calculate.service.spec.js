@@ -38,9 +38,11 @@ describe('test calculate service' , function(){
             payCollecting : true
         } , function(err, data){
             assert.deepEqual({ originalPrice: 100,
-                    totalFee: 8.34,
-                    owedPrice: 105,
-                    discount: 0 }
+                totalFee: 8.35,
+                feePaidUp: 5,
+                feeStripe: 3.35,
+                owedPrice: 105,
+                discount: 0 }
                 , data);
             done();
         });
@@ -58,6 +60,8 @@ describe('test calculate service' , function(){
         } , function(err, data){
             assert.deepEqual({ originalPrice: 100,
                     totalFee: 8.2,
+                    feePaidUp: 5,
+                    feeStripe: 3.2,
                     owedPrice: 100,
                     discount: 0 }
                 , data);
@@ -77,6 +81,8 @@ describe('test calculate service' , function(){
         } , function(err, data){
             assert.deepEqual({ originalPrice: 100,
                     totalFee: 8.45,
+                    feePaidUp: 5,
+                    feeStripe: 3.45,
                     owedPrice: 108.45,
                     discount: 0 }
                 , data);
@@ -96,6 +102,8 @@ describe('test calculate service' , function(){
         } , function(err, data){
             assert.deepEqual({ originalPrice: 100,
                     totalFee: 8.3,
+                    feePaidUp: 5,
+                    feeStripe: 3.3,
                     owedPrice: 103.29,
                     discount: 0 }
                 , data);
