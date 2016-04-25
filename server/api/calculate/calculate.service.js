@@ -8,40 +8,10 @@ var validationError = function(err, cb) {
 };
 
 module.exports = function(wagner) {
-	///var scheduleAdapter = require('../adapters/schedule.adapter')(wagner);
-	var calculateIndex = require('../../machines/calculate-prices');
-	var calculateMachine = require('machine').build(calculateIndex.calculate);
-	var calculateProcessingMachine = require('machine').build(calculateIndex.calculateProcessing);
-	var calculateProcessingPaidUpMachine = require('machine').build(calculateIndex.calculateProcessingPaidUp);
+	var Calculations = require('machinepack-calculations');
 
-	function calculate(params, cb) {
-		calculateMachine(params).exec(
-			{
-				error: function(){
-					cb('Error');
-				},
-				success : function(result){
-					cb(null, result)
-				}
-			}
-		)
-	}
-
-	function calculateProcessing(params, cb) {
-		calculateProcessingMachine(params).exec(
-			{
-				error: function(){
-					cb(err);
-				},
-				success : function(result){
-					cb(null, result)
-				}
-			}
-		)
-	}
-
-	function calculateProcessingPaidUp(params, cb) {
-		calculateProcessingPaidUpMachine(params).exec(
+	function getPrice(params, cb) {
+        Calculations.productPrice(params).exec(
 			{
 				error: function(err){
 					cb(err);
@@ -53,9 +23,26 @@ module.exports = function(wagner) {
 		)
 	}
 
+	function getPrices(params, cb) {
+		let resp = [];
+		params.forEach(function(price, idx, arr){
+			getPrice(price, function(err, data){
+				if(err){
+					cb(err);
+				}
+				data.description = price.description;
+				data.dateCharge = price.dateCharge;
+				data.originalPrice = price.originalPrice;
+				resp.push(data)
+				if(idx === arr.length -1){
+					cb(null , resp);
+				}
+			})
+		});
+	}
+
 	return {
-		calculate: calculate,
-		calculateProcessing: calculateProcessing,
-		calculateProcessingPaidUp: calculateProcessingPaidUp
+		getPrice : getPrice,
+		getPrices : getPrices
 	}
 }
