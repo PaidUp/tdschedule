@@ -11,7 +11,7 @@ module.exports = function(wagner) {
 	var Calculations = require('machinepack-calculations');
 
 	function getPrice(params, cb) {
-        Calculations.productPrice(params).exec(
+        Calculations['productPrice'+params.version.toUpperCase()](params).exec(
 			{
 				error: function(err){
 					cb(err);
