@@ -1,12 +1,17 @@
-'use strict'
+'use strict';
 
 var config = require('../../config/environment');
 var MagentoAPI = require('magento');
 var magento = new MagentoAPI(config.commerce.magento);
 var camelize = require('camelize');
 // const snakeize = require('snakeize');
-// const logger = require('../../config/logger.js');
+const logger = require('../../config/logger');
 // var wagner = require('wagner-core')
+
+var validationError = function(err, res) {
+  logger.warn('warn adapter', err);
+  return res(err);
+};
 
 module.exports = function (wagner) {
   //HERE
@@ -16,7 +21,10 @@ module.exports = function (wagner) {
     //}else{
       magento.login(function(err, sessId) {
         //magento.sessId = sessId
-        if(err) return callback(err);
+        if(err) {
+          logger.error('error', err);
+          return callback(err);
+        }
         return callback(null,magento);
       });
     //}
@@ -44,7 +52,7 @@ module.exports = function (wagner) {
       magento.bighippoPaymentplan.create({
         paymentPlanData: param
       }, function (err, resPaymentPLan) {
-        if(err) return res(err);
+        if(err) return validationError(err, res);
         return res(null,camelize(resPaymentPLan));
       });
     });
@@ -64,7 +72,7 @@ module.exports = function (wagner) {
   function paymentPlanUpdate(param, res){
     wagner.invokeAsync(function(error, magento) {
       magento.bighippoPaymentplan.update(param, function (err, resPaymentPLan) {
-        if(err) return res(err);
+        if(err) return validationError(err, res);
         return res(null,camelize(resPaymentPLan));
       });
     });
@@ -79,7 +87,7 @@ module.exports = function (wagner) {
   function paymentPlanInfo(param, res){
     wagner.invokeAsync(function(error, magento) {
       magento.bighippoPaymentplan.info(param, function (err, resPaymentPLan) {
-        if(err) return res(err);
+        if(err) return validationError(err, res);
         return res(null,camelize(resPaymentPLan));
       });
     });
@@ -90,10 +98,12 @@ module.exports = function (wagner) {
   */
   function paymentPlanList(param, res){
     let filter = {filters : param}
+    wagner.invokeAsync(function(error, magento) {
       magento.bighippoPaymentplan.list(filter, function (err, resPaymentPLan) {
-        if(err) return res(err);
+        if(err) return validationError(err, res);
         return res(null,camelize(resPaymentPLan));
       });
+    });
   }
 
   /* delete
@@ -105,7 +115,7 @@ module.exports = function (wagner) {
   function paymentPlanDelete(param, res){
     wagner.invokeAsync(function(error, magento) {
       magento.bighippoPaymentplan.delete(param, function (err, resPaymentPLan) {
-        if(err) return res(err);
+        if(err) return validationError(err, res);
         return res(null,camelize(resPaymentPLan));
       });
     });
@@ -140,12 +150,14 @@ module.exports = function (wagner) {
     }
   */
   function paymentPlanCreateFull(param, res){
-    magento.bighippoPaymentplan.createFull({
-      paymentplan: param
-    }, function (err, resPaymentPLan) {
-      if(err) return res(err);
-      return res(null,camelize(resPaymentPLan))
-    })
+    wagner.invokeAsync(function(error, magento) {
+      magento.bighippoPaymentplan.createFull({
+        paymentplan: param
+      }, function (err, resPaymentPLan) {
+        if(err) return validationError(err, res);
+        return res(null,camelize(resPaymentPLan))
+      });
+    });
   }
 
   /* infoFull
@@ -157,7 +169,7 @@ module.exports = function (wagner) {
   function paymentPlanInfoFull(param, res){
     wagner.invokeAsync(function(error, magento) {
       magento.bighippoPaymentplan.infoFull(param, function (err, resPaymentPLan) {
-        if(err) return res(err);
+        if(err) return validationError(err, res);
         return res(null,camelize(resPaymentPLan));
       });
     });
@@ -178,7 +190,7 @@ module.exports = function (wagner) {
   function paymentPlanMetaDataCreate(param, res) {
     wagner.invokeAsync(function(error, magento) {
       magento.bighippoPaymentplanMetadata.create(param, function (err, resPaymentPLanMetadata) {
-        if(err) return res(err);
+        if(err) return validationError(err, res);
         return res(null,camelize(resPaymentPLanMetadata));
       });
     });
@@ -200,7 +212,7 @@ module.exports = function (wagner) {
   function paymentPlanMetaDataUpdate(param, res) {
     wagner.invokeAsync(function(error, magento) {
       magento.bighippoPaymentplanMetadata.update(param, function (err, resPaymentPLanMetadata) {
-        if(err) return res(err);
+        if(err) return validationError(err, res);
         return res(null,camelize(resPaymentPLanMetadata));
       });
     });
@@ -215,7 +227,7 @@ module.exports = function (wagner) {
   function paymentPlanMetaDataList(param, res) {
     wagner.invokeAsync(function(error, magento) {
       magento.bighippoPaymentplanMetadata.list(param, function (err, resPaymentPLanMetadata) {
-        if(err) return res(err);
+        if(err) return validationError(err, res);
         return res(null,camelize(resPaymentPLanMetadata));
       });
     });
@@ -230,7 +242,7 @@ module.exports = function (wagner) {
   function paymentPlanMetaDataInfo(param, res) {
     wagner.invokeAsync(function(error, magento) {
       magento.bighippoPaymentplanMetadata.info(param, function (err, resPaymentPLanMetadata) {
-        if(err) return res(err);
+        if(err) return validationError(err, res);
         return res(null,camelize(resPaymentPLanMetadata));
       });
     });
@@ -245,7 +257,7 @@ module.exports = function (wagner) {
   function paymentPlanMetaDataDelete(param, res) {
     wagner.invokeAsync(function(error, magento) {
       magento.bighippoPaymentplanMetadata.delete(param, function (err, resPaymentPLanMetadata) {
-        if(err) return res(err);
+        if(err) return validationError(err, res);
         return res(null,camelize(resPaymentPLanMetadata));
       });
     });
@@ -266,7 +278,7 @@ module.exports = function (wagner) {
   function scheduleCreate(param, res){
     wagner.invokeAsync(function(error, magento) {
       magento.bighippoPaymentplanSchedule.create(param, function (err, resPaymentPLanMetadata) {
-        if(err) return res(err);
+        if(err) return validationError(err, res);
         return res(null,camelize(resPaymentPLanMetadata));
       });
     });
@@ -285,7 +297,7 @@ module.exports = function (wagner) {
   function scheduleUpdate(param, res){
     wagner.invokeAsync(function(error, magento) {
       magento.bighippoPaymentplanSchedule.update(param, function (err, resPaymentPLanMetadata) {
-        if(err) return res(err);
+        if(err) return validationError(err, res);
         return res(null,camelize(resPaymentPLanMetadata));
       });
     });
@@ -300,7 +312,7 @@ module.exports = function (wagner) {
   function scheduleList(param, res){
     wagner.invokeAsync(function(error, magento) {
       magento.bighippoPaymentplanSchedule.list(param, function (err, resPaymentPLanMetadata) {
-        if(err) return res(err);
+        if(err) return validationError(err, res);
         return res(null,camelize(resPaymentPLanMetadata));
       });
     });
@@ -315,7 +327,7 @@ module.exports = function (wagner) {
   function scheduleInfo(param, res){
     wagner.invokeAsync(function(error, magento) {
       magento.bighippoPaymentplanSchedule.info(param, function (err, resPaymentPLanMetadata) {
-        if(err) return res(err);
+        if(err) return validationError(err, res);
         return res(null,camelize(resPaymentPLanMetadata));
       });
     });
@@ -330,7 +342,7 @@ module.exports = function (wagner) {
   function scheduleDelete(param, res){
     wagner.invokeAsync(function(error, magento) {
       magento.bighippoPaymentplanSchedule.delete(param, function (err, resPaymentPLanMetadata) {
-        if(err) return res(err);
+        if(err) return validationError(err, res);
         return res(null,camelize(resPaymentPLanMetadata));
       });
     });
@@ -352,7 +364,7 @@ module.exports = function (wagner) {
   function scheduleInformationCreate(param, res){
     wagner.invokeAsync(function(error, magento) {
       magento.bighippoPaymentplanScheduleInformation.create(param, function (err, resPaymentPLanMetadata) {
-        if(err) return res(err);
+        if(err) return validationError(err, res);
         return res(null,camelize(resPaymentPLanMetadata));
       });
     });
@@ -375,7 +387,7 @@ module.exports = function (wagner) {
   function scheduleInformationUpdate(param, res){
     wagner.invokeAsync(function(error, magento) {
       magento.bighippoPaymentplanScheduleInformation.update(param, function (err, resPaymentPLanMetadata) {
-        if(err) return res(err);
+        if(err) return validationError(err, res);
         return res(null,camelize(resPaymentPLanMetadata));
       });
     });
@@ -390,7 +402,7 @@ module.exports = function (wagner) {
   function scheduleInformationList(param, res){
     wagner.invokeAsync(function(error, magento) {
       magento.bighippoPaymentplanScheduleInformation.list(param, function (err, resPaymentPLanMetadata) {
-        if(err) return res(err);
+        if(err) return validationError(err, res);
         return res(null,camelize(resPaymentPLanMetadata));
       });
     });
@@ -405,7 +417,7 @@ module.exports = function (wagner) {
   function scheduleInformationInfo(param, res){
     wagner.invokeAsync(function(error, magento) {
       magento.bighippoPaymentplanScheduleInformation.info(param, function (err, resPaymentPLanMetadata) {
-        if(err) return res(err);
+        if(err) return validationError(err, res);
         return res(null,camelize(resPaymentPLanMetadata));
       });
     });
@@ -419,7 +431,7 @@ module.exports = function (wagner) {
   function scheduleInformationDelete(param, res){
     wagner.invokeAsync(function(error, magento) {
       magento.bighippoPaymentplanScheduleInformation.delete(param, function (err, resPaymentPLanMetadata) {
-        if(err) return res(err);
+        if(err) return validationError(err, res);
         return res(null,camelize(resPaymentPLanMetadata));
       });
     });
@@ -439,7 +451,7 @@ module.exports = function (wagner) {
   function paymentPlanRetryCreate(param, res){
     wagner.invokeAsync(function(error, magento) {
       magento.bighippoPaymentRetry.create(param, function (err, resPaymentPLanMetadata) {
-        if(err) return res(err);
+        if(err) return validationError(err, res);
         return res(null,camelize(resPaymentPLanMetadata));
       });
     });
@@ -458,7 +470,7 @@ module.exports = function (wagner) {
   function paymentPlanRetryUpdate(param, res){
     wagner.invokeAsync(function(error, magento) {
       magento.bighippoPaymentRetry.update(param, function (err, resPaymentPLanMetadata) {
-        if(err) return res(err);
+        if(err) return validationError(err, res);
         return res(null,camelize(resPaymentPLanMetadata));
       });
     });
@@ -473,7 +485,7 @@ module.exports = function (wagner) {
   function paymentPlanRetryList(param, res){
     wagner.invokeAsync(function(error, magento) {
       magento.bighippoPaymentRetry.list(param, function (err, resPaymentPLanMetadata) {
-        if(err) return res(err);
+        if(err) return validationError(err, res);
         return res(null,camelize(resPaymentPLanMetadata));
       });
     });
@@ -488,7 +500,7 @@ module.exports = function (wagner) {
   function paymentPlanRetryInfo(param, res){
     wagner.invokeAsync(function(error, magento) {
       magento.bighippoPaymentRetry.info(param, function (err, resPaymentPLanMetadata) {
-        if(err) return res(err);
+        if(err) return validationError(err, res);
         return res(null,camelize(resPaymentPLanMetadata));
       });
     });
@@ -509,7 +521,7 @@ module.exports = function (wagner) {
   function paymentPlanRetryInformationCreate(param, res){
     wagner.invokeAsync(function(error, magento) {
       magento.bighippopaymentretryInformation.create(param, function (err, resPaymentPLanMetadata) {
-        if(err) return res(err);
+        if(err) return validationError(err, res);
         return res(null,camelize(resPaymentPLanMetadata));
       });
     });
@@ -530,7 +542,7 @@ module.exports = function (wagner) {
   function paymentPlanRetryInformationUpdate(param, res){
     wagner.invokeAsync(function(error, magento) {
       magento.bighippopaymentretryInformation.update(param, function (err, resPaymentPLanMetadata) {
-        if(err) return res(err);
+        if(err) return validationError(err, res);
         return res(null,camelize(resPaymentPLanMetadata));
       });
     });
@@ -545,7 +557,7 @@ module.exports = function (wagner) {
   function paymentPlanRetryInformationList(param, res){
     wagner.invokeAsync(function(error, magento) {
       magento.bighippopaymentretryInformation.list(param, function (err, resPaymentPLanMetadata) {
-        if(err) return res(err);
+        if(err) return validationError(err, res);
         return res(null,camelize(resPaymentPLanMetadata));
       });
     });
@@ -560,7 +572,7 @@ module.exports = function (wagner) {
   function paymentPlanRetryInformationInfo(param, res){
     wagner.invokeAsync(function(error, magento) {
       magento.bighippopaymentretryInformation.info(param, function (err, resPaymentPLanMetadata) {
-        if(err) return res(err);
+        if(err) return validationError(err, res);
         return res(null,camelize(resPaymentPLanMetadata));
       });
     });
@@ -575,7 +587,7 @@ module.exports = function (wagner) {
 function paymentPlanRetryInformationDelete(param, res){
   wagner.invokeAsync(function(error, magento) {
     magento.bighippopaymentretryInformation.delete(param, function (err, resPaymentPLanMetadata) {
-      if(err) return res(err);
+      if(err) return validationError(err, res);
       return res(null,camelize(resPaymentPLanMetadata));
     });
   });
