@@ -14,10 +14,10 @@ module.exports = function(wagner) {
         Calculations['productPrice'+params.version.toUpperCase()](params).exec(
 			{
 				error: function(err){
-					cb(err);
+					return cb(err);
 				},
 				success : function(result){
-					cb(null, result)
+					return cb(null, result)
 				}
 			}
 		)
@@ -28,7 +28,7 @@ module.exports = function(wagner) {
 		params.forEach(function(price, idx, arr){
 			getPrice(price, function(err, data){
 				if(err){
-					cb(err);
+					return cb(err);
 				}
 				data.description = price.description;
 				data.dateCharge = price.dateCharge;
