@@ -10,7 +10,10 @@ const logger = require('../../config/logger');
 
 var validationError = function(res, err) {
 	logger.error('error', err);
-  	return res.status(400).json(err);
+  	return res.status(500).json({
+		  status: 500,
+		  message: JSON.stringify(err)
+	  });
 };
 
 module.exports = function (wagner) {
