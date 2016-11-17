@@ -31,7 +31,7 @@
     "cookie-parser": "^1.4.0",
     "express": "4.13.3",
     "lodash": "^3.10.1",
-    "machinepack-calculations": "git+ssh://github.com/PaidUp/machinepack-calculations.git#v0.7.1",
+    "machinepack-calculations": "git+ssh://github.com/PaidUp/machinepack-calculations.git#v0.8.1",
     "magento": "https://github.com/talosdigital/magentoapi/tarball/master",
     "method-override": "^2.3.5",
     "moment": "^2.11.2",
