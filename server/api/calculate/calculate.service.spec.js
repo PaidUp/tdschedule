@@ -92,12 +92,12 @@ describe ('test calculate service', function () {
     }, function (err, data) {
       assert.deepEqual ({
           version: 'v2',
-          basePrice: 33,
+          basePrice: 33.01,
           originalPrice: 40,
           totalFee: 2.99,
           feePaidUp: 1.65,
           feeStripe: 1.34,
-          owedPrice: 36.00,
+          owedPrice: 36,
           discount: 4
         }
         , data);
@@ -116,13 +116,15 @@ describe ('test calculate service', function () {
       payProcessing: true,
       payCollecting: false
     }, function (err, data) {
+      console.log('err: ', err)
+      console.log('data: ', data)
       assert.deepEqual ({
           version: 'v2',
-          basePrice: 89.97,
+          basePrice: 89.96,
           originalPrice: 103.29,
           totalFee: 7.50,
-          feePaidUp: 4.50,
-          feeStripe: 3.00,
+          feePaidUp: 4.5,
+          feeStripe: 3,
           owedPrice: 92.96,
           discount: 10.33
         }
