@@ -3119,9 +3119,778 @@ describe('test calculate service', function () {
         done();
       });
     });
-
   }) // set 4
 
+  describe("TEST SET #5 - % PAIDUP FEE & FLAT PAIDUP FEE, NO DISCOUNT", function () {
+    it('Row #1.1', function (done) {
+      calculateService.getPrice({
+        version: 'v2',
+        type: "card",
+        capAmount: 5,
+        originalPrice: 100,
+        stripePercent: 2.9,
+        stripeFlat: 0.3,
+        stripeAchPercent: 0.8,
+        stripeAchFlat: 0,
+        paidUpFee: 1,
+        paidUpFlat: 15,
+        discount: 0,
+        payProcessing: false,
+        payCollecting: true
+      }, function (err, data) {
+        assert.deepEqual(
+          {
+            version: 'v2',
+            basePrice: 84.16,
+            originalPrice: 100,
+            totalFee: 19.04,
+            owedPrice: 100,
+            discount: 0,
+            feePaidUp: 15.84,
+            feeStripe: 3.2
+          }
+          , data);
+        done();
+      });
+    });
+
+    it('Row #1.2', function (done) {
+      calculateService.getPrice({
+        version: 'v2',
+        type: "card",
+        capAmount: 5,
+        originalPrice: 500.75,
+        stripePercent: 2.9,
+        stripeFlat: 0.3,
+        stripeAchPercent: 0.8,
+        stripeAchFlat: 0,
+        paidUpFee: 1,
+        paidUpFlat: 15,
+        discount: 0,
+        payProcessing: false,
+        payCollecting: true
+      }, function (err, data) {
+        assert.deepEqual(
+          {
+            version: 'v2',
+            basePrice: 480.94,
+            originalPrice: 500.75,
+            totalFee: 34.63,
+            owedPrice: 500.75,
+            discount: 0,
+            feePaidUp: 19.81,
+            feeStripe: 14.82
+          }
+          , data);
+        done();
+      });
+    });
+
+    it('Row #1.3', function (done) {
+      calculateService.getPrice({
+        version: 'v2',
+        type: "card",
+        capAmount: 5,
+        originalPrice: 1000,
+        stripePercent: 2.9,
+        stripeFlat: 0.3,
+        stripeAchPercent: 0.8,
+        stripeAchFlat: 0,
+        paidUpFee: 1,
+        paidUpFlat: 15,
+        discount: 0,
+        payProcessing: false,
+        payCollecting: true
+      }, function (err, data) {
+        assert.deepEqual(
+          {
+            version: 'v2',
+            basePrice: 975.25,
+            originalPrice: 1000,
+            totalFee: 54.05,
+            owedPrice: 1000,
+            discount: 0,
+            feePaidUp: 24.75,
+            feeStripe: 29.3
+          }
+          , data);
+        done();
+      });
+    });
+
+    it('Row #1.4', function (done) {
+      calculateService.getPrice({
+        version: 'v2',
+        type: "card",
+        capAmount: 5,
+        originalPrice: 100,
+        stripePercent: 2.9,
+        stripeFlat: 0.3,
+        stripeAchPercent: 0.8,
+        stripeAchFlat: 0,
+        paidUpFee: 1,
+        paidUpFlat: 15,
+        discount: 0,
+        payProcessing: false,
+        payCollecting: false
+      }, function (err, data) {
+        assert.deepEqual(
+          {
+            version: 'v2',
+            basePrice: 100,
+            originalPrice: 100,
+            totalFee: 19.2,
+            owedPrice: 100,
+            discount: 0,
+            feePaidUp: 16,
+            feeStripe: 3.2
+          }
+          , data);
+        done();
+      });
+    });
+
+    it('Row #1.5', function (done) {
+      calculateService.getPrice({
+        version: 'v2',
+        type: "card",
+        capAmount: 5,
+        originalPrice: 500.75,
+        stripePercent: 2.9,
+        stripeFlat: 0.3,
+        stripeAchPercent: 0.8,
+        stripeAchFlat: 0,
+        paidUpFee: 1,
+        paidUpFlat: 15,
+        discount: 0,
+        payProcessing: false,
+        payCollecting: false
+      }, function (err, data) {
+        assert.deepEqual(
+          {
+            version: 'v2',
+            basePrice: 500.75,
+            originalPrice: 500.75,
+            totalFee: 34.83,
+            owedPrice: 500.75,
+            discount: 0,
+            feePaidUp: 20.01,
+            feeStripe: 14.82
+          }
+          , data);
+        done();
+      });
+    });
+
+    it('Row #1.6', function (done) {
+      calculateService.getPrice({
+        version: 'v2',
+        type: "card",
+        capAmount: 5,
+        originalPrice: 1000,
+        stripePercent: 2.9,
+        stripeFlat: 0.3,
+        stripeAchPercent: 0.8,
+        stripeAchFlat: 0,
+        paidUpFee: 1,
+        paidUpFlat: 15,
+        discount: 0,
+        payProcessing: false,
+        payCollecting: false
+      }, function (err, data) {
+        assert.deepEqual(
+          {
+            version: 'v2',
+            basePrice: 1000,
+            originalPrice: 1000,
+            totalFee: 54.3,
+            owedPrice: 1000,
+            discount: 0,
+            feePaidUp: 25,
+            feeStripe: 29.3
+          }
+          , data);
+        done();
+      });
+    });
+
+    it('Row #1.7', function (done) {
+      calculateService.getPrice({
+        version: 'v2',
+        type: "card",
+        capAmount: 5,
+        originalPrice: 100,
+        stripePercent: 2.9,
+        stripeFlat: 0.3,
+        stripeAchPercent: 0.8,
+        stripeAchFlat: 0,
+        paidUpFee: 1,
+        paidUpFlat: 15,
+        discount: 0,
+        payProcessing: true,
+        payCollecting: true
+      }, function (err, data) {
+        assert.deepEqual(
+          {
+            version: 'v2',
+            basePrice: 80.99,
+            originalPrice: 100,
+            totalFee: 19.01,
+            owedPrice: 100,
+            discount: 0,
+            feePaidUp: 15.81,
+            feeStripe: 3.2
+          }
+          , data);
+        done();
+      });
+    });
+
+    it('Row #1.8', function (done) {
+      calculateService.getPrice({
+        version: 'v2',
+        type: "card",
+        capAmount: 5,
+        originalPrice: 500.75,
+        stripePercent: 2.9,
+        stripeFlat: 0.3,
+        stripeAchPercent: 0.8,
+        stripeAchFlat: 0,
+        paidUpFee: 1,
+        paidUpFlat: 15,
+        discount: 0,
+        payProcessing: true,
+        payCollecting: true
+      }, function (err, data) {
+        assert.deepEqual(
+          {
+            version: 'v2',
+            basePrice: 466.27,
+            originalPrice: 500.75,
+            totalFee: 34.48,
+            owedPrice: 500.75,
+            discount: 0,
+            feePaidUp: 19.66,
+            feeStripe: 14.82
+          }
+          , data);
+        done();
+      });
+    });
+
+    it('Row #1.9', function (done) {
+      calculateService.getPrice({
+        version: 'v2',
+        type: "card",
+        capAmount: 5,
+        originalPrice: 1000,
+        stripePercent: 2.9,
+        stripeFlat: 0.3,
+        stripeAchPercent: 0.8,
+        stripeAchFlat: 0,
+        paidUpFee: 1,
+        paidUpFlat: 15,
+        discount: 0,
+        payProcessing: true,
+        payCollecting: true
+      }, function (err, data) {
+        assert.deepEqual(
+          {
+            version: 'v2',
+            basePrice: 946.24,
+            originalPrice: 1000,
+            totalFee: 53.76,
+            owedPrice: 1000,
+            discount: 0,
+            feePaidUp: 24.46,
+            feeStripe: 29.3
+          }
+          , data);
+        done();
+      });
+    });
+
+    it('Row #1.10', function (done) {
+      calculateService.getPrice({
+        version: 'v2',
+        type: "card",
+        capAmount: 5,
+        originalPrice: 100,
+        stripePercent: 2.9,
+        stripeFlat: 0.3,
+        stripeAchPercent: 0.8,
+        stripeAchFlat: 0,
+        paidUpFee: 1,
+        paidUpFlat: 15,
+        discount: 0,
+        payProcessing: true,
+        payCollecting: false
+      }, function (err, data) {
+        assert.deepEqual(
+          {
+            version: 'v2',
+            basePrice: 96.8,
+            originalPrice: 100,
+            totalFee: 19.17,
+            owedPrice: 100,
+            discount: 0,
+            feePaidUp: 15.97,
+            feeStripe: 3.2
+          }
+          , data);
+        done();
+      });
+    });
+
+    it('Row #1.11', function (done) {
+      calculateService.getPrice({
+        version: 'v2',
+        type: "card",
+        capAmount: 5,
+        originalPrice: 500.75,
+        stripePercent: 2.9,
+        stripeFlat: 0.3,
+        stripeAchPercent: 0.8,
+        stripeAchFlat: 0,
+        paidUpFee: 1,
+        paidUpFlat: 15,
+        discount: 0,
+        payProcessing: true,
+        payCollecting: false
+      }, function (err, data) {
+        assert.deepEqual(
+          {
+            version: 'v2',
+            basePrice: 485.93,
+            originalPrice: 500.75,
+            totalFee: 34.68,
+            owedPrice: 500.75,
+            discount: 0,
+            feePaidUp: 19.86,
+            feeStripe: 14.82
+          }
+          , data);
+        done();
+      });
+    });
+
+    it('Row #1.12', function (done) {
+      calculateService.getPrice({
+        version: 'v2',
+        type: "card",
+        capAmount: 5,
+        originalPrice: 1000,
+        stripePercent: 2.9,
+        stripeFlat: 0.3,
+        stripeAchPercent: 0.8,
+        stripeAchFlat: 0,
+        paidUpFee: 1,
+        paidUpFlat: 15,
+        discount: 0,
+        payProcessing: true,
+        payCollecting: false
+      }, function (err, data) {
+        assert.deepEqual(
+          {
+            version: 'v2',
+            basePrice: 970.7,
+            originalPrice: 1000,
+            totalFee: 54.01,
+            owedPrice: 1000,
+            discount: 0,
+            feePaidUp: 24.71,
+            feeStripe: 29.3
+          }
+          , data);
+        done();
+      });
+    });
+
+    it('Row #1.13', function (done) {
+      calculateService.getPrice({
+        version: 'v2',
+        type: "bank_account",
+        capAmount: 5,
+        originalPrice: 100,
+        stripePercent: 2.9,
+        stripeFlat: 0.3,
+        stripeAchPercent: 0.8,
+        stripeAchFlat: 0,
+        paidUpFee: 1,
+        paidUpFlat: 15,
+        discount: 0,
+        payProcessing: false,
+        payCollecting: true
+      }, function (err, data) {
+        assert.deepEqual(
+          {
+            version: 'v2',
+            basePrice: 84.16,
+            originalPrice: 100,
+            totalFee: 16.64,
+            owedPrice: 100,
+            discount: 0,
+            feePaidUp: 15.84,
+            feeStripe: 0.8
+          }
+          , data);
+        done();
+      });
+    });
+
+    it('Row #1.14', function (done) {
+      calculateService.getPrice({
+        version: 'v2',
+        type: "bank_account",
+        capAmount: 5,
+        originalPrice: 500.75,
+        stripePercent: 2.9,
+        stripeFlat: 0.3,
+        stripeAchPercent: 0.8,
+        stripeAchFlat: 0,
+        paidUpFee: 1,
+        paidUpFlat: 15,
+        discount: 0,
+        payProcessing: false,
+        payCollecting: true
+      }, function (err, data) {
+        assert.deepEqual(
+          {
+            version: 'v2',
+            basePrice: 480.94,
+            originalPrice: 500.75,
+            totalFee: 23.82,
+            owedPrice: 500.75,
+            discount: 0,
+            feePaidUp: 19.81,
+            feeStripe: 4.01
+          }
+          , data);
+        done();
+      });
+    });
+
+    it('Row #1.15', function (done) {
+      calculateService.getPrice({
+        version: 'v2',
+        type: "bank_account",
+        capAmount: 5,
+        originalPrice: 1000,
+        stripePercent: 2.9,
+        stripeFlat: 0.3,
+        stripeAchPercent: 0.8,
+        stripeAchFlat: 0,
+        paidUpFee: 1,
+        paidUpFlat: 15,
+        discount: 0,
+        payProcessing: false,
+        payCollecting: true
+      }, function (err, data) {
+        assert.deepEqual(
+          {
+            version: 'v2',
+            basePrice: 975.25,
+            originalPrice: 1000,
+            totalFee: 29.75,
+            owedPrice: 1000,
+            discount: 0,
+            feePaidUp: 24.75,
+            feeStripe: 5
+          }
+          , data);
+        done();
+      });
+    });
+
+    it('Row #1.16', function (done) {
+      calculateService.getPrice({
+        version: 'v2',
+        type: "bank_account",
+        capAmount: 5,
+        originalPrice: 100,
+        stripePercent: 2.9,
+        stripeFlat: 0.3,
+        stripeAchPercent: 0.8,
+        stripeAchFlat: 0,
+        paidUpFee: 1,
+        paidUpFlat: 15,
+        discount: 0,
+        payProcessing: false,
+        payCollecting: false
+      }, function (err, data) {
+        assert.deepEqual(
+          {
+            version: 'v2',
+            basePrice: 100,
+            originalPrice: 100,
+            totalFee: 16.8,
+            owedPrice: 100,
+            discount: 0,
+            feePaidUp: 16,
+            feeStripe: 0.8
+          }
+          , data);
+        done();
+      });
+    });
+
+    it('Row #1.17', function (done) {
+      calculateService.getPrice({
+        version: 'v2',
+        type: "bank_account",
+        capAmount: 5,
+        originalPrice: 500.75,
+        stripePercent: 2.9,
+        stripeFlat: 0.3,
+        stripeAchPercent: 0.8,
+        stripeAchFlat: 0,
+        paidUpFee: 1,
+        paidUpFlat: 15,
+        discount: 0,
+        payProcessing: false,
+        payCollecting: false
+      }, function (err, data) {
+        assert.deepEqual(
+          {
+            version: 'v2',
+            basePrice: 500.75,
+            originalPrice: 500.75,
+            totalFee: 24.02,
+            owedPrice: 500.75,
+            discount: 0,
+            feePaidUp: 20.01,
+            feeStripe: 4.01
+          }
+          , data);
+        done();
+      });
+    });
+
+    it('Row #1.18', function (done) {
+      calculateService.getPrice({
+        version: 'v2',
+        type: "bank_account",
+        capAmount: 5,
+        originalPrice: 1000,
+        stripePercent: 2.9,
+        stripeFlat: 0.3,
+        stripeAchPercent: 0.8,
+        stripeAchFlat: 0,
+        paidUpFee: 1,
+        paidUpFlat: 15,
+        discount: 0,
+        payProcessing: false,
+        payCollecting: false
+      }, function (err, data) {
+        assert.deepEqual(
+          {
+            version: 'v2',
+            basePrice: 1000,
+            originalPrice: 1000,
+            totalFee: 30,
+            owedPrice: 1000,
+            discount: 0,
+            feePaidUp: 25,
+            feeStripe: 5
+          }
+          , data);
+        done();
+      });
+    });
+
+    it('Row #1.19', function (done) {
+      calculateService.getPrice({
+        version: 'v2',
+        type: "bank_account",
+        capAmount: 5,
+        originalPrice: 100,
+        stripePercent: 2.9,
+        stripeFlat: 0.3,
+        stripeAchPercent: 0.8,
+        stripeAchFlat: 0,
+        paidUpFee: 1,
+        paidUpFlat: 15,
+        discount: 0,
+        payProcessing: true,
+        payCollecting: true
+      }, function (err, data) {
+        assert.deepEqual(
+          {
+            version: 'v2',
+            basePrice: 83.37,
+            originalPrice: 100,
+            totalFee: 16.63,
+            owedPrice: 100,
+            discount: 0,
+            feePaidUp: 15.83,
+            feeStripe: 0.8
+          }
+          , data);
+        done();
+      });
+    });
+
+    it('Row #1.20', function (done) {
+      calculateService.getPrice({
+        version: 'v2',
+        type: "bank_account",
+        capAmount: 5,
+        originalPrice: 500.75,
+        stripePercent: 2.9,
+        stripeFlat: 0.3,
+        stripeAchPercent: 0.8,
+        stripeAchFlat: 0,
+        paidUpFee: 1,
+        paidUpFlat: 15,
+        discount: 0,
+        payProcessing: true,
+        payCollecting: true
+      }, function (err, data) {
+        assert.deepEqual(
+          {
+            version: 'v2',
+            basePrice: 476.97,
+            originalPrice: 500.75,
+            totalFee: 23.78,
+            owedPrice: 500.75,
+            discount: 0,
+            feePaidUp: 19.77,
+            feeStripe: 4.01
+          }
+          , data);
+        done();
+      });
+    });
+
+    it('Row #1.21', function (done) {
+      calculateService.getPrice({
+        version: 'v2',
+        type: "bank_account",
+        capAmount: 5,
+        originalPrice: 1000,
+        stripePercent: 2.9,
+        stripeFlat: 0.3,
+        stripeAchPercent: 0.8,
+        stripeAchFlat: 0,
+        paidUpFee: 1,
+        paidUpFlat: 15,
+        discount: 0,
+        payProcessing: true,
+        payCollecting: true
+      }, function (err, data) {
+        assert.deepEqual(
+
+          {
+            version: 'v2',
+            basePrice: 970.3,
+            originalPrice: 1000,
+            totalFee: 29.7,
+            owedPrice: 1000,
+            discount: 0,
+            feePaidUp: 24.7,
+            feeStripe: 5
+          }
+          , data);
+        done();
+      });
+    });
+
+    it('Row #1.22', function (done) {
+      calculateService.getPrice({
+        version: 'v2',
+        type: "bank_account",
+        capAmount: 5,
+        originalPrice: 100,
+        stripePercent: 2.9,
+        stripeFlat: 0.3,
+        stripeAchPercent: 0.8,
+        stripeAchFlat: 0,
+        paidUpFee: 1,
+        paidUpFlat: 15,
+        discount: 0,
+        payProcessing: true,
+        payCollecting: false
+      }, function (err, data) {
+        assert.deepEqual(
+          {
+            version: 'v2',
+            basePrice: 99.2,
+            originalPrice: 100,
+            totalFee: 16.79,
+            owedPrice: 100,
+            discount: 0,
+            feePaidUp: 15.99,
+            feeStripe: 0.8
+          }
+          , data);
+        done();
+      });
+    });
+
+    it('Row #1.23', function (done) {
+      calculateService.getPrice({
+        version: 'v2',
+        type: "bank_account",
+        capAmount: 5,
+        originalPrice: 500.75,
+        stripePercent: 2.9,
+        stripeFlat: 0.3,
+        stripeAchPercent: 0.8,
+        stripeAchFlat: 0,
+        paidUpFee: 1,
+        paidUpFlat: 15,
+        discount: 0,
+        payProcessing: true,
+        payCollecting: false
+      }, function (err, data) {
+        assert.deepEqual(
+          {
+            version: 'v2',
+            basePrice: 496.74,
+            originalPrice: 500.75,
+            totalFee: 23.98,
+            owedPrice: 500.75,
+            discount: 0,
+            feePaidUp: 19.97,
+            feeStripe: 4.01
+          }
+          , data);
+        done();
+      });
+    });
+
+    it('Row #1.24', function (done) {
+      calculateService.getPrice({
+        version: 'v2',
+        type: "bank_account",
+        capAmount: 5,
+        originalPrice: 1000,
+        stripePercent: 2.9,
+        stripeFlat: 0.3,
+        stripeAchPercent: 0.8,
+        stripeAchFlat: 0,
+        paidUpFee: 1,
+        paidUpFlat: 15,
+        discount: 0,
+        payProcessing: true,
+        payCollecting: false
+      }, function (err, data) {
+        assert.deepEqual(
+          {
+            version: 'v2',
+            basePrice: 995,
+            originalPrice: 1000,
+            totalFee: 29.95,
+            owedPrice: 1000,
+            discount: 0,
+            feePaidUp: 24.95,
+            feeStripe: 5
+          }
+          , data);
+        done();
+      });
+    });
+  }) // set 5
 
 
 
