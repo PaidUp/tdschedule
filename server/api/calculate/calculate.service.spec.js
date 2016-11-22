@@ -26,7 +26,7 @@ var calculateService = require('./calculate.service')(wagner);
  */
 
 describe('test calculate service', function () {
-  describe.skip("TEST SET #1 - % PAIDUP FEE, NO DISCOUNT", function () {
+  describe("TEST SET #1 - % PAIDUP FEE, NO DISCOUNT", function () {
     it('Row #1.1', function (done) {
       calculateService.getPrice({
         version: 'v2',
@@ -1581,7 +1581,7 @@ describe('test calculate service', function () {
 
   }) // set 2
 
-  describe.skip("TEST SET #3 - FLAT PAIDUP FEE, NO DISCOUNT", function () {
+  describe("TEST SET #3 - FLAT PAIDUP FEE, NO DISCOUNT", function () {
     it('Row #3.1', function (done) {
       calculateService.getPrice({
         version: 'v2',
@@ -2352,7 +2352,7 @@ describe('test calculate service', function () {
 
   }) // set 3
 
-  describe.skip("TEST SET #4 - FLAT PAIDUP FEE, 15% DISCOUNT", function () {
+  describe("TEST SET #4 - FLAT PAIDUP FEE, 15% DISCOUNT", function () {
     it('Row #4.1', function (done) {
       calculateService.getPrice({
         version: 'v2',
@@ -2372,13 +2372,13 @@ describe('test calculate service', function () {
         assert.deepEqual(
           {
             version: 'v2',
-            basePrice: -2.75,
+            basePrice: 10,
             originalPrice: 100,
-            totalFee: 77.4,
-            owedPrice: 72.25,
-            discount: 12.75,
+            totalFee: 77.76,
+            owedPrice: 85,
+            discount: 15,
             feePaidUp: 75,
-            feeStripe: 2.4
+            feeStripe: 2.76
           }
           , data);
         done();
@@ -2404,20 +2404,20 @@ describe('test calculate service', function () {
         assert.deepEqual(
           {
             version: 'v2',
-            basePrice: 346.79,
+            basePrice: 350.64,
             originalPrice: 500.75,
-            totalFee: 25.79,
-            owedPrice: 361.79,
-            discount: 63.85,
-            feePaidUp: 15,
-            feeStripe: 10.79
+            totalFee: 87.64,
+            owedPrice: 425.64,
+            discount: 75.11,
+            feePaidUp: 75,
+            feeStripe: 12.64
           }
           , data);
         done();
       });
     });
 
-    it.skip('Row #4.3', function (done) {
+    it('Row #4.3', function (done) {
       calculateService.getPrice({
         version: 'v2',
         type: "card",
@@ -2436,20 +2436,20 @@ describe('test calculate service', function () {
         assert.deepEqual(
           {
             version: 'v2',
-            basePrice: 707.5,
+            basePrice: 775,
             originalPrice: 1000,
-            totalFee: 36.25,
-            owedPrice: 722.5,
-            discount: 127.5,
-            feePaidUp: 15,
-            feeStripe: 21.25
+            totalFee: 99.95,
+            owedPrice: 850,
+            discount: 150,
+            feePaidUp: 75,
+            feeStripe: 24.95
           }
           , data);
         done();
       });
     });
 
-    it.skip('Row #4.4', function (done) {
+    it('Row #4.4', function (done) {
       calculateService.getPrice({
         version: 'v2',
         type: "card",
@@ -2468,20 +2468,20 @@ describe('test calculate service', function () {
         assert.deepEqual(
           {
             version: 'v2',
-            basePrice: 72.25,
+            basePrice: 85,
             originalPrice: 100,
-            totalFee: 17.4,
-            owedPrice: 72.25,
-            discount: 12.75,
-            feePaidUp: 15,
-            feeStripe: 2.4
+            totalFee: 77.76,
+            owedPrice: 85,
+            discount: 15,
+            feePaidUp: 75,
+            feeStripe: 2.76
           }
           , data);
         done();
       });
     });
 
-    it.skip('Row #4.5', function (done) {
+    it('Row #4.5', function (done) {
       calculateService.getPrice({
         version: 'v2',
         type: "card",
@@ -2500,20 +2500,20 @@ describe('test calculate service', function () {
         assert.deepEqual(
           {
             version: 'v2',
-            basePrice: 361.79,
+            basePrice: 425.64,
             originalPrice: 500.75,
-            totalFee: 25.79,
-            owedPrice: 361.79,
-            discount: 63.85,
-            feePaidUp: 15,
-            feeStripe: 10.79
+            totalFee: 87.64,
+            owedPrice: 425.64,
+            discount: 75.11,
+            feePaidUp: 75,
+            feeStripe: 12.64
           }
           , data);
         done();
       });
     });
 
-    it.skip('Row #4.6', function (done) {
+    it('Row #4.6', function (done) {
       calculateService.getPrice({
         version: 'v2',
         type: "card",
@@ -2532,20 +2532,20 @@ describe('test calculate service', function () {
         assert.deepEqual(
           {
             version: 'v2',
-            basePrice: 722.5,
+            basePrice: 850,
             originalPrice: 1000,
-            totalFee: 36.25,
-            owedPrice: 722.5,
-            discount: 127.5,
-            feePaidUp: 15,
-            feeStripe: 21.25
+            totalFee: 99.95,
+            owedPrice: 850,
+            discount: 150,
+            feePaidUp: 75,
+            feeStripe: 24.95
           }
           , data);
         done();
       });
     });
 
-    it.skip('Row #4.7', function (done) {
+    it('Row #4.7', function (done) {
       calculateService.getPrice({
         version: 'v2',
         type: "card",
@@ -2564,20 +2564,20 @@ describe('test calculate service', function () {
         assert.deepEqual(
           {
             version: 'v2',
-            basePrice: 54.85,
+            basePrice: 7.23,
             originalPrice: 100,
-            totalFee: 17.4,
-            owedPrice: 72.25,
-            discount: 12.75,
-            feePaidUp: 15,
-            feeStripe: 2.4
+            totalFee: 77.76,
+            owedPrice: 85,
+            discount: 15,
+            feePaidUp: 75,
+            feeStripe: 2.76
           }
           , data);
         done();
       });
     });
 
-    it.skip('Row #4.8', function (done) {
+    it('Row #4.8', function (done) {
       calculateService.getPrice({
         version: 'v2',
         type: "card",
@@ -2596,20 +2596,20 @@ describe('test calculate service', function () {
         assert.deepEqual(
           {
             version: 'v2',
-            basePrice: 336,
+            basePrice: 338,
             originalPrice: 500.75,
-            totalFee: 25.79,
-            owedPrice: 361.79,
-            discount: 63.85,
-            feePaidUp: 15,
-            feeStripe: 10.79
+            totalFee: 87.64,
+            owedPrice: 425.64,
+            discount: 75.11,
+            feePaidUp: 75,
+            feeStripe: 12.64
           }
           , data);
         done();
       });
     });
 
-    it.skip('Row #4.9', function (done) {
+    it('Row #4.9', function (done) {
       calculateService.getPrice({
         version: 'v2',
         type: "card",
@@ -2628,20 +2628,20 @@ describe('test calculate service', function () {
         assert.deepEqual(
           {
             version: 'v2',
-            basePrice: 686.25,
+            basePrice: 750.05,
             originalPrice: 1000,
-            totalFee: 36.25,
-            owedPrice: 722.5,
-            discount: 127.5,
-            feePaidUp: 15,
-            feeStripe: 21.25
+            totalFee: 99.95,
+            owedPrice: 850,
+            discount: 150,
+            feePaidUp: 75,
+            feeStripe: 24.95
           }
           , data);
         done();
       });
     });
 
-    it.skip('Row #4.10', function (done) {
+    it('Row #4.10', function (done) {
       calculateService.getPrice({
         version: 'v2',
         type: "card",
@@ -2660,20 +2660,20 @@ describe('test calculate service', function () {
         assert.deepEqual(
           {
             version: 'v2',
-            basePrice: 69.85,
+            basePrice: 82.24,
             originalPrice: 100,
-            totalFee: 17.4,
-            owedPrice: 72.25,
-            discount: 12.75,
-            feePaidUp: 15,
-            feeStripe: 2.4
+            totalFee: 77.76,
+            owedPrice: 85,
+            discount: 15,
+            feePaidUp: 75,
+            feeStripe: 2.76
           }
           , data);
         done();
       });
     });
 
-    it.skip('Row #4.11', function (done) {
+    it('Row #4.11', function (done) {
       calculateService.getPrice({
         version: 'v2',
         type: "card",
@@ -2692,20 +2692,20 @@ describe('test calculate service', function () {
         assert.deepEqual(
           {
             version: 'v2',
-            basePrice: 351,
+            basePrice: 413,
             originalPrice: 500.75,
-            totalFee: 25.79,
-            owedPrice: 361.79,
-            discount: 63.85,
-            feePaidUp: 15,
-            feeStripe: 10.79
+            totalFee: 87.64,
+            owedPrice: 425.64,
+            discount: 75.11,
+            feePaidUp: 75,
+            feeStripe: 12.64
           }
           , data);
         done();
       });
     });
 
-    it.skip('Row #4.12', function (done) {
+    it('Row #4.12', function (done) {
       calculateService.getPrice({
         version: 'v2',
         type: "card",
@@ -2724,20 +2724,20 @@ describe('test calculate service', function () {
         assert.deepEqual(
           {
             version: 'v2',
-            basePrice: 701.25,
+            basePrice: 825.05,
             originalPrice: 1000,
-            totalFee: 36.25,
-            owedPrice: 722.5,
-            discount: 127.5,
-            feePaidUp: 15,
-            feeStripe: 21.25
+            totalFee: 99.95,
+            owedPrice: 850,
+            discount: 150,
+            feePaidUp: 75,
+            feeStripe: 24.95
           }
           , data);
         done();
       });
     });
 
-    it.skip('Row #4.13', function (done) {
+    it('Row #4.13', function (done) {
       calculateService.getPrice({
         version: 'v2',
         type: "bank_account",
@@ -2756,20 +2756,20 @@ describe('test calculate service', function () {
         assert.deepEqual(
           {
             version: 'v2',
-            basePrice: 57.25,
+            basePrice: 10,
             originalPrice: 100,
-            totalFee: 15.58,
-            owedPrice: 72.25,
-            discount: 12.75,
-            feePaidUp: 15,
-            feeStripe: 0.58
+            totalFee: 75.68,
+            owedPrice: 85,
+            discount: 15,
+            feePaidUp: 75,
+            feeStripe: 0.68
           }
           , data);
         done();
       });
     });
 
-    it.skip('Row #4.14', function (done) {
+    it('Row #4.14', function (done) {
       calculateService.getPrice({
         version: 'v2',
         type: "bank_account",
@@ -2788,20 +2788,20 @@ describe('test calculate service', function () {
         assert.deepEqual(
           {
             version: 'v2',
-            basePrice: 346.79,
+            basePrice: 350.64,
             originalPrice: 500.75,
-            totalFee: 17.89,
-            owedPrice: 361.79,
-            discount: 63.85,
-            feePaidUp: 15,
-            feeStripe: 2.89
+            totalFee: 78.41,
+            owedPrice: 425.64,
+            discount: 75.11,
+            feePaidUp: 75,
+            feeStripe: 3.41
           }
           , data);
         done();
       });
     });
 
-    it.skip('Row #4.15', function (done) {
+    it('Row #4.15', function (done) {
       calculateService.getPrice({
         version: 'v2',
         type: "bank_account",
@@ -2820,12 +2820,12 @@ describe('test calculate service', function () {
         assert.deepEqual(
           {
             version: 'v2',
-            basePrice: 707.5,
+            basePrice: 775,
             originalPrice: 1000,
-            totalFee: 20,
-            owedPrice: 722.5,
-            discount: 127.5,
-            feePaidUp: 15,
+            totalFee: 80,
+            owedPrice: 850,
+            discount: 150,
+            feePaidUp: 75,
             feeStripe: 5
           }
           , data);
@@ -2833,7 +2833,7 @@ describe('test calculate service', function () {
       });
     });
 
-    it.skip('Row #4.16', function (done) {
+    it('Row #4.16', function (done) {
       calculateService.getPrice({
         version: 'v2',
         type: "bank_account",
@@ -2852,20 +2852,20 @@ describe('test calculate service', function () {
         assert.deepEqual(
           {
             version: 'v2',
-            basePrice: 72.25,
+            basePrice: 85,
             originalPrice: 100,
-            totalFee: 15.58,
-            owedPrice: 72.25,
-            discount: 12.75,
-            feePaidUp: 15,
-            feeStripe: 0.58
+            totalFee: 75.68,
+            owedPrice: 85,
+            discount: 15,
+            feePaidUp: 75,
+            feeStripe: 0.68
           }
           , data);
         done();
       });
     });
 
-    it.skip('Row #4.17', function (done) {
+    it('Row #4.17', function (done) {
       calculateService.getPrice({
         version: 'v2',
         type: "bank_account",
@@ -2884,20 +2884,20 @@ describe('test calculate service', function () {
         assert.deepEqual(
           {
             version: 'v2',
-            basePrice: 361.79,
+            basePrice: 425.64,
             originalPrice: 500.75,
-            totalFee: 17.89,
-            owedPrice: 361.79,
-            discount: 63.85,
-            feePaidUp: 15,
-            feeStripe: 2.89
+            totalFee: 78.41,
+            owedPrice: 425.64,
+            discount: 75.11,
+            feePaidUp: 75,
+            feeStripe: 3.41
           }
           , data);
         done();
       });
     });
 
-    it.skip('Row #4.18', function (done) {
+    it('Row #4.18', function (done) {
       calculateService.getPrice({
         version: 'v2',
         type: "bank_account",
@@ -2916,12 +2916,12 @@ describe('test calculate service', function () {
         assert.deepEqual(
           {
             version: 'v2',
-            basePrice: 722.5,
+            basePrice: 850,
             originalPrice: 1000,
-            totalFee: 20,
-            owedPrice: 722.5,
-            discount: 127.5,
-            feePaidUp: 15,
+            totalFee: 80,
+            owedPrice: 850,
+            discount: 150,
+            feePaidUp: 75,
             feeStripe: 5
           }
           , data);
@@ -2929,7 +2929,7 @@ describe('test calculate service', function () {
       });
     });
 
-    it.skip('Row #4.19', function (done) {
+    it('Row #4.19', function (done) {
       calculateService.getPrice({
         version: 'v2',
         type: "bank_account",
@@ -2948,20 +2948,20 @@ describe('test calculate service', function () {
         assert.deepEqual(
           {
             version: 'v2',
-            basePrice: 56.67,
+            basePrice: 9.32,
             originalPrice: 100,
-            totalFee: 15.58,
-            owedPrice: 72.25,
-            discount: 12.75,
-            feePaidUp: 15,
-            feeStripe: 0.58
+            totalFee: 75.68,
+            owedPrice: 85,
+            discount: 15,
+            feePaidUp: 75,
+            feeStripe: 0.68
           }
           , data);
         done();
       });
     });
 
-    it.skip('Row #4.20', function (done) {
+    it('Row #4.20', function (done) {
       calculateService.getPrice({
         version: 'v2',
         type: "bank_account",
@@ -2980,20 +2980,20 @@ describe('test calculate service', function () {
         assert.deepEqual(
           {
             version: 'v2',
-            basePrice: 343.9,
+            basePrice: 347.23,
             originalPrice: 500.75,
-            totalFee: 17.89,
-            owedPrice: 361.79,
-            discount: 63.85,
-            feePaidUp: 15,
-            feeStripe: 2.89
+            totalFee: 78.41,
+            owedPrice: 425.64,
+            discount: 75.11,
+            feePaidUp: 75,
+            feeStripe: 3.41
           }
           , data);
         done();
       });
     });
 
-    it.skip('Row #4.21', function (done) {
+    it('Row #4.21', function (done) {
       calculateService.getPrice({
         version: 'v2',
         type: "bank_account",
@@ -3012,12 +3012,12 @@ describe('test calculate service', function () {
         assert.deepEqual(
           {
             version: 'v2',
-            basePrice: 702.5,
+            basePrice: 770,
             originalPrice: 1000,
-            totalFee: 20,
-            owedPrice: 722.5,
-            discount: 127.5,
-            feePaidUp: 15,
+            totalFee: 80,
+            owedPrice: 850,
+            discount: 150,
+            feePaidUp: 75,
             feeStripe: 5
           }
           , data);
@@ -3025,7 +3025,7 @@ describe('test calculate service', function () {
       });
     });
 
-    it.skip('Row #4.22', function (done) {
+    it('Row #4.22', function (done) {
       calculateService.getPrice({
         version: 'v2',
         type: "bank_account",
@@ -3044,20 +3044,20 @@ describe('test calculate service', function () {
         assert.deepEqual(
           {
             version: 'v2',
-            basePrice: 71.67,
+            basePrice: 84.32,
             originalPrice: 100,
-            totalFee: 15.58,
-            owedPrice: 72.25,
-            discount: 12.75,
-            feePaidUp: 15,
-            feeStripe: 0.58
+            totalFee: 75.68,
+            owedPrice: 85,
+            discount: 15,
+            feePaidUp: 75,
+            feeStripe: 0.68
           }
           , data);
         done();
       });
     });
 
-    it.skip('Row #4.23', function (done) {
+    it('Row #4.23', function (done) {
       calculateService.getPrice({
         version: 'v2',
         type: "bank_account",
@@ -3076,20 +3076,20 @@ describe('test calculate service', function () {
         assert.deepEqual(
           {
             version: 'v2',
-            basePrice: 358.9,
+            basePrice: 422.23,
             originalPrice: 500.75,
-            totalFee: 17.89,
-            owedPrice: 361.79,
-            discount: 63.85,
-            feePaidUp: 15,
-            feeStripe: 2.89
+            totalFee: 78.41,
+            owedPrice: 425.64,
+            discount: 75.11,
+            feePaidUp: 75,
+            feeStripe: 3.41
           }
           , data);
         done();
       });
     });
 
-    it.skip('Row #4.24', function (done) {
+    it('Row #4.24', function (done) {
       calculateService.getPrice({
         version: 'v2',
         type: "bank_account",
@@ -3108,12 +3108,12 @@ describe('test calculate service', function () {
         assert.deepEqual(
           {
             version: 'v2',
-            basePrice: 717.5,
+            basePrice: 845,
             originalPrice: 1000,
-            totalFee: 20,
-            owedPrice: 722.5,
-            discount: 127.5,
-            feePaidUp: 15,
+            totalFee: 80,
+            owedPrice: 850,
+            discount: 150,
+            feePaidUp: 75,
             feeStripe: 5
           }
           , data);
@@ -3122,8 +3122,8 @@ describe('test calculate service', function () {
     });
   }) // set 4
 
-  describe.skip("TEST SET #5 - % PAIDUP FEE & FLAT PAIDUP FEE, NO DISCOUNT", function () {
-    it('Row #1.1', function (done) {
+  describe("TEST SET #5 - % PAIDUP FEE & FLAT PAIDUP FEE, NO DISCOUNT", function () {
+    it('Row #5.1', function (done) {
       calculateService.getPrice({
         version: 'v2',
         type: "card",
@@ -3134,7 +3134,7 @@ describe('test calculate service', function () {
         stripeAchPercent: 0.8,
         stripeAchFlat: 0,
         paidUpFee: 1,
-        paidUpFlat: 15,
+        paidUpFlat: 5,
         discount: 0,
         payProcessing: false,
         payCollecting: true
@@ -3142,12 +3142,12 @@ describe('test calculate service', function () {
         assert.deepEqual(
           {
             version: 'v2',
-            basePrice: 84.16,
+            basePrice: 94.06,
             originalPrice: 100,
-            totalFee: 19.04,
+            totalFee: 9.14,
             owedPrice: 100,
             discount: 0,
-            feePaidUp: 15.84,
+            feePaidUp: 5.94,
             feeStripe: 3.2
           }
           , data);
@@ -3155,7 +3155,7 @@ describe('test calculate service', function () {
       });
     });
 
-    it('Row #1.2', function (done) {
+    it('Row #5.2', function (done) {
       calculateService.getPrice({
         version: 'v2',
         type: "card",
@@ -3166,7 +3166,7 @@ describe('test calculate service', function () {
         stripeAchPercent: 0.8,
         stripeAchFlat: 0,
         paidUpFee: 1,
-        paidUpFlat: 15,
+        paidUpFlat: 5,
         discount: 0,
         payProcessing: false,
         payCollecting: true
@@ -3174,12 +3174,12 @@ describe('test calculate service', function () {
         assert.deepEqual(
           {
             version: 'v2',
-            basePrice: 480.94,
+            basePrice: 490.84,
             originalPrice: 500.75,
-            totalFee: 34.63,
+            totalFee: 24.73,
             owedPrice: 500.75,
             discount: 0,
-            feePaidUp: 19.81,
+            feePaidUp: 9.91,
             feeStripe: 14.82
           }
           , data);
@@ -3187,7 +3187,7 @@ describe('test calculate service', function () {
       });
     });
 
-    it('Row #1.3', function (done) {
+    it('Row #5.3', function (done) {
       calculateService.getPrice({
         version: 'v2',
         type: "card",
@@ -3198,7 +3198,7 @@ describe('test calculate service', function () {
         stripeAchPercent: 0.8,
         stripeAchFlat: 0,
         paidUpFee: 1,
-        paidUpFlat: 15,
+        paidUpFlat: 5,
         discount: 0,
         payProcessing: false,
         payCollecting: true
@@ -3206,12 +3206,12 @@ describe('test calculate service', function () {
         assert.deepEqual(
           {
             version: 'v2',
-            basePrice: 975.25,
+            basePrice: 985.15,
             originalPrice: 1000,
-            totalFee: 54.05,
+            totalFee: 44.15,
             owedPrice: 1000,
             discount: 0,
-            feePaidUp: 24.75,
+            feePaidUp: 14.85,
             feeStripe: 29.3
           }
           , data);
@@ -3219,7 +3219,7 @@ describe('test calculate service', function () {
       });
     });
 
-    it('Row #1.4', function (done) {
+    it('Row #5.4', function (done) {
       calculateService.getPrice({
         version: 'v2',
         type: "card",
@@ -3230,7 +3230,7 @@ describe('test calculate service', function () {
         stripeAchPercent: 0.8,
         stripeAchFlat: 0,
         paidUpFee: 1,
-        paidUpFlat: 15,
+        paidUpFlat: 5,
         discount: 0,
         payProcessing: false,
         payCollecting: false
@@ -3240,10 +3240,10 @@ describe('test calculate service', function () {
             version: 'v2',
             basePrice: 100,
             originalPrice: 100,
-            totalFee: 19.2,
+            totalFee: 9.2,
             owedPrice: 100,
             discount: 0,
-            feePaidUp: 16,
+            feePaidUp: 6,
             feeStripe: 3.2
           }
           , data);
@@ -3251,7 +3251,7 @@ describe('test calculate service', function () {
       });
     });
 
-    it('Row #1.5', function (done) {
+    it('Row #5.5', function (done) {
       calculateService.getPrice({
         version: 'v2',
         type: "card",
@@ -3262,7 +3262,7 @@ describe('test calculate service', function () {
         stripeAchPercent: 0.8,
         stripeAchFlat: 0,
         paidUpFee: 1,
-        paidUpFlat: 15,
+        paidUpFlat: 5,
         discount: 0,
         payProcessing: false,
         payCollecting: false
@@ -3272,10 +3272,10 @@ describe('test calculate service', function () {
             version: 'v2',
             basePrice: 500.75,
             originalPrice: 500.75,
-            totalFee: 34.83,
+            totalFee: 24.83,
             owedPrice: 500.75,
             discount: 0,
-            feePaidUp: 20.01,
+            feePaidUp: 10.01,
             feeStripe: 14.82
           }
           , data);
@@ -3283,7 +3283,7 @@ describe('test calculate service', function () {
       });
     });
 
-    it('Row #1.6', function (done) {
+    it('Row #5.6', function (done) {
       calculateService.getPrice({
         version: 'v2',
         type: "card",
@@ -3294,7 +3294,7 @@ describe('test calculate service', function () {
         stripeAchPercent: 0.8,
         stripeAchFlat: 0,
         paidUpFee: 1,
-        paidUpFlat: 15,
+        paidUpFlat: 5,
         discount: 0,
         payProcessing: false,
         payCollecting: false
@@ -3304,10 +3304,10 @@ describe('test calculate service', function () {
             version: 'v2',
             basePrice: 1000,
             originalPrice: 1000,
-            totalFee: 54.3,
+            totalFee: 44.3,
             owedPrice: 1000,
             discount: 0,
-            feePaidUp: 25,
+            feePaidUp: 15,
             feeStripe: 29.3
           }
           , data);
@@ -3315,7 +3315,7 @@ describe('test calculate service', function () {
       });
     });
 
-    it('Row #1.7', function (done) {
+    it('Row #5.7', function (done) {
       calculateService.getPrice({
         version: 'v2',
         type: "card",
@@ -3326,7 +3326,7 @@ describe('test calculate service', function () {
         stripeAchPercent: 0.8,
         stripeAchFlat: 0,
         paidUpFee: 1,
-        paidUpFlat: 15,
+        paidUpFlat: 5,
         discount: 0,
         payProcessing: true,
         payCollecting: true
@@ -3334,12 +3334,12 @@ describe('test calculate service', function () {
         assert.deepEqual(
           {
             version: 'v2',
-            basePrice: 80.99,
+            basePrice: 90.89,
             originalPrice: 100,
-            totalFee: 19.01,
+            totalFee: 9.11,
             owedPrice: 100,
             discount: 0,
-            feePaidUp: 15.81,
+            feePaidUp: 5.91,
             feeStripe: 3.2
           }
           , data);
@@ -3347,7 +3347,7 @@ describe('test calculate service', function () {
       });
     });
 
-    it('Row #1.8', function (done) {
+    it('Row #5.8', function (done) {
       calculateService.getPrice({
         version: 'v2',
         type: "card",
@@ -3358,7 +3358,7 @@ describe('test calculate service', function () {
         stripeAchPercent: 0.8,
         stripeAchFlat: 0,
         paidUpFee: 1,
-        paidUpFlat: 15,
+        paidUpFlat: 5,
         discount: 0,
         payProcessing: true,
         payCollecting: true
@@ -3366,12 +3366,12 @@ describe('test calculate service', function () {
         assert.deepEqual(
           {
             version: 'v2',
-            basePrice: 466.27,
+            basePrice: 476.17,
             originalPrice: 500.75,
-            totalFee: 34.48,
+            totalFee: 24.58,
             owedPrice: 500.75,
             discount: 0,
-            feePaidUp: 19.66,
+            feePaidUp: 9.76,
             feeStripe: 14.82
           }
           , data);
@@ -3379,7 +3379,7 @@ describe('test calculate service', function () {
       });
     });
 
-    it('Row #1.9', function (done) {
+    it('Row #5.9', function (done) {
       calculateService.getPrice({
         version: 'v2',
         type: "card",
@@ -3390,7 +3390,7 @@ describe('test calculate service', function () {
         stripeAchPercent: 0.8,
         stripeAchFlat: 0,
         paidUpFee: 1,
-        paidUpFlat: 15,
+        paidUpFlat: 5,
         discount: 0,
         payProcessing: true,
         payCollecting: true
@@ -3398,12 +3398,12 @@ describe('test calculate service', function () {
         assert.deepEqual(
           {
             version: 'v2',
-            basePrice: 946.24,
+            basePrice: 956.14,
             originalPrice: 1000,
-            totalFee: 53.76,
+            totalFee: 43.86,
             owedPrice: 1000,
             discount: 0,
-            feePaidUp: 24.46,
+            feePaidUp: 14.56,
             feeStripe: 29.3
           }
           , data);
@@ -3411,7 +3411,7 @@ describe('test calculate service', function () {
       });
     });
 
-    it('Row #1.10', function (done) {
+    it('Row #5.10', function (done) {
       calculateService.getPrice({
         version: 'v2',
         type: "card",
@@ -3422,7 +3422,7 @@ describe('test calculate service', function () {
         stripeAchPercent: 0.8,
         stripeAchFlat: 0,
         paidUpFee: 1,
-        paidUpFlat: 15,
+        paidUpFlat: 5,
         discount: 0,
         payProcessing: true,
         payCollecting: false
@@ -3432,10 +3432,10 @@ describe('test calculate service', function () {
             version: 'v2',
             basePrice: 96.8,
             originalPrice: 100,
-            totalFee: 19.17,
+            totalFee: 9.17,
             owedPrice: 100,
             discount: 0,
-            feePaidUp: 15.97,
+            feePaidUp: 5.97,
             feeStripe: 3.2
           }
           , data);
@@ -3443,7 +3443,7 @@ describe('test calculate service', function () {
       });
     });
 
-    it('Row #1.11', function (done) {
+    it('Row #5.11', function (done) {
       calculateService.getPrice({
         version: 'v2',
         type: "card",
@@ -3454,7 +3454,7 @@ describe('test calculate service', function () {
         stripeAchPercent: 0.8,
         stripeAchFlat: 0,
         paidUpFee: 1,
-        paidUpFlat: 15,
+        paidUpFlat: 5,
         discount: 0,
         payProcessing: true,
         payCollecting: false
@@ -3464,10 +3464,10 @@ describe('test calculate service', function () {
             version: 'v2',
             basePrice: 485.93,
             originalPrice: 500.75,
-            totalFee: 34.68,
+            totalFee: 24.68,
             owedPrice: 500.75,
             discount: 0,
-            feePaidUp: 19.86,
+            feePaidUp: 9.86,
             feeStripe: 14.82
           }
           , data);
@@ -3475,7 +3475,7 @@ describe('test calculate service', function () {
       });
     });
 
-    it('Row #1.12', function (done) {
+    it('Row #5.12', function (done) {
       calculateService.getPrice({
         version: 'v2',
         type: "card",
@@ -3486,7 +3486,7 @@ describe('test calculate service', function () {
         stripeAchPercent: 0.8,
         stripeAchFlat: 0,
         paidUpFee: 1,
-        paidUpFlat: 15,
+        paidUpFlat: 5,
         discount: 0,
         payProcessing: true,
         payCollecting: false
@@ -3496,10 +3496,10 @@ describe('test calculate service', function () {
             version: 'v2',
             basePrice: 970.7,
             originalPrice: 1000,
-            totalFee: 54.01,
+            totalFee: 44.01,
             owedPrice: 1000,
             discount: 0,
-            feePaidUp: 24.71,
+            feePaidUp: 14.71,
             feeStripe: 29.3
           }
           , data);
@@ -3507,7 +3507,7 @@ describe('test calculate service', function () {
       });
     });
 
-    it('Row #1.13', function (done) {
+    it('Row #5.13', function (done) {
       calculateService.getPrice({
         version: 'v2',
         type: "bank_account",
@@ -3518,20 +3518,21 @@ describe('test calculate service', function () {
         stripeAchPercent: 0.8,
         stripeAchFlat: 0,
         paidUpFee: 1,
-        paidUpFlat: 15,
+        paidUpFlat: 5,
         discount: 0,
         payProcessing: false,
         payCollecting: true
       }, function (err, data) {
         assert.deepEqual(
+
           {
             version: 'v2',
-            basePrice: 84.16,
+            basePrice: 94.06,
             originalPrice: 100,
-            totalFee: 16.64,
+            totalFee: 6.74,
             owedPrice: 100,
             discount: 0,
-            feePaidUp: 15.84,
+            feePaidUp: 5.94,
             feeStripe: 0.8
           }
           , data);
@@ -3539,7 +3540,7 @@ describe('test calculate service', function () {
       });
     });
 
-    it('Row #1.14', function (done) {
+    it('Row #5.14', function (done) {
       calculateService.getPrice({
         version: 'v2',
         type: "bank_account",
@@ -3550,7 +3551,7 @@ describe('test calculate service', function () {
         stripeAchPercent: 0.8,
         stripeAchFlat: 0,
         paidUpFee: 1,
-        paidUpFlat: 15,
+        paidUpFlat: 5,
         discount: 0,
         payProcessing: false,
         payCollecting: true
@@ -3558,12 +3559,12 @@ describe('test calculate service', function () {
         assert.deepEqual(
           {
             version: 'v2',
-            basePrice: 480.94,
+            basePrice: 490.84,
             originalPrice: 500.75,
-            totalFee: 23.82,
+            totalFee: 13.92,
             owedPrice: 500.75,
             discount: 0,
-            feePaidUp: 19.81,
+            feePaidUp: 9.91,
             feeStripe: 4.01
           }
           , data);
@@ -3571,7 +3572,7 @@ describe('test calculate service', function () {
       });
     });
 
-    it('Row #1.15', function (done) {
+    it('Row #5.15', function (done) {
       calculateService.getPrice({
         version: 'v2',
         type: "bank_account",
@@ -3582,7 +3583,7 @@ describe('test calculate service', function () {
         stripeAchPercent: 0.8,
         stripeAchFlat: 0,
         paidUpFee: 1,
-        paidUpFlat: 15,
+        paidUpFlat: 5,
         discount: 0,
         payProcessing: false,
         payCollecting: true
@@ -3590,12 +3591,12 @@ describe('test calculate service', function () {
         assert.deepEqual(
           {
             version: 'v2',
-            basePrice: 975.25,
+            basePrice: 985.15,
             originalPrice: 1000,
-            totalFee: 29.75,
+            totalFee: 19.85,
             owedPrice: 1000,
             discount: 0,
-            feePaidUp: 24.75,
+            feePaidUp: 14.85,
             feeStripe: 5
           }
           , data);
@@ -3603,7 +3604,7 @@ describe('test calculate service', function () {
       });
     });
 
-    it('Row #1.16', function (done) {
+    it('Row #5.16', function (done) {
       calculateService.getPrice({
         version: 'v2',
         type: "bank_account",
@@ -3614,7 +3615,7 @@ describe('test calculate service', function () {
         stripeAchPercent: 0.8,
         stripeAchFlat: 0,
         paidUpFee: 1,
-        paidUpFlat: 15,
+        paidUpFlat: 5,
         discount: 0,
         payProcessing: false,
         payCollecting: false
@@ -3624,10 +3625,10 @@ describe('test calculate service', function () {
             version: 'v2',
             basePrice: 100,
             originalPrice: 100,
-            totalFee: 16.8,
+            totalFee: 6.8,
             owedPrice: 100,
             discount: 0,
-            feePaidUp: 16,
+            feePaidUp: 6,
             feeStripe: 0.8
           }
           , data);
@@ -3635,7 +3636,7 @@ describe('test calculate service', function () {
       });
     });
 
-    it('Row #1.17', function (done) {
+    it('Row #5.17', function (done) {
       calculateService.getPrice({
         version: 'v2',
         type: "bank_account",
@@ -3646,7 +3647,7 @@ describe('test calculate service', function () {
         stripeAchPercent: 0.8,
         stripeAchFlat: 0,
         paidUpFee: 1,
-        paidUpFlat: 15,
+        paidUpFlat: 5,
         discount: 0,
         payProcessing: false,
         payCollecting: false
@@ -3656,10 +3657,10 @@ describe('test calculate service', function () {
             version: 'v2',
             basePrice: 500.75,
             originalPrice: 500.75,
-            totalFee: 24.02,
+            totalFee: 14.02,
             owedPrice: 500.75,
             discount: 0,
-            feePaidUp: 20.01,
+            feePaidUp: 10.01,
             feeStripe: 4.01
           }
           , data);
@@ -3667,7 +3668,7 @@ describe('test calculate service', function () {
       });
     });
 
-    it('Row #1.18', function (done) {
+    it('Row #5.18', function (done) {
       calculateService.getPrice({
         version: 'v2',
         type: "bank_account",
@@ -3678,7 +3679,7 @@ describe('test calculate service', function () {
         stripeAchPercent: 0.8,
         stripeAchFlat: 0,
         paidUpFee: 1,
-        paidUpFlat: 15,
+        paidUpFlat: 5,
         discount: 0,
         payProcessing: false,
         payCollecting: false
@@ -3688,10 +3689,10 @@ describe('test calculate service', function () {
             version: 'v2',
             basePrice: 1000,
             originalPrice: 1000,
-            totalFee: 30,
+            totalFee: 20,
             owedPrice: 1000,
             discount: 0,
-            feePaidUp: 25,
+            feePaidUp: 15,
             feeStripe: 5
           }
           , data);
@@ -3699,7 +3700,7 @@ describe('test calculate service', function () {
       });
     });
 
-    it('Row #1.19', function (done) {
+    it('Row #5.19', function (done) {
       calculateService.getPrice({
         version: 'v2',
         type: "bank_account",
@@ -3710,7 +3711,7 @@ describe('test calculate service', function () {
         stripeAchPercent: 0.8,
         stripeAchFlat: 0,
         paidUpFee: 1,
-        paidUpFlat: 15,
+        paidUpFlat: 5,
         discount: 0,
         payProcessing: true,
         payCollecting: true
@@ -3718,12 +3719,12 @@ describe('test calculate service', function () {
         assert.deepEqual(
           {
             version: 'v2',
-            basePrice: 83.37,
+            basePrice: 93.27,
             originalPrice: 100,
-            totalFee: 16.63,
+            totalFee: 6.73,
             owedPrice: 100,
             discount: 0,
-            feePaidUp: 15.83,
+            feePaidUp: 5.93,
             feeStripe: 0.8
           }
           , data);
@@ -3731,7 +3732,7 @@ describe('test calculate service', function () {
       });
     });
 
-    it('Row #1.20', function (done) {
+    it('Row #5.20', function (done) {
       calculateService.getPrice({
         version: 'v2',
         type: "bank_account",
@@ -3742,7 +3743,7 @@ describe('test calculate service', function () {
         stripeAchPercent: 0.8,
         stripeAchFlat: 0,
         paidUpFee: 1,
-        paidUpFlat: 15,
+        paidUpFlat: 5,
         discount: 0,
         payProcessing: true,
         payCollecting: true
@@ -3750,12 +3751,12 @@ describe('test calculate service', function () {
         assert.deepEqual(
           {
             version: 'v2',
-            basePrice: 476.97,
+            basePrice: 486.88,
             originalPrice: 500.75,
-            totalFee: 23.78,
+            totalFee: 13.88,
             owedPrice: 500.75,
             discount: 0,
-            feePaidUp: 19.77,
+            feePaidUp: 9.87,
             feeStripe: 4.01
           }
           , data);
@@ -3763,7 +3764,7 @@ describe('test calculate service', function () {
       });
     });
 
-    it('Row #1.21', function (done) {
+    it('Row #5.21', function (done) {
       calculateService.getPrice({
         version: 'v2',
         type: "bank_account",
@@ -3774,7 +3775,7 @@ describe('test calculate service', function () {
         stripeAchPercent: 0.8,
         stripeAchFlat: 0,
         paidUpFee: 1,
-        paidUpFlat: 15,
+        paidUpFlat: 5,
         discount: 0,
         payProcessing: true,
         payCollecting: true
@@ -3783,12 +3784,12 @@ describe('test calculate service', function () {
 
           {
             version: 'v2',
-            basePrice: 970.3,
+            basePrice: 980.2,
             originalPrice: 1000,
-            totalFee: 29.7,
+            totalFee: 19.8,
             owedPrice: 1000,
             discount: 0,
-            feePaidUp: 24.7,
+            feePaidUp: 14.8,
             feeStripe: 5
           }
           , data);
@@ -3796,7 +3797,7 @@ describe('test calculate service', function () {
       });
     });
 
-    it('Row #1.22', function (done) {
+    it('Row #5.22', function (done) {
       calculateService.getPrice({
         version: 'v2',
         type: "bank_account",
@@ -3807,7 +3808,7 @@ describe('test calculate service', function () {
         stripeAchPercent: 0.8,
         stripeAchFlat: 0,
         paidUpFee: 1,
-        paidUpFlat: 15,
+        paidUpFlat: 5,
         discount: 0,
         payProcessing: true,
         payCollecting: false
@@ -3817,10 +3818,10 @@ describe('test calculate service', function () {
             version: 'v2',
             basePrice: 99.2,
             originalPrice: 100,
-            totalFee: 16.79,
+            totalFee: 6.79,
             owedPrice: 100,
             discount: 0,
-            feePaidUp: 15.99,
+            feePaidUp: 5.99,
             feeStripe: 0.8
           }
           , data);
@@ -3828,7 +3829,7 @@ describe('test calculate service', function () {
       });
     });
 
-    it('Row #1.23', function (done) {
+    it('Row #5.23', function (done) {
       calculateService.getPrice({
         version: 'v2',
         type: "bank_account",
@@ -3839,7 +3840,7 @@ describe('test calculate service', function () {
         stripeAchPercent: 0.8,
         stripeAchFlat: 0,
         paidUpFee: 1,
-        paidUpFlat: 15,
+        paidUpFlat: 5,
         discount: 0,
         payProcessing: true,
         payCollecting: false
@@ -3849,10 +3850,10 @@ describe('test calculate service', function () {
             version: 'v2',
             basePrice: 496.74,
             originalPrice: 500.75,
-            totalFee: 23.98,
+            totalFee: 13.98,
             owedPrice: 500.75,
             discount: 0,
-            feePaidUp: 19.97,
+            feePaidUp: 9.97,
             feeStripe: 4.01
           }
           , data);
@@ -3860,7 +3861,7 @@ describe('test calculate service', function () {
       });
     });
 
-    it('Row #1.24', function (done) {
+    it('Row #5.24', function (done) {
       calculateService.getPrice({
         version: 'v2',
         type: "bank_account",
@@ -3871,7 +3872,7 @@ describe('test calculate service', function () {
         stripeAchPercent: 0.8,
         stripeAchFlat: 0,
         paidUpFee: 1,
-        paidUpFlat: 15,
+        paidUpFlat: 5,
         discount: 0,
         payProcessing: true,
         payCollecting: false
@@ -3881,10 +3882,10 @@ describe('test calculate service', function () {
             version: 'v2',
             basePrice: 995,
             originalPrice: 1000,
-            totalFee: 29.95,
+            totalFee: 19.95,
             owedPrice: 1000,
             discount: 0,
-            feePaidUp: 24.95,
+            feePaidUp: 14.95,
             feeStripe: 5
           }
           , data);
@@ -3893,8 +3894,8 @@ describe('test calculate service', function () {
     });
   }) // set 5
 
-  describe.skip("TEST SET #6 - % PAIDUP FEE & FLAT PAIDUP FEE, 15% DISCOUNT", function () {
-    it('Row #1.1', function (done) {
+  describe("TEST SET #6 - % PAIDUP FEE & FLAT PAIDUP FEE, 15% DISCOUNT", function () {
+    it('Row #6.1', function (done) {
       calculateService.getPrice({
         version: 'v2',
         type: "card",
@@ -3905,7 +3906,7 @@ describe('test calculate service', function () {
         stripeAchPercent: 0.8,
         stripeAchFlat: 0,
         paidUpFee: 1,
-        paidUpFlat: 15,
+        paidUpFlat: 5,
         discount: 15,
         payProcessing: false,
         payCollecting: true
@@ -3913,20 +3914,20 @@ describe('test calculate service', function () {
         assert.deepEqual(
           {
             version: 'v2',
-            basePrice: 56.68,
+            basePrice: 79.21,
             originalPrice: 100,
-            totalFee: 17.97,
-            owedPrice: 72.25,
-            discount: 12.75,
-            feePaidUp: 15.57,
-            feeStripe: 2.4
+            totalFee: 8.55,
+            owedPrice: 85,
+            discount: 15,
+            feePaidUp: 5.79,
+            feeStripe: 2.76
           }
           , data);
         done();
       });
     });
 
-    it('Row #1.2', function (done) {
+    it('Row #6.2', function (done) {
       calculateService.getPrice({
         version: 'v2',
         type: "card",
@@ -3937,7 +3938,7 @@ describe('test calculate service', function () {
         stripeAchPercent: 0.8,
         stripeAchFlat: 0,
         paidUpFee: 1,
-        paidUpFlat: 15,
+        paidUpFlat: 5,
         discount: 15,
         payProcessing: false,
         payCollecting: true
@@ -3945,20 +3946,20 @@ describe('test calculate service', function () {
         assert.deepEqual(
           {
             version: 'v2',
-            basePrice: 343.36,
+            basePrice: 416.48,
             originalPrice: 500.75,
-            totalFee: 29.22,
-            owedPrice: 361.79,
-            discount: 63.85,
-            feePaidUp: 18.43,
-            feeStripe: 10.79
+            totalFee: 21.8,
+            owedPrice: 425.64,
+            discount: 75.11,
+            feePaidUp: 9.16,
+            feeStripe: 12.64
           }
           , data);
         done();
       });
     });
 
-    it('Row #1.3', function (done) {
+    it('Row #6.3', function (done) {
       calculateService.getPrice({
         version: 'v2',
         type: "card",
@@ -3969,7 +3970,7 @@ describe('test calculate service', function () {
         stripeAchPercent: 0.8,
         stripeAchFlat: 0,
         paidUpFee: 1,
-        paidUpFlat: 15,
+        paidUpFlat: 5,
         discount: 15,
         payProcessing: false,
         payCollecting: true
@@ -3977,20 +3978,20 @@ describe('test calculate service', function () {
         assert.deepEqual(
           {
             version: 'v2',
-            basePrice: 700.5,
+            basePrice: 836.63,
             originalPrice: 1000,
-            totalFee: 43.26,
-            owedPrice: 722.5,
-            discount: 127.5,
-            feePaidUp: 22.01,
-            feeStripe: 21.25
+            totalFee: 38.32,
+            owedPrice: 850,
+            discount: 150,
+            feePaidUp: 13.37,
+            feeStripe: 24.95
           }
           , data);
         done();
       });
     });
 
-    it('Row #1.4', function (done) {
+    it('Row #6.4', function (done) {
       calculateService.getPrice({
         version: 'v2',
         type: "card",
@@ -4001,7 +4002,7 @@ describe('test calculate service', function () {
         stripeAchPercent: 0.8,
         stripeAchFlat: 0,
         paidUpFee: 1,
-        paidUpFlat: 15,
+        paidUpFlat: 5,
         discount: 15,
         payProcessing: false,
         payCollecting: false
@@ -4009,20 +4010,20 @@ describe('test calculate service', function () {
         assert.deepEqual(
           {
             version: 'v2',
-            basePrice: 72.25,
+            basePrice: 85,
             originalPrice: 100,
-            totalFee: 18.12,
-            owedPrice: 72.25,
-            discount: 12.75,
-            feePaidUp: 15.72,
-            feeStripe: 2.4
+            totalFee: 8.61,
+            owedPrice: 85,
+            discount: 15,
+            feePaidUp: 5.85,
+            feeStripe: 2.76
           }
           , data);
         done();
       });
     });
 
-    it('Row #1.5', function (done) {
+    it('Row #6.5', function (done) {
       calculateService.getPrice({
         version: 'v2',
         type: "card",
@@ -4033,7 +4034,7 @@ describe('test calculate service', function () {
         stripeAchPercent: 0.8,
         stripeAchFlat: 0,
         paidUpFee: 1,
-        paidUpFlat: 15,
+        paidUpFlat: 5,
         discount: 15,
         payProcessing: false,
         payCollecting: false
@@ -4041,20 +4042,20 @@ describe('test calculate service', function () {
         assert.deepEqual(
           {
             version: 'v2',
-            basePrice: 361.79,
+            basePrice: 425.64,
             originalPrice: 500.75,
-            totalFee: 29.41,
-            owedPrice: 361.79,
-            discount: 63.85,
-            feePaidUp: 18.62,
-            feeStripe: 10.79
+            totalFee: 21.9,
+            owedPrice: 425.64,
+            discount: 75.11,
+            feePaidUp: 9.26,
+            feeStripe: 12.64
           }
           , data);
         done();
       });
     });
 
-    it('Row #1.6', function (done) {
+    it('Row #6.6', function (done) {
       calculateService.getPrice({
         version: 'v2',
         type: "card",
@@ -4065,7 +4066,7 @@ describe('test calculate service', function () {
         stripeAchPercent: 0.8,
         stripeAchFlat: 0,
         paidUpFee: 1,
-        paidUpFlat: 15,
+        paidUpFlat: 5,
         discount: 15,
         payProcessing: false,
         payCollecting: false
@@ -4073,20 +4074,20 @@ describe('test calculate service', function () {
         assert.deepEqual(
           {
             version: 'v2',
-            basePrice: 722.5,
+            basePrice: 850,
             originalPrice: 1000,
-            totalFee: 43.48,
-            owedPrice: 722.5,
-            discount: 127.5,
-            feePaidUp: 22.23,
-            feeStripe: 21.25
+            totalFee: 38.45,
+            owedPrice: 850,
+            discount: 150,
+            feePaidUp: 13.5,
+            feeStripe: 24.95
           }
           , data);
         done();
       });
     });
 
-    it('Row #1.7', function (done) {
+    it('Row #6.7', function (done) {
       calculateService.getPrice({
         version: 'v2',
         type: "card",
@@ -4097,7 +4098,7 @@ describe('test calculate service', function () {
         stripeAchPercent: 0.8,
         stripeAchFlat: 0,
         paidUpFee: 1,
-        paidUpFlat: 15,
+        paidUpFlat: 5,
         discount: 15,
         payProcessing: true,
         payCollecting: true
@@ -4105,20 +4106,20 @@ describe('test calculate service', function () {
         assert.deepEqual(
           {
             version: 'v2',
-            basePrice: 54.31,
+            basePrice: 76.47,
             originalPrice: 100,
-            totalFee: 17.94,
-            owedPrice: 72.25,
-            discount: 12.75,
-            feePaidUp: 15.54,
-            feeStripe: 2.4
+            totalFee: 8.52,
+            owedPrice: 85,
+            discount: 15,
+            feePaidUp: 5.76,
+            feeStripe: 2.76
           }
           , data);
         done();
       });
     });
 
-    it('Row #1.8', function (done) {
+    it('Row #6.8', function (done) {
       calculateService.getPrice({
         version: 'v2',
         type: "card",
@@ -4129,7 +4130,7 @@ describe('test calculate service', function () {
         stripeAchPercent: 0.8,
         stripeAchFlat: 0,
         paidUpFee: 1,
-        paidUpFlat: 15,
+        paidUpFlat: 5,
         discount: 15,
         payProcessing: true,
         payCollecting: true
@@ -4137,20 +4138,20 @@ describe('test calculate service', function () {
         assert.deepEqual(
           {
             version: 'v2',
-            basePrice: 332.67,
+            basePrice: 403.96,
             originalPrice: 500.75,
-            totalFee: 29.12,
-            owedPrice: 361.79,
-            discount: 63.85,
-            feePaidUp: 18.33,
-            feeStripe: 10.79
+            totalFee: 21.68,
+            owedPrice: 425.64,
+            discount: 75.11,
+            feePaidUp: 9.04,
+            feeStripe: 12.64
           }
           , data);
         done();
       });
     });
 
-    it('Row #1.9', function (done) {
+    it('Row #6.9', function (done) {
       calculateService.getPrice({
         version: 'v2',
         type: "card",
@@ -4161,7 +4162,7 @@ describe('test calculate service', function () {
         stripeAchPercent: 0.8,
         stripeAchFlat: 0,
         paidUpFee: 1,
-        paidUpFlat: 15,
+        paidUpFlat: 5,
         discount: 15,
         payProcessing: true,
         payCollecting: true
@@ -4169,20 +4170,20 @@ describe('test calculate service', function () {
         assert.deepEqual(
           {
             version: 'v2',
-            basePrice: 679.45,
+            basePrice: 811.93,
             originalPrice: 1000,
-            totalFee: 43.04,
-            owedPrice: 722.5,
-            discount: 127.5,
-            feePaidUp: 21.79,
-            feeStripe: 21.25
+            totalFee: 38.07,
+            owedPrice: 850,
+            discount: 150,
+            feePaidUp: 13.12,
+            feeStripe: 24.95
           }
           , data);
         done();
       });
     });
 
-    it('Row #1.10', function (done) {
+    it('Row #6.10', function (done) {
       calculateService.getPrice({
         version: 'v2',
         type: "card",
@@ -4193,7 +4194,7 @@ describe('test calculate service', function () {
         stripeAchPercent: 0.8,
         stripeAchFlat: 0,
         paidUpFee: 1,
-        paidUpFlat: 15,
+        paidUpFlat: 5,
         discount: 15,
         payProcessing: true,
         payCollecting: false
@@ -4201,20 +4202,20 @@ describe('test calculate service', function () {
         assert.deepEqual(
           {
             version: 'v2',
-            basePrice: 69.85,
+            basePrice: 82.24,
             originalPrice: 100,
-            totalFee: 18.1,
-            owedPrice: 72.25,
-            discount: 12.75,
-            feePaidUp: 15.7,
-            feeStripe: 2.4
+            totalFee: 8.58,
+            owedPrice: 85,
+            discount: 15,
+            feePaidUp: 5.82,
+            feeStripe: 2.76
           }
           , data);
         done();
       });
     });
 
-    it('Row #1.11', function (done) {
+    it('Row #6.11', function (done) {
       calculateService.getPrice({
         version: 'v2',
         type: "card",
@@ -4225,7 +4226,7 @@ describe('test calculate service', function () {
         stripeAchPercent: 0.8,
         stripeAchFlat: 0,
         paidUpFee: 1,
-        paidUpFlat: 15,
+        paidUpFlat: 5,
         discount: 15,
         payProcessing: true,
         payCollecting: false
@@ -4233,20 +4234,20 @@ describe('test calculate service', function () {
         assert.deepEqual(
           {
             version: 'v2',
-            basePrice: 351,
+            basePrice: 413,
             originalPrice: 500.75,
-            totalFee: 29.3,
-            owedPrice: 361.79,
-            discount: 63.85,
-            feePaidUp: 18.51,
-            feeStripe: 10.79
+            totalFee: 21.77,
+            owedPrice: 425.64,
+            discount: 75.11,
+            feePaidUp: 9.13,
+            feeStripe: 12.64
           }
           , data);
         done();
       });
     });
 
-    it('Row #1.12', function (done) {
+    it('Row #6.12', function (done) {
       calculateService.getPrice({
         version: 'v2',
         type: "card",
@@ -4257,7 +4258,7 @@ describe('test calculate service', function () {
         stripeAchPercent: 0.8,
         stripeAchFlat: 0,
         paidUpFee: 1,
-        paidUpFlat: 15,
+        paidUpFlat: 5,
         discount: 15,
         payProcessing: true,
         payCollecting: false
@@ -4265,20 +4266,20 @@ describe('test calculate service', function () {
         assert.deepEqual(
           {
             version: 'v2',
-            basePrice: 701.25,
+            basePrice: 825.05,
             originalPrice: 1000,
-            totalFee: 43.26,
-            owedPrice: 722.5,
-            discount: 127.5,
-            feePaidUp: 22.01,
-            feeStripe: 21.25
+            totalFee: 38.2,
+            owedPrice: 850,
+            discount: 150,
+            feePaidUp: 13.25,
+            feeStripe: 24.95
           }
           , data);
         done();
       });
     });
 
-    it('Row #1.13', function (done) {
+    it('Row #6.13', function (done) {
       calculateService.getPrice({
         version: 'v2',
         type: "bank_account",
@@ -4289,7 +4290,7 @@ describe('test calculate service', function () {
         stripeAchPercent: 0.8,
         stripeAchFlat: 0,
         paidUpFee: 1,
-        paidUpFlat: 15,
+        paidUpFlat: 5,
         discount: 15,
         payProcessing: false,
         payCollecting: true
@@ -4297,20 +4298,20 @@ describe('test calculate service', function () {
         assert.deepEqual(
           {
             version: 'v2',
-            basePrice: 56.68,
+            basePrice: 79.21,
             originalPrice: 100,
-            totalFee: 16.15,
-            owedPrice: 72.25,
-            discount: 12.75,
-            feePaidUp: 15.57,
-            feeStripe: 0.58
+            totalFee: 6.47,
+            owedPrice: 85,
+            discount: 15,
+            feePaidUp: 5.79,
+            feeStripe: 0.68
           }
           , data);
         done();
       });
     });
 
-    it('Row #1.14', function (done) {
+    it('Row #6.14', function (done) {
       calculateService.getPrice({
         version: 'v2',
         type: "bank_account",
@@ -4321,7 +4322,7 @@ describe('test calculate service', function () {
         stripeAchPercent: 0.8,
         stripeAchFlat: 0,
         paidUpFee: 1,
-        paidUpFlat: 15,
+        paidUpFlat: 5,
         discount: 15,
         payProcessing: false,
         payCollecting: true
@@ -4329,20 +4330,20 @@ describe('test calculate service', function () {
         assert.deepEqual(
           {
             version: 'v2',
-            basePrice: 343.36,
+            basePrice: 416.48,
             originalPrice: 500.75,
-            totalFee: 21.32,
-            owedPrice: 361.79,
-            discount: 63.85,
-            feePaidUp: 18.43,
-            feeStripe: 2.89
+            totalFee: 12.57,
+            owedPrice: 425.64,
+            discount: 75.11,
+            feePaidUp: 9.16,
+            feeStripe: 3.41
           }
           , data);
         done();
       });
     });
 
-    it('Row #1.15', function (done) {
+    it('Row #6.15', function (done) {
       calculateService.getPrice({
         version: 'v2',
         type: "bank_account",
@@ -4353,7 +4354,7 @@ describe('test calculate service', function () {
         stripeAchPercent: 0.8,
         stripeAchFlat: 0,
         paidUpFee: 1,
-        paidUpFlat: 15,
+        paidUpFlat: 5,
         discount: 15,
         payProcessing: false,
         payCollecting: true
@@ -4361,12 +4362,12 @@ describe('test calculate service', function () {
         assert.deepEqual(
           {
             version: 'v2',
-            basePrice: 700.5,
+            basePrice: 836.63,
             originalPrice: 1000,
-            totalFee: 27.01,
-            owedPrice: 722.5,
-            discount: 127.5,
-            feePaidUp: 22.01,
+            totalFee: 18.37,
+            owedPrice: 850,
+            discount: 150,
+            feePaidUp: 13.37,
             feeStripe: 5
           }
           , data);
@@ -4374,7 +4375,7 @@ describe('test calculate service', function () {
       });
     });
 
-    it('Row #1.16', function (done) {
+    it('Row #6.16', function (done) {
       calculateService.getPrice({
         version: 'v2',
         type: "bank_account",
@@ -4385,7 +4386,7 @@ describe('test calculate service', function () {
         stripeAchPercent: 0.8,
         stripeAchFlat: 0,
         paidUpFee: 1,
-        paidUpFlat: 15,
+        paidUpFlat: 5,
         discount: 15,
         payProcessing: false,
         payCollecting: false
@@ -4393,20 +4394,20 @@ describe('test calculate service', function () {
         assert.deepEqual(
           {
             version: 'v2',
-            basePrice: 72.25,
+            basePrice: 85,
             originalPrice: 100,
-            totalFee: 16.3,
-            owedPrice: 72.25,
-            discount: 12.75,
-            feePaidUp: 15.72,
-            feeStripe: 0.58
+            totalFee: 6.53,
+            owedPrice: 85,
+            discount: 15,
+            feePaidUp: 5.85,
+            feeStripe: 0.68
           }
           , data);
         done();
       });
     });
 
-    it('Row #1.17', function (done) {
+    it('Row #6.17', function (done) {
       calculateService.getPrice({
         version: 'v2',
         type: "bank_account",
@@ -4417,7 +4418,7 @@ describe('test calculate service', function () {
         stripeAchPercent: 0.8,
         stripeAchFlat: 0,
         paidUpFee: 1,
-        paidUpFlat: 15,
+        paidUpFlat: 5,
         discount: 15,
         payProcessing: false,
         payCollecting: false
@@ -4425,20 +4426,20 @@ describe('test calculate service', function () {
         assert.deepEqual(
           {
             version: 'v2',
-            basePrice: 361.79,
+            basePrice: 425.64,
             originalPrice: 500.75,
-            totalFee: 21.51,
-            owedPrice: 361.79,
-            discount: 63.85,
-            feePaidUp: 18.62,
-            feeStripe: 2.89
+            totalFee: 12.67,
+            owedPrice: 425.64,
+            discount: 75.11,
+            feePaidUp: 9.26,
+            feeStripe: 3.41
           }
           , data);
         done();
       });
     });
 
-    it('Row #1.18', function (done) {
+    it('Row #6.18', function (done) {
       calculateService.getPrice({
         version: 'v2',
         type: "bank_account",
@@ -4449,7 +4450,7 @@ describe('test calculate service', function () {
         stripeAchPercent: 0.8,
         stripeAchFlat: 0,
         paidUpFee: 1,
-        paidUpFlat: 15,
+        paidUpFlat: 5,
         discount: 15,
         payProcessing: false,
         payCollecting: false
@@ -4457,12 +4458,12 @@ describe('test calculate service', function () {
         assert.deepEqual(
           {
             version: 'v2',
-            basePrice: 722.5,
+            basePrice: 850,
             originalPrice: 1000,
-            totalFee: 27.23,
-            owedPrice: 722.5,
-            discount: 127.5,
-            feePaidUp: 22.23,
+            totalFee: 18.5,
+            owedPrice: 850,
+            discount: 150,
+            feePaidUp: 13.5,
             feeStripe: 5
           }
           , data);
@@ -4470,7 +4471,7 @@ describe('test calculate service', function () {
       });
     });
 
-    it('Row #1.19', function (done) {
+    it('Row #6.19', function (done) {
       calculateService.getPrice({
         version: 'v2',
         type: "bank_account",
@@ -4481,7 +4482,7 @@ describe('test calculate service', function () {
         stripeAchPercent: 0.8,
         stripeAchFlat: 0,
         paidUpFee: 1,
-        paidUpFlat: 15,
+        paidUpFlat: 5,
         discount: 15,
         payProcessing: true,
         payCollecting: true
@@ -4489,20 +4490,20 @@ describe('test calculate service', function () {
         assert.deepEqual(
           {
             version: 'v2',
-            basePrice: 56.11,
+            basePrice: 78.53,
             originalPrice: 100,
-            totalFee: 16.14,
-            owedPrice: 72.25,
-            discount: 12.75,
-            feePaidUp: 15.56,
-            feeStripe: 0.58
+            totalFee: 6.47,
+            owedPrice: 85,
+            discount: 15,
+            feePaidUp: 5.79,
+            feeStripe: 0.68
           }
           , data);
         done();
       });
     });
 
-    it('Row #1.20', function (done) {
+    it('Row #6.20', function (done) {
       calculateService.getPrice({
         version: 'v2',
         type: "bank_account",
@@ -4513,7 +4514,7 @@ describe('test calculate service', function () {
         stripeAchPercent: 0.8,
         stripeAchFlat: 0,
         paidUpFee: 1,
-        paidUpFlat: 15,
+        paidUpFlat: 5,
         discount: 15,
         payProcessing: true,
         payCollecting: true
@@ -4521,20 +4522,20 @@ describe('test calculate service', function () {
         assert.deepEqual(
           {
             version: 'v2',
-            basePrice: 340.49,
+            basePrice: 413.1,
             originalPrice: 500.75,
-            totalFee: 21.29,
-            owedPrice: 361.79,
-            discount: 63.85,
-            feePaidUp: 18.4,
-            feeStripe: 2.89
+            totalFee: 12.54,
+            owedPrice: 425.64,
+            discount: 75.11,
+            feePaidUp: 9.13,
+            feeStripe: 3.41
           }
           , data);
         done();
       });
     });
 
-    it('Row #1.21', function (done) {
+    it('Row #6.21', function (done) {
       calculateService.getPrice({
         version: 'v2',
         type: "bank_account",
@@ -4545,7 +4546,7 @@ describe('test calculate service', function () {
         stripeAchPercent: 0.8,
         stripeAchFlat: 0,
         paidUpFee: 1,
-        paidUpFlat: 15,
+        paidUpFlat: 5,
         discount: 15,
         payProcessing: true,
         payCollecting: true
@@ -4553,12 +4554,12 @@ describe('test calculate service', function () {
         assert.deepEqual(
           {
             version: 'v2',
-            basePrice: 695.54,
+            basePrice: 831.68,
             originalPrice: 1000,
-            totalFee: 26.96,
-            owedPrice: 722.5,
-            discount: 127.5,
-            feePaidUp: 21.96,
+            totalFee: 18.32,
+            owedPrice: 850,
+            discount: 150,
+            feePaidUp: 13.32,
             feeStripe: 5
           }
           , data);
@@ -4566,7 +4567,7 @@ describe('test calculate service', function () {
       });
     });
 
-    it('Row #1.22', function (done) {
+    it('Row #6.22', function (done) {
       calculateService.getPrice({
         version: 'v2',
         type: "bank_account",
@@ -4577,7 +4578,7 @@ describe('test calculate service', function () {
         stripeAchPercent: 0.8,
         stripeAchFlat: 0,
         paidUpFee: 1,
-        paidUpFlat: 15,
+        paidUpFlat: 5,
         discount: 15,
         payProcessing: true,
         payCollecting: false
@@ -4585,20 +4586,20 @@ describe('test calculate service', function () {
         assert.deepEqual(
           {
             version: 'v2',
-            basePrice: 71.67,
+            basePrice: 84.32,
             originalPrice: 100,
-            totalFee: 16.3,
-            owedPrice: 72.25,
-            discount: 12.75,
-            feePaidUp: 15.72,
-            feeStripe: 0.58
+            totalFee: 6.52,
+            owedPrice: 85,
+            discount: 15,
+            feePaidUp: 5.84,
+            feeStripe: 0.68
           }
           , data);
         done();
       });
     });
 
-    it('Row #1.23', function (done) {
+    it('Row #6.23', function (done) {
       calculateService.getPrice({
         version: 'v2',
         type: "bank_account",
@@ -4609,7 +4610,7 @@ describe('test calculate service', function () {
         stripeAchPercent: 0.8,
         stripeAchFlat: 0,
         paidUpFee: 1,
-        paidUpFlat: 15,
+        paidUpFlat: 5,
         discount: 15,
         payProcessing: true,
         payCollecting: false
@@ -4617,20 +4618,20 @@ describe('test calculate service', function () {
         assert.deepEqual(
           {
             version: 'v2',
-            basePrice: 358.9,
+            basePrice: 422.23,
             originalPrice: 500.75,
-            totalFee: 21.48,
-            owedPrice: 361.79,
-            discount: 63.85,
-            feePaidUp: 18.59,
-            feeStripe: 2.89
+            totalFee: 12.63,
+            owedPrice: 425.64,
+            discount: 75.11,
+            feePaidUp: 9.22,
+            feeStripe: 3.41
           }
           , data);
         done();
       });
     });
 
-    it('Row #1.24', function (done) {
+    it('Row #6.24', function (done) {
       calculateService.getPrice({
         version: 'v2',
         type: "bank_account",
@@ -4641,7 +4642,7 @@ describe('test calculate service', function () {
         stripeAchPercent: 0.8,
         stripeAchFlat: 0,
         paidUpFee: 1,
-        paidUpFlat: 15,
+        paidUpFlat: 5,
         discount: 15,
         payProcessing: true,
         payCollecting: false
@@ -4649,12 +4650,12 @@ describe('test calculate service', function () {
         assert.deepEqual(
           {
             version: 'v2',
-            basePrice: 717.5,
+            basePrice: 845,
             originalPrice: 1000,
-            totalFee: 27.18,
-            owedPrice: 722.5,
-            discount: 127.5,
-            feePaidUp: 22.18,
+            totalFee: 18.45,
+            owedPrice: 850,
+            discount: 150,
+            feePaidUp: 13.45,
             feeStripe: 5
           }
           , data);
@@ -4662,8 +4663,6 @@ describe('test calculate service', function () {
       });
     });
   }) // set 6
-
-
 
 });
 
