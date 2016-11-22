@@ -803,13 +803,13 @@ describe('test calculate service', function () {
 
   })//set1
 
-  describe.skip("TEST SET #2 - % PAIDUP FEE, 15% DISCOUNT", function () {
+  describe("TEST SET #2 - % PAIDUP FEE, 15% DISCOUNT", function () {
     it('Row #2.1', function (done) {
       calculateService.getPrice({
         version: 'v2',
         type: "card",
         capAmount: 5,
-        originalPrice: 85,
+        originalPrice: 100,
         stripePercent: 2.9,
         stripeFlat: 0.3,
         stripeAchPercent: 0.8,
@@ -823,13 +823,13 @@ describe('test calculate service', function () {
         assert.deepEqual(
           {
             version: 'v2',
-            basePrice: 68.81,
-            originalPrice: 85,
-            totalFee: 5.84,
-            owedPrice: 72.25,
-            discount: 12.75,
-            feePaidUp: 3.44,
-            feeStripe: 2.4
+            basePrice: 80.95,
+            originalPrice: 100,
+            totalFee: 6.81,
+            owedPrice: 85,
+            discount: 15,
+            feePaidUp: 4.05,
+            feeStripe: 2.76
           }
           , data);
         done();
@@ -841,38 +841,7 @@ describe('test calculate service', function () {
         version: 'v2',
         type: "card",
         capAmount: 5,
-        originalPrice: 425.64,
-        stripePercent: 2.9,
-        stripeFlat: 0.3,
-        stripeAchPercent: 0.8,
-        stripeAchFlat: 0,
-        paidUpFee: 5,
-        paidUpFlat: 0,
-        discount: 15,
-        payProcessing: false,
-        payCollecting: true
-      }, function (err, data) {
-        assert.deepEqual({
-          version: 'v2',
-          basePrice: 344.56,
-          originalPrice: 425.64,
-          totalFee: 28.02,
-          owedPrice: 361.79,
-          discount: 63.85,
-          feePaidUp: 17.23,
-          feeStripe: 10.79
-        }
-          , data);
-        done();
-      });
-    });
-
-    it('Row #2.3', function (done) {
-      calculateService.getPrice({
-        version: 'v2',
-        type: "card",
-        capAmount: 5,
-        originalPrice: 850,
+        originalPrice: 500.75,
         stripePercent: 2.9,
         stripeFlat: 0.3,
         stripeAchPercent: 0.8,
@@ -886,13 +855,45 @@ describe('test calculate service', function () {
         assert.deepEqual(
           {
             version: 'v2',
-            basePrice: 688.1,
-            originalPrice: 850,
-            totalFee: 55.66,
-            owedPrice: 722.5,
-            discount: 127.5,
-            feePaidUp: 34.41,
-            feeStripe: 21.25
+            basePrice: 405.37,
+            originalPrice: 500.75,
+            totalFee: 32.91,
+            owedPrice: 425.64,
+            discount: 75.11,
+            feePaidUp: 20.27,
+            feeStripe: 12.64
+          }
+          , data);
+        done();
+      });
+    });
+
+    it('Row #2.3', function (done) {
+      calculateService.getPrice({
+        version: 'v2',
+        type: "card",
+        capAmount: 5,
+        originalPrice: 1000,
+        stripePercent: 2.9,
+        stripeFlat: 0.3,
+        stripeAchPercent: 0.8,
+        stripeAchFlat: 0,
+        paidUpFee: 5,
+        paidUpFlat: 0,
+        discount: 15,
+        payProcessing: false,
+        payCollecting: true
+      }, function (err, data) {
+        assert.deepEqual(
+          {
+            version: 'v2',
+            basePrice: 809.52,
+            originalPrice: 1000,
+            totalFee: 65.43,
+            owedPrice: 850,
+            discount: 150,
+            feePaidUp: 40.48,
+            feeStripe: 24.95
           }
           , data);
         done();
@@ -904,7 +905,7 @@ describe('test calculate service', function () {
         version: 'v2',
         type: "card",
         capAmount: 5,
-        originalPrice: 85,
+        originalPrice: 100,
         stripePercent: 2.9,
         stripeFlat: 0.3,
         stripeAchPercent: 0.8,
@@ -918,13 +919,13 @@ describe('test calculate service', function () {
         assert.deepEqual(
           {
             version: 'v2',
-            basePrice: 72.25,
-            originalPrice: 85,
-            totalFee: 6.01,
-            owedPrice: 72.25,
-            discount: 12.75,
-            feePaidUp: 3.61,
-            feeStripe: 2.4
+            basePrice: 85,
+            originalPrice: 100,
+            totalFee: 7.01,
+            owedPrice: 85,
+            discount: 15,
+            feePaidUp: 4.25,
+            feeStripe: 2.76
           }
           , data);
         done();
@@ -936,7 +937,7 @@ describe('test calculate service', function () {
         version: 'v2',
         type: "card",
         capAmount: 5,
-        originalPrice: 425.64,
+        originalPrice: 500.75,
         stripePercent: 2.9,
         stripeFlat: 0.3,
         stripeAchPercent: 0.8,
@@ -950,13 +951,13 @@ describe('test calculate service', function () {
         assert.deepEqual(
           {
             version: 'v2',
-            basePrice: 361.79,
-            originalPrice: 425.64,
-            totalFee: 28.88,
-            owedPrice: 361.79,
-            discount: 63.85,
-            feePaidUp: 18.09,
-            feeStripe: 10.79
+            basePrice: 425.64,
+            originalPrice: 500.75,
+            totalFee: 33.92,
+            owedPrice: 425.64,
+            discount: 75.11,
+            feePaidUp: 21.28,
+            feeStripe: 12.64
           }
           , data);
         done();
@@ -968,7 +969,7 @@ describe('test calculate service', function () {
         version: 'v2',
         type: "card",
         capAmount: 5,
-        originalPrice: 850,
+        originalPrice: 1000,
         stripePercent: 2.9,
         stripeFlat: 0.3,
         stripeAchPercent: 0.8,
@@ -982,13 +983,13 @@ describe('test calculate service', function () {
         assert.deepEqual(
           {
             version: 'v2',
-            basePrice: 722.5,
-            originalPrice: 850,
-            totalFee: 57.38,
-            owedPrice: 722.5,
-            discount: 127.5,
-            feePaidUp: 36.13,
-            feeStripe: 21.25
+            basePrice: 850,
+            originalPrice: 1000,
+            totalFee: 67.45,
+            owedPrice: 850,
+            discount: 150,
+            feePaidUp: 42.5,
+            feeStripe: 24.95
           }
           , data);
         done();
@@ -1000,7 +1001,7 @@ describe('test calculate service', function () {
         version: 'v2',
         type: "card",
         capAmount: 5,
-        originalPrice: 85,
+        originalPrice: 100,
         stripePercent: 2.9,
         stripeFlat: 0.3,
         stripeAchPercent: 0.8,
@@ -1014,13 +1015,13 @@ describe('test calculate service', function () {
         assert.deepEqual(
           {
             version: 'v2',
-            basePrice: 66.53,
-            originalPrice: 85,
-            totalFee: 5.73,
-            owedPrice: 72.25,
-            discount: 12.75,
-            feePaidUp: 3.33,
-            feeStripe: 2.4
+            basePrice: 78.32,
+            originalPrice: 100,
+            totalFee: 6.68,
+            owedPrice: 85,
+            discount: 15,
+            feePaidUp: 3.92,
+            feeStripe: 2.76
           }
           , data);
         done();
@@ -1039,7 +1040,7 @@ describe('test calculate service', function () {
         version: 'v2',
         type: "card",
         capAmount: 5,
-        originalPrice: 425.64,
+        originalPrice: 500.75,
         stripePercent: 2.9,
         stripeFlat: 0.3,
         stripeAchPercent: 0.8,
@@ -1053,13 +1054,13 @@ describe('test calculate service', function () {
         assert.deepEqual(
           {
             version: 'v2',
-            basePrice: 334.28,
-            originalPrice: 425.64,
-            totalFee: 27.5,
-            owedPrice: 361.79,
-            discount: 63.85,
-            feePaidUp: 16.71,
-            feeStripe: 10.79
+            basePrice: 393.33,
+            originalPrice: 500.75,
+            totalFee: 32.31,
+            owedPrice: 425.64,
+            discount: 75.11,
+            feePaidUp: 19.67,
+            feeStripe: 12.64
           }
           , data);
         done();
@@ -1071,7 +1072,7 @@ describe('test calculate service', function () {
         version: 'v2',
         type: "card",
         capAmount: 5,
-        originalPrice: 850,
+        originalPrice: 1000,
         stripePercent: 2.9,
         stripeFlat: 0.3,
         stripeAchPercent: 0.8,
@@ -1085,13 +1086,13 @@ describe('test calculate service', function () {
         assert.deepEqual(
           {
             version: 'v2',
-            basePrice: 667.85,
-            originalPrice: 850,
-            totalFee: 54.64,
-            owedPrice: 722.5,
-            discount: 127.5,
-            feePaidUp: 33.39,
-            feeStripe: 21.25
+            basePrice: 785.76,
+            originalPrice: 1000,
+            totalFee: 64.24,
+            owedPrice: 850,
+            discount: 150,
+            feePaidUp: 39.29,
+            feeStripe: 24.95
           }
           , data);
         done();
@@ -1103,7 +1104,7 @@ describe('test calculate service', function () {
         version: 'v2',
         type: "card",
         capAmount: 5,
-        originalPrice: 85,
+        originalPrice: 100,
         stripePercent: 2.9,
         stripeFlat: 0.3,
         stripeAchPercent: 0.8,
@@ -1117,13 +1118,13 @@ describe('test calculate service', function () {
         assert.deepEqual(
           {
             version: 'v2',
-            basePrice: 69.85,
-            originalPrice: 85,
-            totalFee: 5.89,
-            owedPrice: 72.25,
-            discount: 12.75,
-            feePaidUp: 3.49,
-            feeStripe: 2.4
+            basePrice: 82.24,
+            originalPrice: 100,
+            totalFee: 6.87,
+            owedPrice: 85,
+            discount: 15,
+            feePaidUp: 4.11,
+            feeStripe: 2.76
           }
           , data);
         done();
@@ -1135,7 +1136,7 @@ describe('test calculate service', function () {
         version: 'v2',
         type: "card",
         capAmount: 5,
-        originalPrice: 425.64,
+        originalPrice: 500.75,
         stripePercent: 2.9,
         stripeFlat: 0.3,
         stripeAchPercent: 0.8,
@@ -1149,13 +1150,13 @@ describe('test calculate service', function () {
         assert.deepEqual(
           {
             version: 'v2',
-            basePrice: 351,
-            originalPrice: 425.64,
-            totalFee: 28.34,
-            owedPrice: 361.79,
-            discount: 63.85,
-            feePaidUp: 17.55,
-            feeStripe: 10.79
+            basePrice: 413,
+            originalPrice: 500.75,
+            totalFee: 33.29,
+            owedPrice: 425.64,
+            discount: 75.11,
+            feePaidUp: 20.65,
+            feeStripe: 12.64
           }
           , data);
         done();
@@ -1167,7 +1168,7 @@ describe('test calculate service', function () {
         version: 'v2',
         type: "card",
         capAmount: 5,
-        originalPrice: 850,
+        originalPrice: 1000,
         stripePercent: 2.9,
         stripeFlat: 0.3,
         stripeAchPercent: 0.8,
@@ -1181,13 +1182,13 @@ describe('test calculate service', function () {
         assert.deepEqual(
           {
             version: 'v2',
-            basePrice: 701.25,
-            originalPrice: 850,
-            totalFee: 56.31,
-            owedPrice: 722.5,
-            discount: 127.5,
-            feePaidUp: 35.06,
-            feeStripe: 21.25
+            basePrice: 825.05,
+            originalPrice: 1000,
+            totalFee: 66.2,
+            owedPrice: 850,
+            discount: 150,
+            feePaidUp: 41.25,
+            feeStripe: 24.95
           }
           , data);
         done();
@@ -1199,7 +1200,7 @@ describe('test calculate service', function () {
         version: 'v2',
         type: "bank_account",
         capAmount: 5,
-        originalPrice: 85,
+        originalPrice: 100,
         stripePercent: 2.9,
         stripeFlat: 0.3,
         stripeAchPercent: 0.8,
@@ -1213,13 +1214,13 @@ describe('test calculate service', function () {
         assert.deepEqual(
           {
             version: 'v2',
-            basePrice: 68.81,
-            originalPrice: 85,
-            totalFee: 4.02,
-            owedPrice: 72.25,
-            discount: 12.75,
-            feePaidUp: 3.44,
-            feeStripe: 0.58
+            basePrice: 80.95,
+            originalPrice: 100,
+            totalFee: 4.73,
+            owedPrice: 85,
+            discount: 15,
+            feePaidUp: 4.05,
+            feeStripe: 0.68
           }
           , data);
         done();
@@ -1231,7 +1232,7 @@ describe('test calculate service', function () {
         version: 'v2',
         type: "bank_account",
         capAmount: 5,
-        originalPrice: 425.64,
+        originalPrice: 500.75,
         stripePercent: 2.9,
         stripeFlat: 0.3,
         stripeAchPercent: 0.8,
@@ -1245,13 +1246,13 @@ describe('test calculate service', function () {
         assert.deepEqual(
           {
             version: 'v2',
-            basePrice: 344.56,
-            originalPrice: 425.64,
-            totalFee: 20.12,
-            owedPrice: 361.79,
-            discount: 63.85,
-            feePaidUp: 17.23,
-            feeStripe: 2.89
+            basePrice: 405.37,
+            originalPrice: 500.75,
+            totalFee: 23.68,
+            owedPrice: 425.64,
+            discount: 75.11,
+            feePaidUp: 20.27,
+            feeStripe: 3.41
           }
           , data);
         done();
@@ -1263,7 +1264,7 @@ describe('test calculate service', function () {
         version: 'v2',
         type: "bank_account",
         capAmount: 5,
-        originalPrice: 850,
+        originalPrice: 1000,
         stripePercent: 2.9,
         stripeFlat: 0.3,
         stripeAchPercent: 0.8,
@@ -1277,12 +1278,12 @@ describe('test calculate service', function () {
         assert.deepEqual(
           {
             version: 'v2',
-            basePrice: 688.1,
-            originalPrice: 850,
-            totalFee: 39.41,
-            owedPrice: 722.5,
-            discount: 127.5,
-            feePaidUp: 34.41,
+            basePrice: 809.52,
+            originalPrice: 1000,
+            totalFee: 45.48,
+            owedPrice: 850,
+            discount: 150,
+            feePaidUp: 40.48,
             feeStripe: 5
           }
           , data);
@@ -1295,7 +1296,7 @@ describe('test calculate service', function () {
         version: 'v2',
         type: "bank_account",
         capAmount: 5,
-        originalPrice: 85,
+        originalPrice: 100,
         stripePercent: 2.9,
         stripeFlat: 0.3,
         stripeAchPercent: 0.8,
@@ -1309,13 +1310,13 @@ describe('test calculate service', function () {
         assert.deepEqual(
           {
             version: 'v2',
-            basePrice: 72.25,
-            originalPrice: 85,
-            totalFee: 4.19,
-            owedPrice: 72.25,
-            discount: 12.75,
-            feePaidUp: 3.61,
-            feeStripe: 0.58
+            basePrice: 85,
+            originalPrice: 100,
+            totalFee: 4.93,
+            owedPrice: 85,
+            discount: 15,
+            feePaidUp: 4.25,
+            feeStripe: 0.68
           }
           , data);
         done();
@@ -1327,7 +1328,7 @@ describe('test calculate service', function () {
         version: 'v2',
         type: "bank_account",
         capAmount: 5,
-        originalPrice: 425.64,
+        originalPrice: 500.75,
         stripePercent: 2.9,
         stripeFlat: 0.3,
         stripeAchPercent: 0.8,
@@ -1341,13 +1342,13 @@ describe('test calculate service', function () {
         assert.deepEqual(
           {
             version: 'v2',
-            basePrice: 361.79,
-            originalPrice: 425.64,
-            totalFee: 20.98,
-            owedPrice: 361.79,
-            discount: 63.85,
-            feePaidUp: 18.09,
-            feeStripe: 2.89
+            basePrice: 425.64,
+            originalPrice: 500.75,
+            totalFee: 24.69,
+            owedPrice: 425.64,
+            discount: 75.11,
+            feePaidUp: 21.28,
+            feeStripe: 3.41
           }
           , data);
         done();
@@ -1359,7 +1360,7 @@ describe('test calculate service', function () {
         version: 'v2',
         type: "bank_account",
         capAmount: 5,
-        originalPrice: 850,
+        originalPrice: 1000,
         stripePercent: 2.9,
         stripeFlat: 0.3,
         stripeAchPercent: 0.8,
@@ -1373,12 +1374,12 @@ describe('test calculate service', function () {
         assert.deepEqual(
           {
             version: 'v2',
-            basePrice: 722.5,
-            originalPrice: 850,
-            totalFee: 41.13,
-            owedPrice: 722.5,
-            discount: 127.5,
-            feePaidUp: 36.13,
+            basePrice: 850,
+            originalPrice: 1000,
+            totalFee: 47.5,
+            owedPrice: 850,
+            discount: 150,
+            feePaidUp: 42.5,
             feeStripe: 5
           }
           , data);
@@ -1391,7 +1392,7 @@ describe('test calculate service', function () {
         version: 'v2',
         type: "bank_account",
         capAmount: 5,
-        originalPrice: 85,
+        originalPrice: 100,
         stripePercent: 2.9,
         stripeFlat: 0.3,
         stripeAchPercent: 0.8,
@@ -1405,13 +1406,13 @@ describe('test calculate service', function () {
         assert.deepEqual(
           {
             version: 'v2',
-            basePrice: 68.26,
-            originalPrice: 85,
-            totalFee: 3.99,
-            owedPrice: 72.25,
-            discount: 12.75,
-            feePaidUp: 3.41,
-            feeStripe: 0.58
+            basePrice: 80.3,
+            originalPrice: 100,
+            totalFee: 4.7,
+            owedPrice: 85,
+            discount: 15,
+            feePaidUp: 4.02,
+            feeStripe: 0.68
           }
           , data);
         done();
@@ -1423,7 +1424,7 @@ describe('test calculate service', function () {
         version: 'v2',
         type: "bank_account",
         capAmount: 5,
-        originalPrice: 425.64,
+        originalPrice: 500.75,
         stripePercent: 2.9,
         stripeFlat: 0.3,
         stripeAchPercent: 0.8,
@@ -1437,13 +1438,13 @@ describe('test calculate service', function () {
         assert.deepEqual(
           {
             version: 'v2',
-            basePrice: 341.81,
-            originalPrice: 425.64,
-            totalFee: 19.98,
-            owedPrice: 361.79,
-            discount: 63.85,
-            feePaidUp: 17.09,
-            feeStripe: 2.89
+            basePrice: 402.13,
+            originalPrice: 500.75,
+            totalFee: 23.52,
+            owedPrice: 425.64,
+            discount: 75.11,
+            feePaidUp: 20.11,
+            feeStripe: 3.41
           }
           , data);
         done();
@@ -1455,7 +1456,7 @@ describe('test calculate service', function () {
         version: 'v2',
         type: "bank_account",
         capAmount: 5,
-        originalPrice: 850,
+        originalPrice: 1000,
         stripePercent: 2.9,
         stripeFlat: 0.3,
         stripeAchPercent: 0.8,
@@ -1469,12 +1470,12 @@ describe('test calculate service', function () {
         assert.deepEqual(
           {
             version: 'v2',
-            basePrice: 683.33,
-            originalPrice: 850,
-            totalFee: 39.17,
-            owedPrice: 722.5,
-            discount: 127.5,
-            feePaidUp: 34.17,
+            basePrice: 804.76,
+            originalPrice: 1000,
+            totalFee: 45.24,
+            owedPrice: 850,
+            discount: 150,
+            feePaidUp: 40.24,
             feeStripe: 5
           }
           , data);
@@ -1487,7 +1488,7 @@ describe('test calculate service', function () {
         version: 'v2',
         type: "bank_account",
         capAmount: 5,
-        originalPrice: 85,
+        originalPrice: 100,
         stripePercent: 2.9,
         stripeFlat: 0.3,
         stripeAchPercent: 0.8,
@@ -1501,13 +1502,13 @@ describe('test calculate service', function () {
         assert.deepEqual(
           {
             version: 'v2',
-            basePrice: 71.67,
-            originalPrice: 85,
-            totalFee: 4.16,
-            owedPrice: 72.25,
-            discount: 12.75,
-            feePaidUp: 3.58,
-            feeStripe: 0.58
+            basePrice: 84.32,
+            originalPrice: 100,
+            totalFee: 4.9,
+            owedPrice: 85,
+            discount: 15,
+            feePaidUp: 4.22,
+            feeStripe: 0.68
           }
           , data);
         done();
@@ -1519,7 +1520,7 @@ describe('test calculate service', function () {
         version: 'v2',
         type: "bank_account",
         capAmount: 5,
-        originalPrice: 425.64,
+        originalPrice: 500.75,
         stripePercent: 2.9,
         stripeFlat: 0.3,
         stripeAchPercent: 0.8,
@@ -1533,13 +1534,13 @@ describe('test calculate service', function () {
         assert.deepEqual(
           {
             version: 'v2',
-            basePrice: 358.9,
-            originalPrice: 425.64,
-            totalFee: 20.84,
-            owedPrice: 361.79,
-            discount: 63.85,
-            feePaidUp: 17.95,
-            feeStripe: 2.89
+            basePrice: 422.23,
+            originalPrice: 500.75,
+            totalFee: 24.52,
+            owedPrice: 425.64,
+            discount: 75.11,
+            feePaidUp: 21.11,
+            feeStripe: 3.41
           }
           , data);
         done();
@@ -1551,7 +1552,7 @@ describe('test calculate service', function () {
         version: 'v2',
         type: "bank_account",
         capAmount: 5,
-        originalPrice: 850,
+        originalPrice: 1000,
         stripePercent: 2.9,
         stripeFlat: 0.3,
         stripeAchPercent: 0.8,
@@ -1565,12 +1566,12 @@ describe('test calculate service', function () {
         assert.deepEqual(
           {
             version: 'v2',
-            basePrice: 717.5,
-            originalPrice: 850,
-            totalFee: 40.88,
-            owedPrice: 722.5,
-            discount: 127.5,
-            feePaidUp: 35.88,
+            basePrice: 845,
+            originalPrice: 1000,
+            totalFee: 47.25,
+            owedPrice: 850,
+            discount: 150,
+            feePaidUp: 42.25,
             feeStripe: 5
           }
           , data);
@@ -2351,13 +2352,13 @@ describe('test calculate service', function () {
 
   }) // set 3
 
-  describe("TEST SET #4 - FLAT PAIDUP FEE, 15% DISCOUNT", function () {
+  describe.skip("TEST SET #4 - FLAT PAIDUP FEE, 15% DISCOUNT", function () {
     it('Row #4.1', function (done) {
       calculateService.getPrice({
         version: 'v2',
         type: "card",
         capAmount: 5,
-        originalPrice: 85,
+        originalPrice: 100,
         stripePercent: 2.9,
         stripeFlat: 0.3,
         stripeAchPercent: 0.8,
@@ -2371,12 +2372,12 @@ describe('test calculate service', function () {
         assert.deepEqual(
           {
             version: 'v2',
-            basePrice: 57.25,
-            originalPrice: 85,
-            totalFee: 17.4,
+            basePrice: -2.75,
+            originalPrice: 100,
+            totalFee: 77.4,
             owedPrice: 72.25,
             discount: 12.75,
-            feePaidUp: 15,
+            feePaidUp: 75,
             feeStripe: 2.4
           }
           , data);
@@ -2384,12 +2385,12 @@ describe('test calculate service', function () {
       });
     });
 
-    it.skip('Row #4.2', function (done) {
+    it('Row #4.2', function (done) {
       calculateService.getPrice({
         version: 'v2',
         type: "card",
         capAmount: 5,
-        originalPrice: 425.64,
+        originalPrice: 500.75,
         stripePercent: 2.9,
         stripeFlat: 0.3,
         stripeAchPercent: 0.8,
@@ -2404,7 +2405,7 @@ describe('test calculate service', function () {
           {
             version: 'v2',
             basePrice: 346.79,
-            originalPrice: 425.64,
+            originalPrice: 500.75,
             totalFee: 25.79,
             owedPrice: 361.79,
             discount: 63.85,
@@ -2421,7 +2422,7 @@ describe('test calculate service', function () {
         version: 'v2',
         type: "card",
         capAmount: 5,
-        originalPrice: 850,
+        originalPrice: 1000,
         stripePercent: 2.9,
         stripeFlat: 0.3,
         stripeAchPercent: 0.8,
@@ -2436,7 +2437,7 @@ describe('test calculate service', function () {
           {
             version: 'v2',
             basePrice: 707.5,
-            originalPrice: 850,
+            originalPrice: 1000,
             totalFee: 36.25,
             owedPrice: 722.5,
             discount: 127.5,
@@ -2453,7 +2454,7 @@ describe('test calculate service', function () {
         version: 'v2',
         type: "card",
         capAmount: 5,
-        originalPrice: 85,
+        originalPrice: 100,
         stripePercent: 2.9,
         stripeFlat: 0.3,
         stripeAchPercent: 0.8,
@@ -2468,7 +2469,7 @@ describe('test calculate service', function () {
           {
             version: 'v2',
             basePrice: 72.25,
-            originalPrice: 85,
+            originalPrice: 100,
             totalFee: 17.4,
             owedPrice: 72.25,
             discount: 12.75,
@@ -2485,7 +2486,7 @@ describe('test calculate service', function () {
         version: 'v2',
         type: "card",
         capAmount: 5,
-        originalPrice: 425.64,
+        originalPrice: 500.75,
         stripePercent: 2.9,
         stripeFlat: 0.3,
         stripeAchPercent: 0.8,
@@ -2500,7 +2501,7 @@ describe('test calculate service', function () {
           {
             version: 'v2',
             basePrice: 361.79,
-            originalPrice: 425.64,
+            originalPrice: 500.75,
             totalFee: 25.79,
             owedPrice: 361.79,
             discount: 63.85,
@@ -2517,7 +2518,7 @@ describe('test calculate service', function () {
         version: 'v2',
         type: "card",
         capAmount: 5,
-        originalPrice: 850,
+        originalPrice: 1000,
         stripePercent: 2.9,
         stripeFlat: 0.3,
         stripeAchPercent: 0.8,
@@ -2532,7 +2533,7 @@ describe('test calculate service', function () {
           {
             version: 'v2',
             basePrice: 722.5,
-            originalPrice: 850,
+            originalPrice: 1000,
             totalFee: 36.25,
             owedPrice: 722.5,
             discount: 127.5,
@@ -2549,7 +2550,7 @@ describe('test calculate service', function () {
         version: 'v2',
         type: "card",
         capAmount: 5,
-        originalPrice: 85,
+        originalPrice: 100,
         stripePercent: 2.9,
         stripeFlat: 0.3,
         stripeAchPercent: 0.8,
@@ -2564,7 +2565,7 @@ describe('test calculate service', function () {
           {
             version: 'v2',
             basePrice: 54.85,
-            originalPrice: 85,
+            originalPrice: 100,
             totalFee: 17.4,
             owedPrice: 72.25,
             discount: 12.75,
@@ -2581,7 +2582,7 @@ describe('test calculate service', function () {
         version: 'v2',
         type: "card",
         capAmount: 5,
-        originalPrice: 425.64,
+        originalPrice: 500.75,
         stripePercent: 2.9,
         stripeFlat: 0.3,
         stripeAchPercent: 0.8,
@@ -2596,7 +2597,7 @@ describe('test calculate service', function () {
           {
             version: 'v2',
             basePrice: 336,
-            originalPrice: 425.64,
+            originalPrice: 500.75,
             totalFee: 25.79,
             owedPrice: 361.79,
             discount: 63.85,
@@ -2613,7 +2614,7 @@ describe('test calculate service', function () {
         version: 'v2',
         type: "card",
         capAmount: 5,
-        originalPrice: 850,
+        originalPrice: 1000,
         stripePercent: 2.9,
         stripeFlat: 0.3,
         stripeAchPercent: 0.8,
@@ -2628,7 +2629,7 @@ describe('test calculate service', function () {
           {
             version: 'v2',
             basePrice: 686.25,
-            originalPrice: 850,
+            originalPrice: 1000,
             totalFee: 36.25,
             owedPrice: 722.5,
             discount: 127.5,
@@ -2645,7 +2646,7 @@ describe('test calculate service', function () {
         version: 'v2',
         type: "card",
         capAmount: 5,
-        originalPrice: 85,
+        originalPrice: 100,
         stripePercent: 2.9,
         stripeFlat: 0.3,
         stripeAchPercent: 0.8,
@@ -2660,7 +2661,7 @@ describe('test calculate service', function () {
           {
             version: 'v2',
             basePrice: 69.85,
-            originalPrice: 85,
+            originalPrice: 100,
             totalFee: 17.4,
             owedPrice: 72.25,
             discount: 12.75,
@@ -2677,7 +2678,7 @@ describe('test calculate service', function () {
         version: 'v2',
         type: "card",
         capAmount: 5,
-        originalPrice: 425.64,
+        originalPrice: 500.75,
         stripePercent: 2.9,
         stripeFlat: 0.3,
         stripeAchPercent: 0.8,
@@ -2692,7 +2693,7 @@ describe('test calculate service', function () {
           {
             version: 'v2',
             basePrice: 351,
-            originalPrice: 425.64,
+            originalPrice: 500.75,
             totalFee: 25.79,
             owedPrice: 361.79,
             discount: 63.85,
@@ -2709,7 +2710,7 @@ describe('test calculate service', function () {
         version: 'v2',
         type: "card",
         capAmount: 5,
-        originalPrice: 850,
+        originalPrice: 1000,
         stripePercent: 2.9,
         stripeFlat: 0.3,
         stripeAchPercent: 0.8,
@@ -2724,7 +2725,7 @@ describe('test calculate service', function () {
           {
             version: 'v2',
             basePrice: 701.25,
-            originalPrice: 850,
+            originalPrice: 1000,
             totalFee: 36.25,
             owedPrice: 722.5,
             discount: 127.5,
@@ -2741,7 +2742,7 @@ describe('test calculate service', function () {
         version: 'v2',
         type: "bank_account",
         capAmount: 5,
-        originalPrice: 85,
+        originalPrice: 100,
         stripePercent: 2.9,
         stripeFlat: 0.3,
         stripeAchPercent: 0.8,
@@ -2756,7 +2757,7 @@ describe('test calculate service', function () {
           {
             version: 'v2',
             basePrice: 57.25,
-            originalPrice: 85,
+            originalPrice: 100,
             totalFee: 15.58,
             owedPrice: 72.25,
             discount: 12.75,
@@ -2773,7 +2774,7 @@ describe('test calculate service', function () {
         version: 'v2',
         type: "bank_account",
         capAmount: 5,
-        originalPrice: 425.64,
+        originalPrice: 500.75,
         stripePercent: 2.9,
         stripeFlat: 0.3,
         stripeAchPercent: 0.8,
@@ -2788,7 +2789,7 @@ describe('test calculate service', function () {
           {
             version: 'v2',
             basePrice: 346.79,
-            originalPrice: 425.64,
+            originalPrice: 500.75,
             totalFee: 17.89,
             owedPrice: 361.79,
             discount: 63.85,
@@ -2805,7 +2806,7 @@ describe('test calculate service', function () {
         version: 'v2',
         type: "bank_account",
         capAmount: 5,
-        originalPrice: 850,
+        originalPrice: 1000,
         stripePercent: 2.9,
         stripeFlat: 0.3,
         stripeAchPercent: 0.8,
@@ -2820,7 +2821,7 @@ describe('test calculate service', function () {
           {
             version: 'v2',
             basePrice: 707.5,
-            originalPrice: 850,
+            originalPrice: 1000,
             totalFee: 20,
             owedPrice: 722.5,
             discount: 127.5,
@@ -2837,7 +2838,7 @@ describe('test calculate service', function () {
         version: 'v2',
         type: "bank_account",
         capAmount: 5,
-        originalPrice: 85,
+        originalPrice: 100,
         stripePercent: 2.9,
         stripeFlat: 0.3,
         stripeAchPercent: 0.8,
@@ -2852,7 +2853,7 @@ describe('test calculate service', function () {
           {
             version: 'v2',
             basePrice: 72.25,
-            originalPrice: 85,
+            originalPrice: 100,
             totalFee: 15.58,
             owedPrice: 72.25,
             discount: 12.75,
@@ -2869,7 +2870,7 @@ describe('test calculate service', function () {
         version: 'v2',
         type: "bank_account",
         capAmount: 5,
-        originalPrice: 425.64,
+        originalPrice: 500.75,
         stripePercent: 2.9,
         stripeFlat: 0.3,
         stripeAchPercent: 0.8,
@@ -2884,7 +2885,7 @@ describe('test calculate service', function () {
           {
             version: 'v2',
             basePrice: 361.79,
-            originalPrice: 425.64,
+            originalPrice: 500.75,
             totalFee: 17.89,
             owedPrice: 361.79,
             discount: 63.85,
@@ -2901,7 +2902,7 @@ describe('test calculate service', function () {
         version: 'v2',
         type: "bank_account",
         capAmount: 5,
-        originalPrice: 850,
+        originalPrice: 1000,
         stripePercent: 2.9,
         stripeFlat: 0.3,
         stripeAchPercent: 0.8,
@@ -2916,7 +2917,7 @@ describe('test calculate service', function () {
           {
             version: 'v2',
             basePrice: 722.5,
-            originalPrice: 850,
+            originalPrice: 1000,
             totalFee: 20,
             owedPrice: 722.5,
             discount: 127.5,
@@ -2933,7 +2934,7 @@ describe('test calculate service', function () {
         version: 'v2',
         type: "bank_account",
         capAmount: 5,
-        originalPrice: 85,
+        originalPrice: 100,
         stripePercent: 2.9,
         stripeFlat: 0.3,
         stripeAchPercent: 0.8,
@@ -2948,7 +2949,7 @@ describe('test calculate service', function () {
           {
             version: 'v2',
             basePrice: 56.67,
-            originalPrice: 85,
+            originalPrice: 100,
             totalFee: 15.58,
             owedPrice: 72.25,
             discount: 12.75,
@@ -2965,7 +2966,7 @@ describe('test calculate service', function () {
         version: 'v2',
         type: "bank_account",
         capAmount: 5,
-        originalPrice: 425.64,
+        originalPrice: 500.75,
         stripePercent: 2.9,
         stripeFlat: 0.3,
         stripeAchPercent: 0.8,
@@ -2980,7 +2981,7 @@ describe('test calculate service', function () {
           {
             version: 'v2',
             basePrice: 343.9,
-            originalPrice: 425.64,
+            originalPrice: 500.75,
             totalFee: 17.89,
             owedPrice: 361.79,
             discount: 63.85,
@@ -2997,7 +2998,7 @@ describe('test calculate service', function () {
         version: 'v2',
         type: "bank_account",
         capAmount: 5,
-        originalPrice: 850,
+        originalPrice: 1000,
         stripePercent: 2.9,
         stripeFlat: 0.3,
         stripeAchPercent: 0.8,
@@ -3012,7 +3013,7 @@ describe('test calculate service', function () {
           {
             version: 'v2',
             basePrice: 702.5,
-            originalPrice: 850,
+            originalPrice: 1000,
             totalFee: 20,
             owedPrice: 722.5,
             discount: 127.5,
@@ -3029,7 +3030,7 @@ describe('test calculate service', function () {
         version: 'v2',
         type: "bank_account",
         capAmount: 5,
-        originalPrice: 85,
+        originalPrice: 100,
         stripePercent: 2.9,
         stripeFlat: 0.3,
         stripeAchPercent: 0.8,
@@ -3044,7 +3045,7 @@ describe('test calculate service', function () {
           {
             version: 'v2',
             basePrice: 71.67,
-            originalPrice: 85,
+            originalPrice: 100,
             totalFee: 15.58,
             owedPrice: 72.25,
             discount: 12.75,
@@ -3061,7 +3062,7 @@ describe('test calculate service', function () {
         version: 'v2',
         type: "bank_account",
         capAmount: 5,
-        originalPrice: 425.64,
+        originalPrice: 500.75,
         stripePercent: 2.9,
         stripeFlat: 0.3,
         stripeAchPercent: 0.8,
@@ -3076,7 +3077,7 @@ describe('test calculate service', function () {
           {
             version: 'v2',
             basePrice: 358.9,
-            originalPrice: 425.64,
+            originalPrice: 500.75,
             totalFee: 17.89,
             owedPrice: 361.79,
             discount: 63.85,
@@ -3093,7 +3094,7 @@ describe('test calculate service', function () {
         version: 'v2',
         type: "bank_account",
         capAmount: 5,
-        originalPrice: 850,
+        originalPrice: 1000,
         stripePercent: 2.9,
         stripeFlat: 0.3,
         stripeAchPercent: 0.8,
@@ -3108,7 +3109,7 @@ describe('test calculate service', function () {
           {
             version: 'v2',
             basePrice: 717.5,
-            originalPrice: 850,
+            originalPrice: 1000,
             totalFee: 20,
             owedPrice: 722.5,
             discount: 127.5,
@@ -3898,7 +3899,7 @@ describe('test calculate service', function () {
         version: 'v2',
         type: "card",
         capAmount: 5,
-        originalPrice: 85,
+        originalPrice: 100,
         stripePercent: 2.9,
         stripeFlat: 0.3,
         stripeAchPercent: 0.8,
@@ -3913,7 +3914,7 @@ describe('test calculate service', function () {
           {
             version: 'v2',
             basePrice: 56.68,
-            originalPrice: 85,
+            originalPrice: 100,
             totalFee: 17.97,
             owedPrice: 72.25,
             discount: 12.75,
@@ -3930,7 +3931,7 @@ describe('test calculate service', function () {
         version: 'v2',
         type: "card",
         capAmount: 5,
-        originalPrice: 425.64,
+        originalPrice: 500.75,
         stripePercent: 2.9,
         stripeFlat: 0.3,
         stripeAchPercent: 0.8,
@@ -3945,7 +3946,7 @@ describe('test calculate service', function () {
           {
             version: 'v2',
             basePrice: 343.36,
-            originalPrice: 425.64,
+            originalPrice: 500.75,
             totalFee: 29.22,
             owedPrice: 361.79,
             discount: 63.85,
@@ -3962,7 +3963,7 @@ describe('test calculate service', function () {
         version: 'v2',
         type: "card",
         capAmount: 5,
-        originalPrice: 850,
+        originalPrice: 1000,
         stripePercent: 2.9,
         stripeFlat: 0.3,
         stripeAchPercent: 0.8,
@@ -3977,7 +3978,7 @@ describe('test calculate service', function () {
           {
             version: 'v2',
             basePrice: 700.5,
-            originalPrice: 850,
+            originalPrice: 1000,
             totalFee: 43.26,
             owedPrice: 722.5,
             discount: 127.5,
@@ -3994,7 +3995,7 @@ describe('test calculate service', function () {
         version: 'v2',
         type: "card",
         capAmount: 5,
-        originalPrice: 85,
+        originalPrice: 100,
         stripePercent: 2.9,
         stripeFlat: 0.3,
         stripeAchPercent: 0.8,
@@ -4009,7 +4010,7 @@ describe('test calculate service', function () {
           {
             version: 'v2',
             basePrice: 72.25,
-            originalPrice: 85,
+            originalPrice: 100,
             totalFee: 18.12,
             owedPrice: 72.25,
             discount: 12.75,
@@ -4026,7 +4027,7 @@ describe('test calculate service', function () {
         version: 'v2',
         type: "card",
         capAmount: 5,
-        originalPrice: 425.64,
+        originalPrice: 500.75,
         stripePercent: 2.9,
         stripeFlat: 0.3,
         stripeAchPercent: 0.8,
@@ -4041,7 +4042,7 @@ describe('test calculate service', function () {
           {
             version: 'v2',
             basePrice: 361.79,
-            originalPrice: 425.64,
+            originalPrice: 500.75,
             totalFee: 29.41,
             owedPrice: 361.79,
             discount: 63.85,
@@ -4058,7 +4059,7 @@ describe('test calculate service', function () {
         version: 'v2',
         type: "card",
         capAmount: 5,
-        originalPrice: 850,
+        originalPrice: 1000,
         stripePercent: 2.9,
         stripeFlat: 0.3,
         stripeAchPercent: 0.8,
@@ -4073,7 +4074,7 @@ describe('test calculate service', function () {
           {
             version: 'v2',
             basePrice: 722.5,
-            originalPrice: 850,
+            originalPrice: 1000,
             totalFee: 43.48,
             owedPrice: 722.5,
             discount: 127.5,
@@ -4090,7 +4091,7 @@ describe('test calculate service', function () {
         version: 'v2',
         type: "card",
         capAmount: 5,
-        originalPrice: 85,
+        originalPrice: 100,
         stripePercent: 2.9,
         stripeFlat: 0.3,
         stripeAchPercent: 0.8,
@@ -4105,7 +4106,7 @@ describe('test calculate service', function () {
           {
             version: 'v2',
             basePrice: 54.31,
-            originalPrice: 85,
+            originalPrice: 100,
             totalFee: 17.94,
             owedPrice: 72.25,
             discount: 12.75,
@@ -4122,7 +4123,7 @@ describe('test calculate service', function () {
         version: 'v2',
         type: "card",
         capAmount: 5,
-        originalPrice: 425.64,
+        originalPrice: 500.75,
         stripePercent: 2.9,
         stripeFlat: 0.3,
         stripeAchPercent: 0.8,
@@ -4137,7 +4138,7 @@ describe('test calculate service', function () {
           {
             version: 'v2',
             basePrice: 332.67,
-            originalPrice: 425.64,
+            originalPrice: 500.75,
             totalFee: 29.12,
             owedPrice: 361.79,
             discount: 63.85,
@@ -4154,7 +4155,7 @@ describe('test calculate service', function () {
         version: 'v2',
         type: "card",
         capAmount: 5,
-        originalPrice: 850,
+        originalPrice: 1000,
         stripePercent: 2.9,
         stripeFlat: 0.3,
         stripeAchPercent: 0.8,
@@ -4169,7 +4170,7 @@ describe('test calculate service', function () {
           {
             version: 'v2',
             basePrice: 679.45,
-            originalPrice: 850,
+            originalPrice: 1000,
             totalFee: 43.04,
             owedPrice: 722.5,
             discount: 127.5,
@@ -4186,7 +4187,7 @@ describe('test calculate service', function () {
         version: 'v2',
         type: "card",
         capAmount: 5,
-        originalPrice: 85,
+        originalPrice: 100,
         stripePercent: 2.9,
         stripeFlat: 0.3,
         stripeAchPercent: 0.8,
@@ -4201,7 +4202,7 @@ describe('test calculate service', function () {
           {
             version: 'v2',
             basePrice: 69.85,
-            originalPrice: 85,
+            originalPrice: 100,
             totalFee: 18.1,
             owedPrice: 72.25,
             discount: 12.75,
@@ -4218,7 +4219,7 @@ describe('test calculate service', function () {
         version: 'v2',
         type: "card",
         capAmount: 5,
-        originalPrice: 425.64,
+        originalPrice: 500.75,
         stripePercent: 2.9,
         stripeFlat: 0.3,
         stripeAchPercent: 0.8,
@@ -4233,7 +4234,7 @@ describe('test calculate service', function () {
           {
             version: 'v2',
             basePrice: 351,
-            originalPrice: 425.64,
+            originalPrice: 500.75,
             totalFee: 29.3,
             owedPrice: 361.79,
             discount: 63.85,
@@ -4250,7 +4251,7 @@ describe('test calculate service', function () {
         version: 'v2',
         type: "card",
         capAmount: 5,
-        originalPrice: 850,
+        originalPrice: 1000,
         stripePercent: 2.9,
         stripeFlat: 0.3,
         stripeAchPercent: 0.8,
@@ -4265,7 +4266,7 @@ describe('test calculate service', function () {
           {
             version: 'v2',
             basePrice: 701.25,
-            originalPrice: 850,
+            originalPrice: 1000,
             totalFee: 43.26,
             owedPrice: 722.5,
             discount: 127.5,
@@ -4282,7 +4283,7 @@ describe('test calculate service', function () {
         version: 'v2',
         type: "bank_account",
         capAmount: 5,
-        originalPrice: 85,
+        originalPrice: 100,
         stripePercent: 2.9,
         stripeFlat: 0.3,
         stripeAchPercent: 0.8,
@@ -4297,7 +4298,7 @@ describe('test calculate service', function () {
           {
             version: 'v2',
             basePrice: 56.68,
-            originalPrice: 85,
+            originalPrice: 100,
             totalFee: 16.15,
             owedPrice: 72.25,
             discount: 12.75,
@@ -4314,7 +4315,7 @@ describe('test calculate service', function () {
         version: 'v2',
         type: "bank_account",
         capAmount: 5,
-        originalPrice: 425.64,
+        originalPrice: 500.75,
         stripePercent: 2.9,
         stripeFlat: 0.3,
         stripeAchPercent: 0.8,
@@ -4329,7 +4330,7 @@ describe('test calculate service', function () {
           {
             version: 'v2',
             basePrice: 343.36,
-            originalPrice: 425.64,
+            originalPrice: 500.75,
             totalFee: 21.32,
             owedPrice: 361.79,
             discount: 63.85,
@@ -4346,7 +4347,7 @@ describe('test calculate service', function () {
         version: 'v2',
         type: "bank_account",
         capAmount: 5,
-        originalPrice: 850,
+        originalPrice: 1000,
         stripePercent: 2.9,
         stripeFlat: 0.3,
         stripeAchPercent: 0.8,
@@ -4361,7 +4362,7 @@ describe('test calculate service', function () {
           {
             version: 'v2',
             basePrice: 700.5,
-            originalPrice: 850,
+            originalPrice: 1000,
             totalFee: 27.01,
             owedPrice: 722.5,
             discount: 127.5,
@@ -4378,7 +4379,7 @@ describe('test calculate service', function () {
         version: 'v2',
         type: "bank_account",
         capAmount: 5,
-        originalPrice: 85,
+        originalPrice: 100,
         stripePercent: 2.9,
         stripeFlat: 0.3,
         stripeAchPercent: 0.8,
@@ -4393,7 +4394,7 @@ describe('test calculate service', function () {
           {
             version: 'v2',
             basePrice: 72.25,
-            originalPrice: 85,
+            originalPrice: 100,
             totalFee: 16.3,
             owedPrice: 72.25,
             discount: 12.75,
@@ -4410,7 +4411,7 @@ describe('test calculate service', function () {
         version: 'v2',
         type: "bank_account",
         capAmount: 5,
-        originalPrice: 425.64,
+        originalPrice: 500.75,
         stripePercent: 2.9,
         stripeFlat: 0.3,
         stripeAchPercent: 0.8,
@@ -4425,7 +4426,7 @@ describe('test calculate service', function () {
           {
             version: 'v2',
             basePrice: 361.79,
-            originalPrice: 425.64,
+            originalPrice: 500.75,
             totalFee: 21.51,
             owedPrice: 361.79,
             discount: 63.85,
@@ -4442,7 +4443,7 @@ describe('test calculate service', function () {
         version: 'v2',
         type: "bank_account",
         capAmount: 5,
-        originalPrice: 850,
+        originalPrice: 1000,
         stripePercent: 2.9,
         stripeFlat: 0.3,
         stripeAchPercent: 0.8,
@@ -4457,7 +4458,7 @@ describe('test calculate service', function () {
           {
             version: 'v2',
             basePrice: 722.5,
-            originalPrice: 850,
+            originalPrice: 1000,
             totalFee: 27.23,
             owedPrice: 722.5,
             discount: 127.5,
@@ -4474,7 +4475,7 @@ describe('test calculate service', function () {
         version: 'v2',
         type: "bank_account",
         capAmount: 5,
-        originalPrice: 85,
+        originalPrice: 100,
         stripePercent: 2.9,
         stripeFlat: 0.3,
         stripeAchPercent: 0.8,
@@ -4489,7 +4490,7 @@ describe('test calculate service', function () {
           {
             version: 'v2',
             basePrice: 56.11,
-            originalPrice: 85,
+            originalPrice: 100,
             totalFee: 16.14,
             owedPrice: 72.25,
             discount: 12.75,
@@ -4506,7 +4507,7 @@ describe('test calculate service', function () {
         version: 'v2',
         type: "bank_account",
         capAmount: 5,
-        originalPrice: 425.64,
+        originalPrice: 500.75,
         stripePercent: 2.9,
         stripeFlat: 0.3,
         stripeAchPercent: 0.8,
@@ -4521,7 +4522,7 @@ describe('test calculate service', function () {
           {
             version: 'v2',
             basePrice: 340.49,
-            originalPrice: 425.64,
+            originalPrice: 500.75,
             totalFee: 21.29,
             owedPrice: 361.79,
             discount: 63.85,
@@ -4538,7 +4539,7 @@ describe('test calculate service', function () {
         version: 'v2',
         type: "bank_account",
         capAmount: 5,
-        originalPrice: 850,
+        originalPrice: 1000,
         stripePercent: 2.9,
         stripeFlat: 0.3,
         stripeAchPercent: 0.8,
@@ -4553,7 +4554,7 @@ describe('test calculate service', function () {
           {
             version: 'v2',
             basePrice: 695.54,
-            originalPrice: 850,
+            originalPrice: 1000,
             totalFee: 26.96,
             owedPrice: 722.5,
             discount: 127.5,
@@ -4570,7 +4571,7 @@ describe('test calculate service', function () {
         version: 'v2',
         type: "bank_account",
         capAmount: 5,
-        originalPrice: 85,
+        originalPrice: 100,
         stripePercent: 2.9,
         stripeFlat: 0.3,
         stripeAchPercent: 0.8,
@@ -4585,7 +4586,7 @@ describe('test calculate service', function () {
           {
             version: 'v2',
             basePrice: 71.67,
-            originalPrice: 85,
+            originalPrice: 100,
             totalFee: 16.3,
             owedPrice: 72.25,
             discount: 12.75,
@@ -4602,7 +4603,7 @@ describe('test calculate service', function () {
         version: 'v2',
         type: "bank_account",
         capAmount: 5,
-        originalPrice: 425.64,
+        originalPrice: 500.75,
         stripePercent: 2.9,
         stripeFlat: 0.3,
         stripeAchPercent: 0.8,
@@ -4617,7 +4618,7 @@ describe('test calculate service', function () {
           {
             version: 'v2',
             basePrice: 358.9,
-            originalPrice: 425.64,
+            originalPrice: 500.75,
             totalFee: 21.48,
             owedPrice: 361.79,
             discount: 63.85,
@@ -4634,7 +4635,7 @@ describe('test calculate service', function () {
         version: 'v2',
         type: "bank_account",
         capAmount: 5,
-        originalPrice: 850,
+        originalPrice: 1000,
         stripePercent: 2.9,
         stripeFlat: 0.3,
         stripeAchPercent: 0.8,
@@ -4649,7 +4650,7 @@ describe('test calculate service', function () {
           {
             version: 'v2',
             basePrice: 717.5,
-            originalPrice: 850,
+            originalPrice: 1000,
             totalFee: 27.18,
             owedPrice: 722.5,
             discount: 127.5,
