@@ -35,7 +35,7 @@
     "magento": "https://github.com/talosdigital/magentoapi/tarball/master",
     "method-override": "^2.3.5",
     "moment": "^2.11.2",
-    "mongoose": "4.2.9",
+    "mongoose": "5.7.8",
     "pmx": "^0.6.1",
     "wagner-core": "^0.2.0",
     "winston": "^2.1.1",
